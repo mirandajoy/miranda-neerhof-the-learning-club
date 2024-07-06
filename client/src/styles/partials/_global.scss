@@ -1,0 +1,39 @@
+@import './variables.scss';
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 100%;
+}
+
+body {
+  font-family: 'Rubik', sans-serif;
+  font-optical-sizing: auto;
+}
+
+.body {
+  font-size: $font-size-body;
+  font-weight: $weight-regular;
+  line-height: calc($font-size-body * 1.2);
+}
+
+.header {
+  font-weight: $weight-bold;
+  &--primary {
+    font-size: $font-size-header-primary;
+    line-height: calc($font-size-header-primary * 1.2);
+  }
+  &--secondary {
+    font-size: $font-size-header-secondary;
+    line-height: calc($font-size-header-secondary * 1.2);
+  }
+}
+
+.label {
+  font-size: $font-size-label;
+  font-weight: $weight-bold;
+  line-height: calc($font-size-label * 1.2);
+}

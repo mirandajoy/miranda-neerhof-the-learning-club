@@ -1,0 +1,58 @@
+@import './variables.scss';
+
+// Media Queries
+@mixin tablet {
+  @media screen and (min-width: $tablet) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media screen and (min-width: $desktop) {
+    @content;
+  }
+}
+
+// Layout
+@mixin flex($alignment: center, $justify: space-between) {
+  align-items: $alignment;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: $justify;
+}
+
+//Spacing
+@mixin responsive-padding {
+  padding: $space-standard-mobile;
+  @include tablet {
+    padding: $space-standard;
+  }
+}
+
+@mixin responsive-padding-block {
+  padding-block: $space-standard-mobile;
+  @include tablet {
+    padding-block: $space-standard;
+  }
+}
+
+@mixin responsive-padding-right {
+  padding-right: $space-standard-mobile;
+  @include tablet {
+    padding-right: $space-standard;
+  }
+}
+
+@mixin responsive-padding-left {
+  padding-left: $space-standard-mobile;
+  @include tablet {
+    padding-left: $space-standard;
+  }
+}
+
+@mixin responsive-gap {
+  gap: $space-standard-mobile;
+  @include tablet {
+    gap: $space-standard;
+  }
+}
