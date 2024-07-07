@@ -57,7 +57,11 @@ As a signed in user, I can see the resources for the month.
 - Login
 
 ### Mockups
--
+![](landing-page.png)
+![](learning-materials.png)
+![](groups-page.png)
+![](signup.png)
+![](login.png)
 
 ### Data
 ![](learning-club-db-schema.png)
