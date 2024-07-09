@@ -1,4 +1,4 @@
-@import './variables.scss';
+@use './variables' as *;
 
 // Media Queries
 @mixin tablet {
@@ -14,6 +14,11 @@
 }
 
 // Layout
+@mixin page-center {
+  margin: 2rem auto;
+  max-width: $max-content-width;
+}
+
 @mixin flex($alignment: center, $justify: space-between) {
   align-items: $alignment;
   display: flex;
