@@ -10,4 +10,8 @@
   font-size: $font-size-body;
   font-weight: $weight-bold;
   padding: $space-small $space-standard;
+  &:hover {
+    background-color: transparent;
+    color: $color-primary-dark;
+  }
 }
