@@ -4,12 +4,14 @@ import Button from "../../components/Button/Button";
 import { useState } from "react";
 import { loginUser } from "../../utils/api-utils";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const SignInPage = () => {
   const [formValues, setFormValues] = useState({
     email: "",
     password: "",
   });
+  const navigate = useNavigate();
 
   const handleOnChange = (event) => {
     const target = event.target.name;
@@ -30,8 +32,9 @@ const SignInPage = () => {
   const loginExistingUser = async () => {
     try {
       const res = await axios.post(loginUser(), formValues);
-      console.log(res);
+      sessionStorage.setItem("JWTtoken", res.data);
       setFormValues({ email: "", password: "" });
+      navigate("/");
     } catch (error) {
       console.error(error);
     }

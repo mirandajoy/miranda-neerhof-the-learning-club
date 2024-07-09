@@ -5,6 +5,7 @@ import axios from "axios";
 import { createUser } from "../../utils/api-utils";
 import { validateEmail, validatePassword, validateSignUp } from "../../utils/validation-utils";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const SignUpPage = () => {
   const [formValues, setFormValues] = useState({
@@ -17,6 +18,7 @@ const SignUpPage = () => {
     emailError: null,
     passwordError: null,
   });
+  const navigate = useNavigate();
 
   const handleOnChange = (event) => {
     const target = event.target.name;
@@ -39,8 +41,9 @@ const SignUpPage = () => {
   const createNewUser = async () => {
     try {
       const res = await axios.post(createUser(), formValues);
-      console.log(res);
+      sessionStorage.setItem("JWTtoken", res.data);
       setFormValues({ name: "", email: "", password: "" });
+      navigate("/");
     } catch (error) {
       console.error(error);
     }
