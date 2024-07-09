@@ -47,9 +47,9 @@ const SignUpPage = () => {
   };
 
   return (
-    <>
-      <form id="emailForm" onSubmit={handleOnSubmit}>
-        <h1 className="header header--primary">Sign Up</h1>
+    <section className="sign-up">
+      <h1 className="header header--primary sign-up__header">Sign Up</h1>
+      <form id="emailForm" onSubmit={handleOnSubmit} className="sign-up__form">
         <InputField
           name="name"
           type="text"
@@ -95,7 +95,7 @@ const SignUpPage = () => {
         />
         <Button type="Submit" label="Sign up" />
       </form>
-    </>
+    </section>
   );
 };
 

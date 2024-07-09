@@ -2,8 +2,8 @@ import "./InputField.scss";
 
 const InputField = ({ name, type, label, placeholder, value, errorMessage, onBlur, onChange }) => {
   return (
-    <>
-      <label>{label}</label>
+    <div className="input">
+      <label className="label input__label">{label}</label>
       <input
         id={name}
         name={name}
@@ -12,10 +12,10 @@ const InputField = ({ name, type, label, placeholder, value, errorMessage, onBlu
         placeholder={placeholder}
         onBlur={onBlur}
         onChange={onChange}
-        className={`input__field ${errorMessage ? "input__field--error" : ""}`}
+        className={`body input__field ${errorMessage ? "input__field--error" : ""}`}
       />
-      <span>{errorMessage}</span>
-    </>
+      <span className="body input__error">{errorMessage}</span>
+    </div>
   );
 };
 

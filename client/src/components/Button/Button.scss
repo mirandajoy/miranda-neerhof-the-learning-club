@@ -1,3 +1,13 @@
-@use '../../styles/partials/variables' as *;
-@use '../../styles/partials/mixins' as *;
-@use '../../styles/partials/global' as *;
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/global" as *;
+
+.button {
+  background-color: $color-brand-primary;
+  border: 1px solid $color-brand-primary;
+  border-radius: $border-radius;
+  color: $color-primary-light;
+  font-size: $font-size-body;
+  font-weight: $weight-bold;
+  padding: $space-small $space-standard;
+}
