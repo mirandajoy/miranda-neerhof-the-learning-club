@@ -3,20 +3,44 @@ import Button from "../../components/Button/Button";
 import "./SignUpPage.scss";
 import axios from "axios";
 import { createUser } from "../../utils/api-utils";
+import { validateEmail, validatePassword, validateSignUp } from "../../utils/validation-utils";
+import { useState } from "react";
 
 const SignUpPage = () => {
-  const SignUp = async (event) => {
-    event.preventDefault();
+  const [formValues, setFormValues] = useState({
+    name: "",
+    email: "",
+    password: "",
+  });
+  const [formErrors, setFormErrors] = useState({
+    nameError: null,
+    emailError: null,
+    passwordError: null,
+  });
 
-    const newUser = {
-      name: event.target.name.value,
-      email: event.target.email.value,
-      password: event.target.password.value,
+  const handleOnChange = (event) => {
+    const target = event.target.name;
+    const newValues = {
+      ...formValues,
+      [target]: event.target.value,
     };
+    setFormValues(newValues);
+    return newValues;
+  };
 
+  const handleOnSubmit = (event) => {
+    event.preventDefault();
+    const res = validateSignUp(formValues);
+    setFormErrors(res);
+
+    res.nameError === null && res.emailError === null && res.passwordError === null && createNewUser();
+  };
+
+  const createNewUser = async () => {
     try {
-      const res = await axios.post(createUser(), newUser);
+      const res = await axios.post(createUser(), formValues);
       console.log(res);
+      setFormValues({ name: "", email: "", password: "" });
     } catch (error) {
       console.error(error);
     }
@@ -24,11 +48,51 @@ const SignUpPage = () => {
 
   return (
     <>
-      <form onSubmit={SignUp}>
+      <form id="emailForm" onSubmit={handleOnSubmit}>
         <h1 className="header header--primary">Sign Up</h1>
-        <InputField name="name" type="text" placeholder="Name" />
-        <InputField name="email" type="text" placeholder="Email" />
-        <InputField name="password" type="text" placeholder="Password" />
+        <InputField
+          name="name"
+          type="text"
+          label="Name"
+          placeholder="Name"
+          value={formValues.name}
+          errorMessage={formErrors.nameError}
+          onChange={handleOnChange}
+        />
+        <InputField
+          name="email"
+          type="text"
+          label="Email"
+          placeholder="Email"
+          value={formValues.email}
+          errorMessage={formErrors.emailError}
+          onChange={handleOnChange}
+          onBlur={(event) => {
+            const recentUpdate = handleOnChange(event);
+            const res = validateEmail(recentUpdate.email);
+            setFormErrors({
+              ...formErrors,
+              emailError: res,
+            });
+          }}
+        />
+        <InputField
+          name="password"
+          type="password"
+          label="Password"
+          placeholder="Password"
+          value={formValues.password}
+          errorMessage={formErrors.passwordError}
+          onChange={handleOnChange}
+          onBlur={(event) => {
+            const recentUpdate = handleOnChange(event);
+            const res = validatePassword(recentUpdate.password);
+            setFormErrors({
+              ...formErrors,
+              passwordError: res,
+            });
+          }}
+        />
         <Button type="Submit" label="Sign up" />
       </form>
     </>

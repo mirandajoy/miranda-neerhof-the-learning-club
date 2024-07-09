@@ -1,9 +1,20 @@
 import "./InputField.scss";
 
-const InputField = ({type, placeholder, name}) => {
+const InputField = ({ name, type, label, placeholder, value, errorMessage, onBlur, onChange }) => {
   return (
     <>
-      <input id={name} name={name} type={type} placeholder={placeholder} />
+      <label>{label}</label>
+      <input
+        id={name}
+        name={name}
+        type={type}
+        value={value}
+        placeholder={placeholder}
+        onBlur={onBlur}
+        onChange={onChange}
+        className={`input__field ${errorMessage ? "input__field--error" : ""}`}
+      />
+      <span>{errorMessage}</span>
     </>
   );
 };
