@@ -23,6 +23,7 @@ const SignInPage = () => {
 
   const handleOnSubmit = (event) => {
     event.preventDefault();
+    console.log(formValues);
     loginExistingUser();
   };
 
