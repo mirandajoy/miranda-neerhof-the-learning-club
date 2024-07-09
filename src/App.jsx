@@ -20,7 +20,6 @@ const App = () => {
     if (!!token) {
       setLoggedIn(true);
       getUserProfile();
-      console.log(token);
     }
   }, [token]);
 
@@ -32,7 +31,6 @@ const App = () => {
         },
       });
       setUserProfile(res.data.name);
-      console.log(res.data.name);
     } catch (error) {
       console.error(error);
     }
