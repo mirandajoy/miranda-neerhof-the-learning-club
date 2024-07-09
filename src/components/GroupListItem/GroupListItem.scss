@@ -1,0 +1,15 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/global" as *;
+
+.group {
+  @include flex;
+  &__content-container {
+    @include flex(baseline);
+    @include responsive-gap;
+  }
+  &__location-container {
+    @include flex;
+    @include responsive-gap;
+  }
+}
