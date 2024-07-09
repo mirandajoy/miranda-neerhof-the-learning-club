@@ -49,7 +49,7 @@ const SignUpPage = () => {
   return (
     <section className="sign-up">
       <h1 className="header header--primary sign-up__header">Sign Up</h1>
-      <form id="emailForm" onSubmit={handleOnSubmit} className="sign-up__form">
+      <form id="signUpForm" onSubmit={handleOnSubmit} className="sign-up__form">
         <InputField
           name="name"
           type="text"
