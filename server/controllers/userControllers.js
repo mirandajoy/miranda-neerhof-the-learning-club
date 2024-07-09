@@ -12,12 +12,17 @@ export const createUser = async (req, res) => {
     name,
     email,
     password: hashedPassword,
-  }
+  };
 
   try {
-    await knex("user_profiles").insert(newUser);
-    res.status(201).json("New user successfully created");
-  } catch {
-    res.status(500).send({ message: "An error occurred on the server" });
+    const existingUsers = await knex("user_profiles").where({ email: email });
+    if (existingUsers.length > 0) {
+      return res.status(404).send({ message: "This user already exists" });
+    } else {
+      await knex("user_profiles").insert(newUser);
+      return res.status(201).json("New user successfully created");
+    }
+  } catch (error) {
+    return res.status(500).send({ message: "An error occurred on the server" });
   }
 };
