@@ -11,16 +11,16 @@ Curious adults looking to expanding or deepen their social circles through a com
 The initial offering will target English-speaker located within Canada or the USA.
 
 ### Features
-As a user, I can peruse a landing page overview explaining what the Learning Club is all about.
-As a user, I can see what groups are available for me to join.
-As a user, I can create an account.
-As a signed up user, I can sign into my account
-As a signed in user, I can join a group.
-As a signed in user, I see the groups I am a part of.
-As a signed in user, I can see the next relevant event for me.
-As a signed in user, I can RSVP to an upcoming event.
-As a signed in user, I can update my RSVP for an event.
-As a signed in user, I can see the resources for the month.
+- As a user, I can peruse a landing page overview explaining what the Learning Club is all about.
+- As a user, I can see what groups are available for me to join.
+- As a user, I can create an account.
+- As a signed up user, I can sign into my account
+- As a signed in user, I can join a group.
+- As a signed in user, I see the groups I am a part of.
+- As a signed in user, I can see the next relevant event for me.
+- As a signed in user, I can RSVP to an upcoming event.
+- As a signed in user, I can update my RSVP for an event.
+- As a signed in user, I can see the resources for the month.
 
 ## Implementation
 
