@@ -6,3 +6,5 @@ export const getProfile = () => `${apiURL}/profiles`;
 export const getGroups = () => `${apiURL}/groups`;
 export const joinGroup = (groupId) => `${apiURL}/groups/${groupId}/members`;
 export const getGroupEvents = (groupId) => `${apiURL}/groups/${groupId}/events`;
+export const getProfileEvents = () => `${apiURL}/profiles/events`;
+export const rsvpEvent = (eventId) => `${apiURL}/events/${eventId}/rsvps`;
