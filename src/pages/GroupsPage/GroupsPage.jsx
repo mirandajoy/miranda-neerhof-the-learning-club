@@ -11,9 +11,7 @@ const GroupsPage = () => {
     const token = sessionStorage.getItem("JWTtoken");
 
     try {
-      console.log(!!token);
       if (!!token) {
-        console.log("test");
         const resAuth = await axios.get(getGroups(), {
           headers: {
             authorization: `Bearer ${token}`,
