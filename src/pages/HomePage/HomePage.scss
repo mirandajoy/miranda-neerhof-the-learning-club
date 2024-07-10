@@ -13,3 +13,13 @@
     padding-top: 1.5rem;
   }
 }
+
+.event-list {
+  @include flex;
+  @include responsive-gap;
+  @include responsive-padding;
+  border: $border-style;
+  border-radius: $border-radius;
+  flex-direction: column;
+  margin-top: 2rem;
+}

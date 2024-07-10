@@ -47,9 +47,11 @@ const HomePage = ({ loggedIn, userProfile }) => {
     <main className="home">
       <h1 className="header header--primary home__header">Learning Materials</h1>
       <h2>Hi, {userProfile}</h2>
-      {userEvents.map((event) => {
-        return <EventListItem key={event.id} event={event} />;
-      })}
+      <div className="event-list">
+        {userEvents.map((event) => {
+          return <EventListItem key={event.id} event={event} />;
+        })}
+      </div>
     </main>
   );
 };

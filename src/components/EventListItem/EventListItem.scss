@@ -1,0 +1,19 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/global" as *;
+
+.event {
+  @include flex;
+  flex-direction: column;
+  gap: $space-small;
+  width: 100%;
+  &__content-container {
+    @include flex;
+    flex-direction: column;
+    gap: $space-small;
+  }
+  &__action-container {
+    @include flex;
+    @include responsive-gap;
+  }
+}
