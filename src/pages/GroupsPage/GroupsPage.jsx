@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import "./GroupsPage.scss";
-import { getGroups } from "../../utils/api-utils";
+import { getGroups, joinGroup } from "../../utils/api-utils";
 import axios from "axios";
 import GroupListItem from "../../components/GroupListItem/GroupListItem";
 
@@ -8,10 +8,22 @@ const GroupsPage = () => {
   const [groupList, setGroupsList] = useState(null);
 
   const getGroupsList = async () => {
+    const token = sessionStorage.getItem("JWTtoken");
+
     try {
-      const res = await axios.get(getGroups());
-      console.log(res.data);
-      setGroupsList(res.data);
+      console.log(!!token);
+      if (!!token) {
+        console.log("test");
+        const resAuth = await axios.get(getGroups(), {
+          headers: {
+            authorization: `Bearer ${token}`,
+          },
+        });
+        setGroupsList(resAuth.data);
+      } else {
+        const res = await axios.get(getGroups());
+        setGroupsList(res.data);
+      }
     } catch (error) {
       console.error(error);
     }
@@ -21,15 +33,15 @@ const GroupsPage = () => {
     getGroupsList();
   }, []);
 
-  if(groupList === null) {
-    return ("Loading...")
+  if (groupList === null) {
+    return "Loading...";
   }
 
   return (
     <main className="group-list">
       <h1 className="header header--primary group-list__header">Groups</h1>
       {groupList.map((group) => {
-        return (<GroupListItem key={group.id} city={group.city} state={group.state} country={group.country} />);
+        return <GroupListItem key={group.id} group={group} />;
       })}
     </main>
   );
