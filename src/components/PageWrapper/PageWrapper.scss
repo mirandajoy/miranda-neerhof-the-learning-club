@@ -1,0 +1,20 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/global" as *;
+
+.page-wrapper {
+  @include responsive-padding-block;
+  min-height: 100vh;
+  &--full {
+    width: 100%;
+  }
+  &--large {
+    @include page-center;
+  }
+  &--small {
+    @include page-center($max-content-width-small);
+  }
+  &__header-container {
+    @include responsive-padding-block;
+  }
+}

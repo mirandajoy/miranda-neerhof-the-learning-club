@@ -5,6 +5,7 @@ import InputField from "../../components/InputField/InputField";
 import users from "../../utils/api-users";
 import { validateEmail, validatePassword, validateSignUp } from "../../utils/validation-utils";
 import "./SignUpPage.scss";
+import PageWrapper from "../../components/PageWrapper/PageWrapper";
 
 const SignUpPage = () => {
   const [formValues, setFormValues] = useState({
@@ -46,8 +47,7 @@ const SignUpPage = () => {
   };
 
   return (
-    <section className="sign-up">
-      <h1 className="header header--primary sign-up__header">Sign Up</h1>
+    <PageWrapper header="Sign Up" width="small">
       <form id="signUpForm" onSubmit={handleOnSubmit} className="sign-up__form">
         <InputField
           name="name"
@@ -94,7 +94,7 @@ const SignUpPage = () => {
         />
         <Button type="Submit" styleType="primary" label="Sign up" />
       </form>
-    </section>
+    </PageWrapper>
   );
 };
 

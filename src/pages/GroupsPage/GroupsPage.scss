@@ -3,7 +3,6 @@
 @use "../../styles/partials/global" as *;
 
 .group-list {
-  @include page-center($max-content-width-small);
   @include flex(stretch, flex-start);
   flex-direction: column;
   @include responsive-gap;

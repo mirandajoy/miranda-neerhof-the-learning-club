@@ -15,9 +15,8 @@
 
 // Layout
 @mixin page-center($max: $max-content-width) {
-  margin: 2rem auto;
+  margin-inline: auto;
   max-width: $max;
-  min-height: 100vh;
 }
 
 @mixin flex($alignment: center, $justify: space-between) {

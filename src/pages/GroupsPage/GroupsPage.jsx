@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import "./GroupsPage.scss";
 import GroupListItem from "../../components/GroupListItem/GroupListItem";
+import PageWrapper from "../../components/PageWrapper/PageWrapper";
 import groups from "../../utils/api-groups";
+import "./GroupsPage.scss";
 
 const GroupsPage = () => {
   const [groupList, setGroupsList] = useState(null);
@@ -20,12 +21,13 @@ const GroupsPage = () => {
   }
 
   return (
-    <main className="group-list">
-      <h1 className="header header--primary group-list__header">Groups</h1>
-      {groupList.map((group) => {
-        return <GroupListItem key={group.id} group={group} />;
-      })}
-    </main>
+    <PageWrapper header="Groups" width="small">
+      <ul className="group-list">
+        {groupList.map((group) => {
+          return <GroupListItem key={group.id} group={group} />;
+        })}
+      </ul>
+    </PageWrapper>
   );
 };
 

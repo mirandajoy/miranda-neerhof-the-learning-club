@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import puffinCover from "../../assets/images/puffin-cover.jpg";
 import ButtonLink from "../../components/ButtonLink/ButtonLink";
 import EventListItem from "../../components/EventListItem/EventListItem";
+import PageWrapper from "../../components/PageWrapper/PageWrapper";
 import profiles from "../../utils/api-profile";
 import "./HomePage.scss";
 
@@ -9,7 +10,6 @@ const HomePage = ({ loggedIn, userProfile }) => {
   const [userEvents, setUserEvents] = useState(null);
 
   const getProfileEventsList = async () => {
-
     const res = await profiles.getProfileEvents();
     setUserEvents(res.data);
   };
@@ -22,12 +22,12 @@ const HomePage = ({ loggedIn, userProfile }) => {
 
   if (!loggedIn) {
     return (
-      <main className="home">
+      <PageWrapper width="full">
         <h1 className="header header--primary home__header">Landing Page</h1>
         <div className="home__button">
           <ButtonLink link="/signup" label="Sign Up" styleType="secondary" />
         </div>
-      </main>
+      </PageWrapper>
     );
   }
 
@@ -36,12 +36,7 @@ const HomePage = ({ loggedIn, userProfile }) => {
   }
 
   return (
-    <main className="home">
-      <h2 className="header header--secondary home__welcome">Welcome, {userProfile}!</h2>
-      <div className="home__theme-container">
-        <h3 className="header header--tertiary home__theme-month">July Theme:</h3>
-        <h1 className="header header--primary home__theme-header">Puffins</h1>
-      </div>
+    <PageWrapper preHeader="July Theme:" header="Puffins" width="large">
       <div className="home__dashboard-wrapper">
         <div className="resources">
           <img src={puffinCover} className="resources__cover-img" />
@@ -75,31 +70,19 @@ const HomePage = ({ loggedIn, userProfile }) => {
               <h3 className="header header--tertiary additional-resources__header">Learn More About Puffins!</h3>
               <div className="additional-resources__x-link-container">
                 <span className="material-symbols-outlined">article</span>
-                <a
-                  href="https://www.youtube.com/watch?v=EIUJfXk3_3w"
-                  target="_blank"
-                  className="link"
-                >
+                <a href="https://www.youtube.com/watch?v=EIUJfXk3_3w" target="_blank" className="link">
                   Know your Puffins
                 </a>
               </div>
               <div className="additional-resources__x-link-container">
                 <span className="material-symbols-outlined">videocam</span>
-                <a
-                  href="https://www.youtube.com/watch?v=EIUJfXk3_3w"
-                  target="_blank"
-                  className="link"
-                >
+                <a href="https://www.youtube.com/watch?v=EIUJfXk3_3w" target="_blank" className="link">
                   Puffin Hunts Fish To Feed Puffling
                 </a>
               </div>
               <div className="additional-resources__x-link-container">
                 <span className="material-symbols-outlined">videocam</span>
-                <a
-                  href="https://www.youtube.com/watch?v=EIUJfXk3_3w"
-                  target="_blank"
-                  className="link"
-                >
+                <a href="https://www.youtube.com/watch?v=EIUJfXk3_3w" target="_blank" className="link">
                   How The Adorable Atlantic Puffin Came Back From Near Extinction
                 </a>
               </div>
@@ -114,7 +97,7 @@ const HomePage = ({ loggedIn, userProfile }) => {
           <ButtonLink link="/groups" styleType="secondary" label="Join a New Group" />
         </div>
       </div>
-    </main>
+    </PageWrapper>
   );
 };
 

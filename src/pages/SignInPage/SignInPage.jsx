@@ -2,8 +2,9 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "../../components/Button/Button";
 import InputField from "../../components/InputField/InputField";
-import users from '../../utils/api-users';
+import users from "../../utils/api-users";
 import "./SignInPage.scss";
+import PageWrapper from "../../components/PageWrapper/PageWrapper";
 
 const SignInPage = () => {
   const [formValues, setFormValues] = useState({
@@ -35,8 +36,7 @@ const SignInPage = () => {
   };
 
   return (
-    <section className="sign-in">
-      <h1 className="header header--primary sign-in__header">Sign In</h1>
+    <PageWrapper header="Sign In" width="small">
       <form id="signInForm" onSubmit={handleOnSubmit} className="sign-in__form">
         <InputField
           name="email"
@@ -56,7 +56,7 @@ const SignInPage = () => {
         />
         <Button type="Submit" styleType="primary" label="Sign in" />
       </form>
-    </section>
+    </PageWrapper>
   );
 };
 

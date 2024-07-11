@@ -1,9 +1,10 @@
 import "./NotFoundPage.scss";
+import PageWrapper from "../../components/PageWrapper/PageWrapper";
 
 const NotFoundPage = () => {
   return (
     <>
-      <h1 className="header header--primary">Not Found</h1>
+      <PageWrapper header="Page Not Found" size="small"></PageWrapper>
     </>
   );
 };
