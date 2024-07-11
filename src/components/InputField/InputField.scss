@@ -5,13 +5,13 @@
 .input {
   @include flex(flex-start);
   flex-direction: column;
-  gap: $space-micro;
+  gap: .375rem;
   width: 100%;
   &__field {
     border: $border-style;
     border-radius: $border-radius;
-    color: $color-primary-dark;
-    padding: $space-small;
+    box-sizing: border-box;
+    padding: 0.75rem;
     &--error {
       border: 2px solid $color-error;
     }

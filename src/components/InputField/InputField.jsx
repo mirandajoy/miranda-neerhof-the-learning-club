@@ -12,7 +12,7 @@ const InputField = ({ name, type, label, placeholder, value, errorMessage, onBlu
         placeholder={placeholder}
         onBlur={onBlur}
         onChange={onChange}
-        className={`body input__field ${errorMessage ? "input__field--error" : ""}`}
+        className={`body body--dark input__field ${errorMessage ? "input__field--error" : ""}`}
       />
       <span className="body input__error">{errorMessage}</span>
     </div>
