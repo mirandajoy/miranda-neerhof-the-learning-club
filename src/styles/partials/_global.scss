@@ -54,6 +54,7 @@ body {
 }
 
 .label {
+  font-family: "Rubik", sans-serif;/*  */
   font-size: $font-size-label;
   font-weight: $weight-bold;
   line-height: calc($font-size-label * 1.2);
