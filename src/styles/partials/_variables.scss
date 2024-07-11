@@ -1,18 +1,30 @@
 //Colours
-$color-brand-primary: #292929;
-$color-brand-secondary: #575757;
 $color-primary-dark: #1f1f1f;
 $color-primary-light: #fafafa;
 
-$color-success: #18B44A;
-$color-error: #E54827;
+$color-background-primary: #fafafa;
+$color-background-secondary: #f0f0f0;
+
+$color-brand-primary: #df6142;
+$color-brand-primary-hover: #5a2d20;
+$color-brand-secondary: #3f4eb5;
+
+$color-highlight: #fff4ab;
+$color-highlight: #5e5e5e;
+
+$color-success: #8bc7ae;
+$color-error: #6e6e6e;
 
 //Font Styles
-$font-size-header-primary: 2.5rem;
-$font-size-header-secondary: 1.25rem;
+$font-size-header-primary: 3.5rem;
+$font-size-header-secondary: 1.5rem;
+$font-size-header-tertiary: 1.125rem;
+
 $font-size-body: 1rem;
+$font-size-body-small: .875rem;
+
 $font-size-button: 1rem;
-$font-size-label: 0.75rem;
+$font-size-label: .875rem;
 
 //Font Weight
 $weight-regular: 400;
@@ -28,7 +40,7 @@ $space-large: 2.25rem;
 
 //Other Styles
 $border-radius: 4px;
-$border-style: 1px solid $color-brand-secondary;
+$border-style: 1px solid $color-highlight;
 
 //Layout
 $max-content-width: 1280px;
