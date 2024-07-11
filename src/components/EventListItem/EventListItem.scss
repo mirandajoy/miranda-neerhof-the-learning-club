@@ -4,16 +4,42 @@
 
 .event {
   @include flex;
-  flex-direction: column;
-  gap: $space-small;
+  border-radius: $border-radius;
+  gap: 1rem;
   width: 100%;
-  &__content-container {
-    @include flex;
-    flex-direction: column;
-    gap: $space-small;
+  &__date-container {
+    padding: 1rem;
+    border: $border-style;
+    border-radius: $border-radius;
+    text-align: center;
+    width: 4.75rem;
+    flex-grow: 0;
   }
   &__action-container {
     @include flex;
     @include responsive-gap;
+  }
+  &__details-container {
+    @include flex(flex-start, flex-start);
+    flex-direction: column;
+    gap: $space-small;
+    padding-block: 1rem;
+    padding-right: 2rem;
+    text-align: left;
+    flex-grow: 1;
+  }
+  &__action-container {
+    padding-block: 1rem;
+    flex-grow: 0;
+    text-align: center;
+    width: 7rem;
+  }
+  &__response-container {
+    @include flex(center, center);
+    gap: $space-micro;
+    width: 100%;
+  }
+  &__response-check {
+    color: #8bc7ae;
   }
 }

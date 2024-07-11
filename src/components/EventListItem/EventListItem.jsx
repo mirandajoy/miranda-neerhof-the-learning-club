@@ -1,11 +1,15 @@
 import "./EventListItem.scss";
 import Button from "../Button/Button";
+import CheckAnimation from "../CheckAnimation/CheckAnimation";
 import { rsvpEvent } from "../../utils/api-utils";
 import axios from "axios";
+import { useState } from "react";
 
 const EventListItem = ({ event }) => {
+  const [rsvpStatus, setRsvpStatus] = useState(event.status)
+  const [animated, setAnimated] = useState(false)
+
   const handleRSVP = async (response) => {
-    console.log("rsvp");
     const token = sessionStorage.getItem("JWTtoken");
     try {
       const res = await axios.post(
@@ -18,6 +22,8 @@ const EventListItem = ({ event }) => {
         }
       );
       console.log(res);
+      setRsvpStatus(res.data.response);
+      setAnimated(true);
     } catch (error) {
       console.error(error);
     }
@@ -42,17 +48,22 @@ const EventListItem = ({ event }) => {
 
   return (
     <div className="event">
-      <div className="event__content-container">
-        <p>
-          {convertedDate} at {convertedTime}
-        </p>
-        <p>Meeting at: {event.location}</p>
+      <div className="event__date-container">
+        <p className="body body--dark body--small event__month">September</p>
+        <p className="body body--dark body--display event__day">25</p>
+      </div>
+      <div className="event__details-container">
+        <p className="body body--dark">Location: {event.location}</p>
+        <p className="body body--dark">Time: {convertedTime}</p>
       </div>
       <div className="event__action-container">
-        {event.status === "Attending" ? (
-          <p>Attending!</p>
+        {rsvpStatus === "Attending" ? (
+          <div className="event__response-container">
+            <CheckAnimation animate={animated} />
+            <span className="body body--dark event__response">Attending!</span>
+          </div>
         ) : (
-          <Button label="Attend" action={() => handleRSVP("Attending")} />
+          <Button label="Attend" styleType="secondary" action={() => handleRSVP("Attending")} />
         )}
       </div>
     </div>
