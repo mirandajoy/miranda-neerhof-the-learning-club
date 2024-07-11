@@ -1,9 +1,8 @@
-import "./GroupListItem.scss";
-import Button from "../Button/Button";
 import { useEffect, useState } from "react";
-import { getGroupEvents, joinGroup } from "../../utils/api-utils";
-import axios from "axios";
+import groups from "../../utils/api-groups";
+import Button from "../Button/Button";
 import CheckAnimation from "../CheckAnimation/CheckAnimation";
+import "./GroupListItem.scss";
 
 const GroupListItem = ({ group }) => {
   const [nextEvent, setNextEvent] = useState(null);
@@ -15,27 +14,14 @@ const GroupListItem = ({ group }) => {
   }, [groupJoined]);
 
   const getGroupEvent = async () => {
-    try {
-      const res = await axios.get(getGroupEvents(group.id));
-      setNextEvent(res.data[0]);
-    } catch (error) {
-      console.error(error);
-    }
+    const res = await groups.getGroupEvents(group.id);
+    setNextEvent(res.data[0]);
   };
 
   const handleJoinClick = async () => {
-    const token = sessionStorage.getItem("JWTtoken");
-    try {
-      const res = await axios.post(joinGroup(group.id), null, {
-        headers: {
-          authorization: `Bearer ${token}`,
-        },
-      });
-      setGroupJoined(res.data.group_id);
-      setAnimated(true);
-    } catch (error) {
-      console.error(error);
-    }
+    const res = await groups.joinGroup(group.id);
+    setGroupJoined(res.data.group_id);
+    setAnimated(true);
   };
 
   const convertedDate =

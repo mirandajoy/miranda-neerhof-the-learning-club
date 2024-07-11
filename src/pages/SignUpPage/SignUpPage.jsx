@@ -1,11 +1,10 @@
-import InputField from "../../components/InputField/InputField";
-import Button from "../../components/Button/Button";
-import "./SignUpPage.scss";
-import axios from "axios";
-import { createUser } from "../../utils/api-utils";
-import { validateEmail, validatePassword, validateSignUp } from "../../utils/validation-utils";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Button from "../../components/Button/Button";
+import InputField from "../../components/InputField/InputField";
+import users from "../../utils/api-users";
+import { validateEmail, validatePassword, validateSignUp } from "../../utils/validation-utils";
+import "./SignUpPage.scss";
 
 const SignUpPage = () => {
   const [formValues, setFormValues] = useState({
@@ -39,14 +38,11 @@ const SignUpPage = () => {
   };
 
   const createNewUser = async () => {
-    try {
-      const res = await axios.post(createUser(), formValues);
-      sessionStorage.setItem("JWTtoken", res.data);
-      setFormValues({ name: "", email: "", password: "" });
-      navigate("/");
-    } catch (error) {
-      console.error(error);
-    }
+    console.log(formValues);
+    const res = await users.createUser(formValues);
+    sessionStorage.setItem("JWTtoken", res.data);
+    setFormValues({ name: "", email: "", password: "" });
+    navigate("/");
   };
 
   return (

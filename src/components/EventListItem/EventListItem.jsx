@@ -1,32 +1,18 @@
-import "./EventListItem.scss";
+import { useState } from "react";
+import events from "../../utils/api-events";
 import Button from "../Button/Button";
 import CheckAnimation from "../CheckAnimation/CheckAnimation";
-import { rsvpEvent } from "../../utils/api-utils";
-import axios from "axios";
-import { useState } from "react";
+import "./EventListItem.scss";
 
 const EventListItem = ({ event }) => {
-  const [rsvpStatus, setRsvpStatus] = useState(event.status)
-  const [animated, setAnimated] = useState(false)
+  const [rsvpStatus, setRsvpStatus] = useState(event.status);
+  const [animated, setAnimated] = useState(false);
 
   const handleRSVP = async (response) => {
-    const token = sessionStorage.getItem("JWTtoken");
-    try {
-      const res = await axios.post(
-        rsvpEvent(event.id),
-        { response: response },
-        {
-          headers: {
-            authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      console.log(res);
-      setRsvpStatus(res.data.response);
-      setAnimated(true);
-    } catch (error) {
-      console.error(error);
-    }
+    const body = { response: response };
+    const res = await events.rsvpEvent(event.id, body);
+    setRsvpStatus(res.data.response);
+    setAnimated(true);
   };
 
   const handleRSVPUpdate = async (response) => {

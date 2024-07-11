@@ -1,15 +1,14 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.scss";
+import Footer from "./components/Footer/Footer";
 import Header from "./components/Header/Header";
 import GroupsPage from "./pages/GroupsPage/GroupsPage";
 import HomePage from "./pages/HomePage/HomePage";
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
 import SignInPage from "./pages/SignInPage/SignInPage";
 import SignUpPage from "./pages/SignUpPage/SignUpPage";
-import { getProfile } from "./utils/api-utils";
-import Footer from "./components/Footer/Footer";
+import profiles from './utils/api-profile';
 
 const App = () => {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -25,16 +24,8 @@ const App = () => {
   }, [token]);
 
   const getUserProfile = async () => {
-    try {
-      const res = await axios.get(getProfile(), {
-        headers: {
-          authorization: `Bearer ${token}`,
-        },
-      });
-      setUserProfile(res.data.name);
-    } catch (error) {
-      console.error(error);
-    }
+    const res = await profiles.getProfile();
+    setUserProfile(res.data.name);
   };
 
   const handleLogout = () => {

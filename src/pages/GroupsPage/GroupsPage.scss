@@ -7,8 +7,8 @@
   @include flex(stretch, flex-start);
   flex-direction: column;
   @include responsive-gap;
+  margin-bottom: 4rem;
   &__header {
     @include responsive-padding-block;
-    color: $color-primary-dark;
   }
 }

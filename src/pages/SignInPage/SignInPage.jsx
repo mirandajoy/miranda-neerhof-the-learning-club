@@ -1,10 +1,9 @@
-import "./SignInPage.scss";
-import InputField from "../../components/InputField/InputField";
-import Button from "../../components/Button/Button";
 import { useState } from "react";
-import { loginUser } from "../../utils/api-utils";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import Button from "../../components/Button/Button";
+import InputField from "../../components/InputField/InputField";
+import users from '../../utils/api-users';
+import "./SignInPage.scss";
 
 const SignInPage = () => {
   const [formValues, setFormValues] = useState({
@@ -29,14 +28,10 @@ const SignInPage = () => {
   };
 
   const loginExistingUser = async () => {
-    try {
-      const res = await axios.post(loginUser(), formValues);
-      sessionStorage.setItem("JWTtoken", res.data);
-      setFormValues({ email: "", password: "" });
-      navigate("/");
-    } catch (error) {
-      console.error(error);
-    }
+    const res = await users.loginUser(formValues);
+    sessionStorage.setItem("JWTtoken", res.data);
+    setFormValues({ email: "", password: "" });
+    navigate("/");
   };
 
   return (

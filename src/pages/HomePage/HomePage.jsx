@@ -1,26 +1,17 @@
-import "./HomePage.scss";
-import ButtonLink from "../../components/ButtonLink/ButtonLink";
-import { getProfileEvents } from "../../utils/api-utils";
-import { useState, useEffect } from "react";
-import axios from "axios";
-import EventListItem from "../../components/EventListItem/EventListItem";
+import { useEffect, useState } from "react";
 import puffinCover from "../../assets/images/puffin-cover.jpg";
+import ButtonLink from "../../components/ButtonLink/ButtonLink";
+import EventListItem from "../../components/EventListItem/EventListItem";
+import profiles from "../../utils/api-profile";
+import "./HomePage.scss";
 
 const HomePage = ({ loggedIn, userProfile }) => {
   const [userEvents, setUserEvents] = useState(null);
 
   const getProfileEventsList = async () => {
-    const token = sessionStorage.getItem("JWTtoken");
-    try {
-      const res = await axios.get(getProfileEvents(), {
-        headers: {
-          authorization: `Bearer ${token}`,
-        },
-      });
-      setUserEvents(res.data);
-    } catch (error) {
-      console.error(error);
-    }
+
+    const res = await profiles.getProfileEvents();
+    setUserEvents(res.data);
   };
 
   useEffect(() => {
