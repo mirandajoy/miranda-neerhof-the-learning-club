@@ -2,15 +2,18 @@ import "./Header.scss";
 import Button from "../Button/Button";
 import ButtonLink from "../ButtonLink/ButtonLink";
 import { Link } from "react-router-dom";
+import Logo from "../Logo/Logo";
 
 const Header = ({ userProfile, handleLogout }) => {
   if (!userProfile) {
     return (
       <nav className="nav">
-        <Link to="/" className="nav__logo">The Learning Club</Link>
+        <Link to="/" className="nav__logo">
+          The Learning Club
+        </Link>
         <div className="nav__actions-container">
-          <ButtonLink link="/signup" label="Sign Up" />
-          <ButtonLink link="/signin" label="Sign In" />
+          <ButtonLink link="/signin" styleType="secondary" label="Sign In" />
+          <ButtonLink link="/signup" styleType="primary" label="Sign Up" />
         </div>
       </nav>
     );
@@ -18,9 +21,14 @@ const Header = ({ userProfile, handleLogout }) => {
 
   return (
     <nav className="nav">
-      <Link to="/" className="nav__logo">The Learning Club</Link>
+      <div className="nav__logo-container">
+        <Logo />
+        <Link to="/" className="nav__logo">
+          The Learning Club
+        </Link>
+      </div>
       <div>
-        <Button type="button" label="Log out" action={handleLogout} />
+        <Button type="button" label="Log out" styleType="secondary" action={handleLogout} />
       </div>
     </nav>
   );

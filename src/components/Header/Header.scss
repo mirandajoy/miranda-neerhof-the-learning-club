@@ -6,13 +6,21 @@
   @include responsive-padding;
   @include flex;
   @include responsive-gap;
-  background-color: $color-brand-secondary;
+  background-color: $color-background-secondary;
+  &__logo-container {
+    @include flex;
+    gap: $space-small;
+  }
   &__logo {
-    color: $color-primary-dark;
+    color: $color-brand-primary;
+    font-family: 'Unica One', sans-serif;
+    font-size: 2rem;
     text-decoration: none;
   }
   &__actions-container {
     @include flex(center, flex-end);
     @include responsive-gap;
+    flex-wrap: nowrap;
+    flex-basis: 20rem;
   }
 }
