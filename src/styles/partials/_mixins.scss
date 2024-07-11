@@ -1,4 +1,4 @@
-@use './variables' as *;
+@use "./variables" as *;
 
 // Media Queries
 @mixin tablet {
@@ -60,5 +60,43 @@
   gap: $space-standard-mobile;
   @include tablet {
     gap: $space-standard;
+  }
+}
+
+//Other Styles
+
+@mixin button {
+  border-radius: $border-radius;
+  box-sizing: border-box;
+  box-shadow: 1px 2px 5px #b4b4b47e;
+  font-family: "Rubik", sans-serif;
+  font-size: $font-size-body;
+  font-weight: $weight-bold;
+  padding: 0.75rem $space-standard;
+  text-align: center;
+  width: 100%;
+}
+
+@mixin button-primary {
+  background-color: $color-brand-primary;
+  border: 2px solid $color-brand-primary;
+  color: $color-primary-light;
+  transition: 0.2s ease-in;
+  &:hover {
+    background-color: $color-brand-primary-hover;
+    border: 2px solid $color-brand-primary-hover;
+    transform: scale(0.99);
+  }
+}
+
+@mixin button-secondary {
+  background-color: transparent;
+  border: 2px solid $color-brand-primary;
+  color: $color-brand-primary;
+  transition: 0.2s ease-in;
+  &:hover {
+    background-color: $color-brand-primary;
+    color: white;
+    transform: scale(0.99);
   }
 }

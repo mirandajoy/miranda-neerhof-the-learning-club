@@ -3,16 +3,12 @@
 @use "../../styles/partials/global" as *;
 
 .btn-link {
-  background-color: $color-brand-primary;
-  border: 2px solid $color-brand-primary;
-  border-radius: $border-radius;
-  color: $color-primary-light;
-  font-size: $font-size-body;
-  font-weight: $weight-bold;
-  padding: $space-small $space-standard;
+  @include button;
   text-decoration: none;
-  &:hover {
-    background-color: transparent;
-    color: $color-primary-dark;
+  &--primary {
+    @include button-primary;
+  }
+  &--secondary {
+    @include button-secondary;
   }
 }

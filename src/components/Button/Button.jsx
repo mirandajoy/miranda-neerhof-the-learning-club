@@ -1,10 +1,8 @@
 import "./Button.scss";
 
-const Button = ({label, type, action}) => {
+const Button = ({label, type, styleType, action}) => {
   return (
-    <>
-      <button type={type} onClick={action} className="button">{label}</button>
-    </>
+      <button type={type} onClick={action} className={`button button--${styleType}`}>{label}</button>
   );
 };
 
