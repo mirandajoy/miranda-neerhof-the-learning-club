@@ -9,6 +9,7 @@ import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
 import SignInPage from "./pages/SignInPage/SignInPage";
 import SignUpPage from "./pages/SignUpPage/SignUpPage";
 import { getProfile } from "./utils/api-utils";
+import Footer from "./components/Footer/Footer";
 
 const App = () => {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -53,6 +54,7 @@ const App = () => {
           <Route path="/signin" element={<SignInPage />}></Route>
           <Route path="/*" element={<NotFoundPage />}></Route>
         </Routes>
+        <Footer />
       </BrowserRouter>
     </>
   );

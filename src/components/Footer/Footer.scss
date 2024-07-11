@@ -1,0 +1,23 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/global" as *;
+
+.footer {
+  @include flex(center, center);
+  flex-direction: column;
+  gap: $space-micro;
+  background-color: $color-brand-secondary;
+  min-height: 8rem;
+  &__logo {
+    color: white;
+    font-size: 1rem;
+    font-family: "Unica One", sans-serif;
+  }
+  &__tagline {
+    color: #F9D3D2;
+    font-family: "Unica One", sans-serif;
+  }
+  &__tagline-highlight {
+    color: #8BC7AE;
+  }
+}

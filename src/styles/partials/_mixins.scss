@@ -17,6 +17,7 @@
 @mixin page-center($max: $max-content-width) {
   margin: 2rem auto;
   max-width: $max;
+  min-height: 100vh;
 }
 
 @mixin flex($alignment: center, $justify: space-between) {
