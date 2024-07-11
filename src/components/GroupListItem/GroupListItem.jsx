@@ -3,10 +3,12 @@ import Button from "../Button/Button";
 import { useEffect, useState } from "react";
 import { getGroupEvents, joinGroup } from "../../utils/api-utils";
 import axios from "axios";
+import CheckAnimation from "../CheckAnimation/CheckAnimation";
 
 const GroupListItem = ({ group }) => {
   const [nextEvent, setNextEvent] = useState(null);
-  const [groupJoined, setGroupJoined] = useState(false);
+  const [groupJoined, setGroupJoined] = useState(group.group_id);
+  const [animated, setAnimated] = useState(false);
 
   useEffect(() => {
     getGroupEvent();
@@ -29,27 +31,58 @@ const GroupListItem = ({ group }) => {
           authorization: `Bearer ${token}`,
         },
       });
-      setGroupJoined(true);
+      setGroupJoined(res.data.group_id);
+      setAnimated(true);
     } catch (error) {
       console.error(error);
     }
   };
 
+  const convertedDate =
+    nextEvent &&
+    new Date(nextEvent.time).toLocaleDateString("en-us", {
+      timezone: "America/Halifax",
+      weekday: "long",
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+    });
+
+  const convertedTime =
+    nextEvent &&
+    new Date(nextEvent.time).toLocaleString("en-us", {
+      hour: "2-digit",
+      minute: "2-digit",
+      timezone: "America/New_York",
+    });
+
   return (
     <div className="group">
       <div className="group__content-container">
-        <h2 className="group__name">{group.city}</h2>
-        <div className="group__location-container">
-          <p>{group.state}</p>
-          <p>{group.country}</p>
+        <div className="group__group-details">
+          <h2 className="header header--secondary group__name">{group.city}</h2>
+          <div className="group__location-container">
+            <p className="body body--dark">
+              {group.state}, {group.country}
+            </p>
+          </div>
         </div>
+        {nextEvent && (
+          <p className="body body--dark group__next-event">
+            Next Event: {convertedDate} at {convertedTime}
+          </p>
+        )}
       </div>
-      {group && group.group_id ? <div>DONE</div> : <Button label="Join" action={handleJoinClick} />}
-      {nextEvent && (
-        <div>
-          Next Event: {nextEvent.location} @ {nextEvent.time}
-        </div>
-      )}
+      <div className="group__join-btn">
+        {group && groupJoined ? (
+          <div className="group__response-container">
+            <CheckAnimation animate={animated} />
+            <span className="body body--dark group__response">Joined!</span>
+          </div>
+        ) : (
+          <Button label="Join" styleType="secondary" action={handleJoinClick} />
+        )}
+      </div>
     </div>
   );
 };
