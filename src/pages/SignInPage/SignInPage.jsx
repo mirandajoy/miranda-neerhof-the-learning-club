@@ -59,7 +59,7 @@ const SignInPage = () => {
           value={formValues.password}
           onChange={handleOnChange}
         />
-        <Button type="Submit" label="Sign in" />
+        <Button type="Submit" styleType="primary" label="Sign in" />
       </form>
     </section>
   );

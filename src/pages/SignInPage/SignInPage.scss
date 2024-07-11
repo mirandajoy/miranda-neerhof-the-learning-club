@@ -5,8 +5,7 @@
 .sign-in {
   @include page-center($max-content-width-small);
   &__header {
-    @include responsive-padding-block;
-    color: $color-primary-dark;
+    padding-block: 1.5rem 2rem;
   }
   &__form {
     @include flex(flex-start);

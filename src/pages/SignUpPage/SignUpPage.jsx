@@ -96,7 +96,7 @@ const SignUpPage = () => {
             });
           }}
         />
-        <Button type="Submit" label="Sign up" />
+        <Button type="Submit" styleType="primary" label="Sign up" />
       </form>
     </section>
   );
