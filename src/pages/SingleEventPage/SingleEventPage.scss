@@ -1,0 +1,44 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/global" as *;
+
+.event {
+  @include flex(center, center);
+  gap: $space-micro;
+  width: 100%;
+  &__main-details-container {
+    @include flex(flex-start);
+    @include responsive-gap;
+    padding-top: 1rem;
+  }
+  &__main-details-left {
+    text-align: left;
+    @include flex(flex-start);
+    flex-direction: column;
+    gap: $space-micro;
+  }
+  &__main-details-right {
+    text-align: right;
+    @include flex(flex-end, flex-start);
+    flex-direction: column;
+    gap: $space-micro;
+  }
+  &__header {
+    padding-top: $space-small;
+    padding-bottom: 0.75rem;
+  }
+  &__response-btn-container {
+    @include flex(center, center);
+    gap: $space-standard;
+    flex-wrap: nowrap;
+    padding-top: 3rem;
+  }
+  &__response-item {
+    width: 32%;
+  }
+  &__selected-response {
+    background-color: $color-background-secondary;
+    padding: 0.75rem;
+    border-radius: $border-radius;
+  }
+}
