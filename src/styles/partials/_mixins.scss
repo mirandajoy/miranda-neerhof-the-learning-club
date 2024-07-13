@@ -88,6 +88,19 @@
   }
 }
 
+@mixin button-primary-alt {
+  background-color: $color-brand-secondary;
+  border: 2px solid $color-brand-secondary;
+  color: $color-primary-light;
+  transition: 0.2s ease-in;
+  &:hover {
+    background-color: $color-primary-light;
+    border: 2px solid  $color-primary-light;
+    color: $color-brand-secondary;
+    transform: scale(0.99);
+  }
+}
+
 @mixin button-secondary {
   background-color: transparent;
   border: 2px solid $color-brand-primary;
@@ -122,4 +135,24 @@
     outline: 0.5rem solid $color-background-secondary;
     transform: translate(-0.25rem, -0.25rem);
   }
+}
+
+@mixin image-overlay($color, $opacity) {
+  isolation: isolate;
+  position: relative;
+  &::after {
+    background-color: $color;
+    opacity: $opacity;
+    content: "";
+    inset: 0;
+    position: absolute;
+    z-index: -1;
+  }
+}
+
+@mixin background-img($url, $position: center) {
+  background-image: url($url);
+  background-position: $position;
+  background-size: cover;
+  width: 100%;
 }
