@@ -1,0 +1,11 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/global" as *;
+
+.empty-list {
+  background-color: $color-background-secondary;
+  border-radius: $border-radius;
+  padding-block: 3rem;
+  text-align: center;
+  width: 100%;
+}

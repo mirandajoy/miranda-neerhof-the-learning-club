@@ -1,0 +1,22 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/global" as *;
+
+.event-list {
+  max-width: 33%;
+  min-width: 480px;
+  &__loading {
+    text-align: center;
+    padding-block: 3rem;
+    background-color: $color-background-secondary;
+    margin-top: 1rem;
+  }
+  &__list-items {
+    @include flex(flex-start, flex-start);
+    @include responsive-gap;
+    padding-bottom: 0.75rem;
+  }
+  &__list-container {
+    @include responsive-padding-block;
+  }
+}
