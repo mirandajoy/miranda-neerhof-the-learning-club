@@ -112,3 +112,14 @@
     text-decoration: underline;
   }
 }
+
+@mixin list-hover {
+  outline: transparent;
+  transition: 0.3s ease-in-out;
+  &:hover {
+    background-color: $color-background-secondary;
+    border-radius: 0.25px;
+    outline: 0.5rem solid $color-background-secondary;
+    transform: translate(-0.25rem, -0.25rem);
+  }
+}
