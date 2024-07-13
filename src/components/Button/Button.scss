@@ -10,4 +10,7 @@
   &--secondary {
     @include button-secondary;
   }
+  &--tertiary {
+    @include button-tertiary;
+  }
 }

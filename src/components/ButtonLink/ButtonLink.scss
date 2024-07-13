@@ -4,11 +4,17 @@
 
 .btn-link {
   @include button;
+  display: block;
   text-decoration: none;
   &--primary {
     @include button-primary;
   }
   &--secondary {
     @include button-secondary;
+  }
+  &--tertiary {
+    @include button-tertiary;
+    width: 9.5rem;
+    display: block;
   }
 }
