@@ -14,6 +14,29 @@
   &--small {
     @include page-center($max-content-width-small);
   }
+  &__inner-wrapper {
+    @include responsive-padding-block;
+  }
+  &__back-container {
+    @include flex(center, flex-start);
+    gap: $space-micro;
+    width: fit-content;
+    text-decoration: none;
+    margin-top: 2rem;
+    &:hover {
+      background-color: $color-background-secondary;
+      outline: 4px solid $color-background-secondary;
+    }
+  }
+  &__back-icon {
+    color: $color-brand-primary;
+  }
+  &__back-text {
+    color: $color-brand-primary;
+    font-weight: $weight-bold;
+    font-family: "Rubik", sans-serif;
+    font-size: $font-size-body;
+  }
   &__header-container {
     @include responsive-padding-block;
   }
