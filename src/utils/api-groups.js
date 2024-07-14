@@ -15,7 +15,15 @@ class groups {
 
   async getGroups() {
     try {
-      return await axios.get(`${this.route}`, authHeader);
+      return !!token ? await axios.get(`${this.route}`, authHeader) : await axios.get(`${this.route}`);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async getSingleGroup(groupId) {
+    try {
+      return !!token ? await axios.get(`${this.route}/${groupId}`, authHeader) : await axios.get(`${this.route}/${groupId}`);
     } catch (error) {
       console.log(error);
     }
@@ -31,7 +39,7 @@ class groups {
 
   async getGroupEvents(groupId) {
     try {
-      return await axios.get(`${this.route}/${groupId}/events`, authHeader);
+      return !!token ? await axios.get(`${this.route}/${groupId}/events`, authHeader) : await axios.get(`${this.route}/${groupId}/events`);
     } catch (error) {
       console.log(error);
     }

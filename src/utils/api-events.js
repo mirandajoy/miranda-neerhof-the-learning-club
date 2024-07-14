@@ -15,7 +15,7 @@ class events {
 
   async getSingleEvent(eventId) {
     try {
-      return await axios.get(`${this.route}/${eventId}`, authHeader);
+      return !!token ? await axios.get(`${this.route}/${eventId}`, authHeader) : await axios.get(`${this.route}/${eventId}`);
     } catch (error) {
       console.log(error);
     }
