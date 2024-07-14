@@ -8,7 +8,7 @@ import ButtonLink from "../ButtonLink/ButtonLink";
 import parseDateTime from "../../utils/time-parse";
 import { useLogin } from "../LoginContextProvider/LoginContextProvider";
 
-const GroupListItem = ({ group }) => {
+const GroupListItem = ({ group, showNextEvent, showResponse }) => {
   const [nextEvent, setNextEvent] = useState(null);
   const [groupJoined, setGroupJoined] = useState(group.group_id);
   const [animated, setAnimated] = useState(false);
@@ -41,13 +41,13 @@ const GroupListItem = ({ group }) => {
             </div>
           )}
         </div>
-        {nextEvent && (
+        {showNextEvent && nextEvent && (
           <p className="body body--dark group__next-event">
             Next Event: {parsedDateTime.fullDate} at {parsedDateTime.fullTime}
           </p>
         )}
       </Link>
-      {loggedIn && (
+      {showResponse && loggedIn && (
         <div className="group__join-btn">
           {group && groupJoined ? (
             <div className="group__response-container">

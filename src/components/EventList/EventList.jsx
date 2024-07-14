@@ -9,16 +9,6 @@ import { useLogin } from "../LoginContextProvider/LoginContextProvider";
 
 const EventList = ({ label, events }) => {
   const [showAll, setShowAll] = useState(false);
-  const loggedIn = useLogin();
-
-  if (events === null) {
-    return (
-      <div className="event-list">
-        <h2 className="header header--secondary event-list__header">Your Upcoming Events</h2>
-        <p className="header header--tertiary event-list__loading">Loading...</p>
-      </div>
-    );
-  }
 
   const displayList = showAll ? events : events.slice(0, 3);
 

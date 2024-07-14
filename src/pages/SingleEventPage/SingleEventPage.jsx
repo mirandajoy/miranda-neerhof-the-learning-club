@@ -42,6 +42,7 @@ const SingleEventPage = () => {
   };
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     getEventDetails();
   }, [rsvpStatus]);
 
@@ -57,7 +58,7 @@ const SingleEventPage = () => {
 
   return (
     <>
-      <PageWrapper header={groupDetails.name} width="small" back="/">
+      <PageWrapper header={groupDetails.name} width="small" back>
         <div className="single-event__main-details-container">
           <div className="single-event__main-details-left">
             <span className="material-symbols-outlined">event</span>

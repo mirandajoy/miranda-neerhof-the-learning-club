@@ -14,8 +14,8 @@
   }
   &__dashboard-wrapper {
     @include flex(center, center);
-    @include responsive-gap;
     margin-top: 1rem;
+    gap: 4.5rem;
     @include desktop {
       align-items: flex-start;
       justify-content: space-between;

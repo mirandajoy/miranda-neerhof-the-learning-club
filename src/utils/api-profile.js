@@ -21,6 +21,14 @@ class profiles {
     }
   }
 
+  async getProfileGroups() {
+    try {
+      return await axios.get(`${this.route}/groups`, authHeader);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   async getProfileEvents() {
     try {
       return await axios.get(`${this.route}/events`, authHeader);

@@ -30,6 +30,9 @@
     width: fit-content;
     text-decoration: none;
     margin-top: 2rem;
+    background-color: unset;
+    border: none;
+    border-radius: $border-style;
     &:hover {
       background-color: $color-background-secondary;
       outline: 4px solid $color-background-secondary;

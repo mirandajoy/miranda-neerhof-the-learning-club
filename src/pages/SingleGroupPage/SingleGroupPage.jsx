@@ -40,6 +40,7 @@ const SingleGroupPage = () => {
   };
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     getGroupDetails();
   }, []);
 
@@ -53,7 +54,7 @@ const SingleGroupPage = () => {
 
   return (
     <>
-      <PageWrapper header={groupDetails.name} width="small" back={"/groups"}>
+      <PageWrapper header={groupDetails.name} width="small" back>
         <div className="single-group__main-details-container">
           <div className="single-group__main-details-left">
             <span className="material-symbols-outlined">location_on</span>
@@ -88,7 +89,7 @@ const SingleGroupPage = () => {
           </div>
         )}
         <div className="single-group__event-list">
-          {groupEvents && <EventList label="Upcoming Events" events={groupEvents} loggedIn={loggedIn} />}
+          {groupEvents && <EventList label="Upcoming Events" events={groupEvents} />}
         </div>
       </PageWrapper>
     </>

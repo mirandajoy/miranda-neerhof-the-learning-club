@@ -7,9 +7,12 @@ import PageWrapper from "../../components/PageWrapper/PageWrapper";
 import profiles from "../../utils/api-profile";
 import LandingPage from "../LandingPage/LandingPage";
 import "./HomePage.scss";
+import GroupListItem from "../../components/GroupListItem/GroupListItem";
+import ButtonLink from "../../components/ButtonLink/ButtonLink";
 
 const HomePage = () => {
   const [userEvents, setUserEvents] = useState(null);
+  const [userGroups, setUserGroups] = useState(null);
   const loggedIn = useLogin();
 
   const getProfileEventsList = async () => {
@@ -17,8 +20,15 @@ const HomePage = () => {
     setUserEvents(res.data);
   };
 
+  const getProfileGroupsList = async () => {
+    const res = await profiles.getProfileGroups();
+    setUserGroups(res.data);
+  };
+
   useEffect(() => {
+    window.scrollTo(0, 0);
     getProfileEventsList();
+    getProfileGroupsList();
   }, []);
 
   if (loggedIn === false) {
@@ -29,12 +39,8 @@ const HomePage = () => {
     );
   }
 
-  if (userEvents === null) {
-    setTimeout(() => {
-      return (
-        <Loader />
-      );
-    }, 500)
+  if (userEvents === null || userGroups === null) {
+    return <Loader />;
   }
 
   return (
@@ -93,7 +99,22 @@ const HomePage = () => {
             </div>
           </div>
           <div className="home__event-list">
-            <EventList label="Your Upcoming Events" loggedIn={loggedIn} events={userEvents} />
+            <div>
+              <EventList label="Your Upcoming Events" events={userEvents} />
+            </div>
+            <div className="home__event-list">
+              <div className="group-list">
+                <h2 className="header header--secondary group-list__header">Your Groups</h2>
+                {userGroups.map((group) => {
+                  return <GroupListItem key={group.id} group={group} />;
+                })}
+                <ButtonLink
+                  styleType="tertiary"
+                  label="Join A New Group"
+                  link="/groups"
+                />
+              </div>
+            </div>
           </div>
         </div>
       </PageWrapper>

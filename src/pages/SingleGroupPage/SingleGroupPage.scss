@@ -39,8 +39,6 @@
   &__event-list {
     @include flex(flex-start, flex-start);
     @include responsive-gap;
-    padding-top: 3.5rem;
-    margin-top: 3.5rem;
-    border-top: $border-style;
+    padding-top: 4.5rem;
   }
 }

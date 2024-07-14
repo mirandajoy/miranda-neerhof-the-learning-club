@@ -4,10 +4,22 @@ import ButtonLink from "../ButtonLink/ButtonLink";
 import { Link } from "react-router-dom";
 import Logo from "../Logo/Logo";
 import { useLogin, useLoginUpdate } from "../LoginContextProvider/LoginContextProvider";
+import { useEffect, useState } from "react";
+import profiles from "../../utils/api-profile";
 
 const Header = () => {
-  const loggedIn =  useLogin();
-  const loginUpdate =  useLoginUpdate();
+  const loggedIn = useLogin();
+  const loginUpdate = useLoginUpdate();
+  const [userName, setUserName] = useState();
+
+  const getProfileName = async () => {
+    const res = await profiles.getProfile();
+    setUserName(res.data.name);
+  };
+
+  useEffect(() => {
+    loggedIn && getProfileName();
+  }, [loggedIn]);
 
   if (!loggedIn) {
     return (
@@ -34,8 +46,11 @@ const Header = () => {
           The Learning Club
         </Link>
       </div>
-      <div>
-        <Button type="button" label="Log out" styleType="secondary" action={() => loginUpdate(false)} />
+      <div className="nav__actions-container">
+        {userName && <h3 className="header header-tertiary nav__greeting">Welcome, {userName}</h3>}
+        <div>
+          <Button type="button" label="Log out" styleType="tertiary" action={() => loginUpdate(false)} />
+        </div>
       </div>
     </nav>
   );

@@ -17,6 +17,7 @@ const GroupsPage = () => {
   };
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     getGroupsList();
   }, []);
 
@@ -30,23 +31,23 @@ const GroupsPage = () => {
 
   return (
     <>
-      <PageWrapper header="Groups" width="small" back="/">
+      <PageWrapper header="Groups" width="small" back>
         <div className="group-list">
           <h2 className="header header--secondary group-list__header">Groups in Canada</h2>
           {canadaGroups.map((group) => {
-            return <GroupListItem key={group.id} group={group} loggedIn={loggedIn} />;
+            return <GroupListItem key={group.id} group={group} showNextEvent showResponse />;
           })}
         </div>
         <div className="group-list group-list--usa">
           <h2 className="header header--secondary group-list__header">Groups in the USA</h2>
           {usaGroups.map((group) => {
-            return <GroupListItem key={group.id} group={group} loggedIn={loggedIn} />;
+            return <GroupListItem key={group.id} group={group} showNextEvent showResponse />;
           })}
         </div>
         <div className="group-list group-list--usa">
           <h2 className="header header--secondary group-list__header">Remote Groups</h2>
           {remoteGroups.map((group) => {
-            return <GroupListItem key={group.id} group={group} loggedIn={loggedIn} />;
+            return <GroupListItem key={group.id} group={group} showNextEvent showResponse />;
           })}
         </div>
       </PageWrapper>
