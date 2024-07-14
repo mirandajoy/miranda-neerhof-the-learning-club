@@ -1,14 +1,14 @@
 # The Learning Club
 
-The Learning Club provides learning resources each month around a specific topic. It then allows users to join group and attend events to discuss what they've learned a meet new people.
+The Learning Club provides learning resources each month around a specific topic. It then allows users to join group and attend events to discuss what they've learned and meet new people.
 
-This repo contains the client application. The server application can be accessed [here](https://github.com/mirandajoy/the-learning-club-api/tree/main#readme).
+This repo contains the client application. The server application can be accessed [here](https://github.com/mirandajoy/the-learning-club-api).
 
 ## Installation
 
 1. Clone the repo
    ```sh
-   git clone https://github.com/your_username_/Project-Name.git
+   git clone git@github.com:mirandajoy/miranda-neerhof-the-learning-club.git
    ```
 
 2. Install NPM packages
