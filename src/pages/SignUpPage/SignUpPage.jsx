@@ -6,6 +6,7 @@ import users from "../../utils/api-users";
 import { validateEmail, validatePassword, validateSignUp } from "../../utils/validation-utils";
 import "./SignUpPage.scss";
 import PageWrapper from "../../components/PageWrapper/PageWrapper";
+import { useLogin, useLoginUpdate } from "../../components/LoginContextProvider/LoginContextProvider";
 
 const SignUpPage = () => {
   const [formValues, setFormValues] = useState({
@@ -19,6 +20,7 @@ const SignUpPage = () => {
     passwordError: null,
   });
   const navigate = useNavigate();
+  const loginUpdate = useLoginUpdate();
 
   const handleOnChange = (event) => {
     const target = event.target.name;
@@ -41,6 +43,7 @@ const SignUpPage = () => {
   const createNewUser = async () => {
     const res = await users.createUser(formValues);
     sessionStorage.setItem("JWTtoken", res.data);
+    loginUpdate(true);
     setFormValues({ name: "", email: "", password: "" });
     navigate("/");
   };

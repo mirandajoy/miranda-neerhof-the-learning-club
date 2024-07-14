@@ -6,12 +6,14 @@ import "./GroupListItem.scss";
 import { Link } from "react-router-dom";
 import ButtonLink from "../ButtonLink/ButtonLink";
 import parseDateTime from "../../utils/time-parse";
+import { useLogin } from "../LoginContextProvider/LoginContextProvider";
 
-const GroupListItem = ({ group, loggedIn }) => {
+const GroupListItem = ({ group }) => {
   const [nextEvent, setNextEvent] = useState(null);
   const [groupJoined, setGroupJoined] = useState(group.group_id);
   const [animated, setAnimated] = useState(false);
   const parsedDateTime = nextEvent && parseDateTime(nextEvent.time);
+  const loggedIn = useLogin();
 
   const getGroupEvent = async () => {
     const res = await groups.getGroupEvents(group.id);

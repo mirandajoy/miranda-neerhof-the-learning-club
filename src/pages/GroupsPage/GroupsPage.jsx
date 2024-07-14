@@ -1,16 +1,14 @@
 import { useEffect, useState } from "react";
-import Button from "../../components/Button/Button";
 import GroupListItem from "../../components/GroupListItem/GroupListItem";
+import { useLogin } from "../../components/LoginContextProvider/LoginContextProvider";
 import PageWrapper from "../../components/PageWrapper/PageWrapper";
 import groups from "../../utils/api-groups";
+import Loader from "../../components/Loader/Loader";
 import "./GroupsPage.scss";
-import Header from "../../components/Header/Header";
-import { useNavigate } from "react-router-dom";
 
 const GroupsPage = () => {
-  const [loggedIn, setLoggedIn] = useState(null);
   const [groupList, setGroupsList] = useState(null);
-  const navigate = useNavigate();
+  const loggedIn = useLogin();
 
   const getGroupsList = async () => {
     const res = await groups.getGroups();
@@ -18,26 +16,12 @@ const GroupsPage = () => {
     
   };
 
-  const checkLogin = () => {
-    const token = sessionStorage.getItem("JWTtoken");
-    if (!!token) {
-      setLoggedIn(true);
-    }
-  };
-
-  const handleLogout = () => {
-    sessionStorage.removeItem("JWTtoken");
-    setLoggedIn(false);
-    navigate("/");
-  };
-
   useEffect(() => {
-    checkLogin();
     getGroupsList();
   }, []);
 
   if (groupList === null) {
-    return "Loading...";
+    return <Loader />
   }
 
   const canadaGroups = groupList.filter((group) => group.country === "Canada");
@@ -46,7 +30,6 @@ const GroupsPage = () => {
 
   return (
     <>
-      <Header loggedIn={loggedIn} handleLogout={handleLogout} />
       <PageWrapper header="Groups" width="small" back="/">
         <div className="group-list">
           <h2 className="header header--secondary group-list__header">Groups in Canada</h2>

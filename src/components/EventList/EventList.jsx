@@ -5,9 +5,11 @@ import Button from "../Button/Button";
 import EventListItem from "../EventListItem/EventListItem";
 import EmptyList from "../EmptyList/EmptyList";
 import "./EventList.scss";
+import { useLogin } from "../LoginContextProvider/LoginContextProvider";
 
-const EventList = ({ loggedIn, label, events }) => {
+const EventList = ({ label, events }) => {
   const [showAll, setShowAll] = useState(false);
+  const loggedIn = useLogin();
 
   if (events === null) {
     return (
@@ -34,7 +36,7 @@ const EventList = ({ loggedIn, label, events }) => {
         <div className="event-list__list-container">
           <div className="event-list__list-items">
             {displayList.map((event) => {
-              return <EventListItem key={event.id} event={event} loggedIn={loggedIn} />;
+              return <EventListItem key={event.id} event={event} />;
             })}
           </div>
           {events.length > 3 && (

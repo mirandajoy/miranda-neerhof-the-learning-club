@@ -6,14 +6,16 @@ import groups from "../../utils/api-groups";
 import parseDateTime from "../../utils/time-parse";
 import Button from "../Button/Button";
 import CheckAnimation from "../CheckAnimation/CheckAnimation";
+import { useLogin } from "../LoginContextProvider/LoginContextProvider";
 
 import "./EventListItem.scss";
 
-const EventListItem = ({ event, loggedIn }) => {
+const EventListItem = ({ event }) => {
   const [rsvpStatus, setRsvpStatus] = useState(event.status);
   const [groupDetails, setGroupDetails] = useState(null);
   const parsedDateTime = parseDateTime(event.time);
   const [animated, setAnimated] = useState(false);
+  const loggedIn = useLogin();
 
   const getGroupDetails = async () => {
     const res = await groups.getSingleGroup(event.group_id);

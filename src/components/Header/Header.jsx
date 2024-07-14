@@ -3,8 +3,12 @@ import Button from "../Button/Button";
 import ButtonLink from "../ButtonLink/ButtonLink";
 import { Link } from "react-router-dom";
 import Logo from "../Logo/Logo";
+import { useLogin, useLoginUpdate } from "../LoginContextProvider/LoginContextProvider";
 
-const Header = ({ loggedIn, handleLogout }) => {
+const Header = () => {
+  const loggedIn =  useLogin();
+  const loginUpdate =  useLoginUpdate();
+
   if (!loggedIn) {
     return (
       <nav className="nav">
@@ -31,7 +35,7 @@ const Header = ({ loggedIn, handleLogout }) => {
         </Link>
       </div>
       <div>
-        <Button type="button" label="Log out" styleType="secondary" action={handleLogout} />
+        <Button type="button" label="Log out" styleType="secondary" action={() => loginUpdate(false)} />
       </div>
     </nav>
   );

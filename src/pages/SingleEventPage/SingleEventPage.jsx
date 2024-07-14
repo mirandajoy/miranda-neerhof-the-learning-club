@@ -1,35 +1,23 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import PageWrapper from "../../components/PageWrapper/PageWrapper";
-import events from "../../utils/api-events";
-import parseDateTime from "../../utils/time-parse";
-import "./SingleEventPage.scss";
 import Button from "../../components/Button/Button";
 import CheckAnimation from "../../components/CheckAnimation/CheckAnimation";
-import Header from "../../components/Header/Header";
-import { useNavigate } from "react-router-dom";
+import { useLogin } from "../../components/LoginContextProvider/LoginContextProvider";
+import PageWrapper from "../../components/PageWrapper/PageWrapper";
+import events from "../../utils/api-events";
 import groups from "../../utils/api-groups";
+import parseDateTime from "../../utils/time-parse";
+import Loader from "../../components/Loader/Loader";
+import "./SingleEventPage.scss";
 
 const SingleEventPage = () => {
   const [eventDetails, setEventDetails] = useState(null);
   const [groupDetails, setGroupDetails] = useState(null);
   const [rsvpStatus, setRsvpStatus] = useState(eventDetails && eventDetails.status);
   const [animated, setAnimated] = useState(false);
-  const [loggedIn, setLoggedIn] = useState(false);
-  const navigate = useNavigate();
+  const loggedIn = useLogin();
 
-  const checkLogin = () => {
-    const token = sessionStorage.getItem("JWTtoken");
-    if (!!token) {
-      setLoggedIn(true);
-    }
-  };
-
-  const handleLogout = () => {
-    sessionStorage.removeItem("JWTtoken");
-    setLoggedIn(false);
-    navigate("/");
-  };
+  console.log(eventDetails);
 
   const parsedDateTime = eventDetails && parseDateTime(eventDetails.time);
   const { id } = useParams();
@@ -55,7 +43,6 @@ const SingleEventPage = () => {
 
   useEffect(() => {
     getEventDetails();
-    checkLogin();
   }, [rsvpStatus]);
 
   useEffect(() => {
@@ -63,14 +50,13 @@ const SingleEventPage = () => {
   }, [eventDetails])
 
   if (eventDetails === null || groupDetails === null) {
-    return "Loading...";
+    return <Loader />
   }
 
   const rsvpText = eventDetails.status;
 
   return (
     <>
-      <Header loggedIn={loggedIn} handleLogout={handleLogout} />
       <PageWrapper header={groupDetails.name} width="small" back="/">
         <div className="single-event__main-details-container">
           <div className="single-event__main-details-left">

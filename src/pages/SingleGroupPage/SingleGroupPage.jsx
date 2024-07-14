@@ -10,30 +10,17 @@ import Button from "../../components/Button/Button";
 import CheckAnimation from "../../components/CheckAnimation/CheckAnimation";
 import EventListItem from "../../components/EventListItem/EventListItem";
 import EventList from "../../components/EventList/EventList";
+import { useLogin } from "../../components/LoginContextProvider/LoginContextProvider";
+import Loader from "../../components/Loader/Loader";
 
 const SingleGroupPage = () => {
   const [groupDetails, setGroupDetails] = useState(null);
   const [groupEvents, setGroupEvents] = useState(null);
   const [groupJoined, setGroupJoined] = useState(null);
   const [animated, setAnimated] = useState(false);
-  const [loggedIn, setLoggedIn] = useState(false);
+  const loggedIn = useLogin();
 
   const { id } = useParams();
-  const navigate = useNavigate();
-
-  const checkLogin = () => {
-    const token = sessionStorage.getItem("JWTtoken");
-    if (!!token) {
-      setLoggedIn(true);
-    }
-    getGroupDetails();
-  };
-
-  const handleLogout = () => {
-    sessionStorage.removeItem("JWTtoken");
-    setLoggedIn(false);
-    navigate("/");
-  };
 
   const getGroupDetails = async () => {
     const res = await groups.getSingleGroup(id);
@@ -53,7 +40,7 @@ const SingleGroupPage = () => {
   };
 
   useEffect(() => {
-    checkLogin();
+    getGroupDetails();
   }, []);
 
   useEffect(() => {
@@ -61,12 +48,11 @@ const SingleGroupPage = () => {
   }, [groupDetails]);
 
   if (groupDetails === null) {
-    return "Loading...";
+    return <Loader />
   }
 
   return (
     <>
-      <Header loggedIn={loggedIn} handleLogout={handleLogout} />
       <PageWrapper header={groupDetails.name} width="small" back={"/groups"}>
         <div className="single-group__main-details-container">
           <div className="single-group__main-details-left">

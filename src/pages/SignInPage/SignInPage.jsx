@@ -5,6 +5,8 @@ import InputField from "../../components/InputField/InputField";
 import users from "../../utils/api-users";
 import "./SignInPage.scss";
 import PageWrapper from "../../components/PageWrapper/PageWrapper";
+import { useLogin, useLoginUpdate } from "../../components/LoginContextProvider/LoginContextProvider"
+
 
 const SignInPage = () => {
   const [formValues, setFormValues] = useState({
@@ -12,6 +14,7 @@ const SignInPage = () => {
     password: "",
   });
   const navigate = useNavigate();
+  const loginUpdate = useLoginUpdate();
 
   const handleOnChange = (event) => {
     const target = event.target.name;
@@ -31,6 +34,7 @@ const SignInPage = () => {
   const loginExistingUser = async () => {
     const res = await users.loginUser(formValues);
     sessionStorage.setItem("JWTtoken", res.data);
+    loginUpdate(true);
     setFormValues({ email: "", password: "" });
     navigate("/");
   };

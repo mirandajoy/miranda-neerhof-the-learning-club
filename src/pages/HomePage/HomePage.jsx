@@ -1,50 +1,44 @@
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import puffinCover from "../../assets/images/puffin-cover.jpg";
 import EventList from "../../components/EventList/EventList";
-import Header from "../../components/Header/Header";
+import Loader from "../../components/Loader/Loader";
+import { useLogin } from "../../components/LoginContextProvider/LoginContextProvider";
 import PageWrapper from "../../components/PageWrapper/PageWrapper";
 import profiles from "../../utils/api-profile";
 import LandingPage from "../LandingPage/LandingPage";
 import "./HomePage.scss";
 
 const HomePage = () => {
-  const [loggedIn, setLoggedIn] = useState(false);
   const [userEvents, setUserEvents] = useState(null);
+  const loggedIn = useLogin();
 
   const getProfileEventsList = async () => {
     const res = await profiles.getProfileEvents();
     setUserEvents(res.data);
   };
 
-  const checkLogin = () => {
-    const token = sessionStorage.getItem("JWTtoken");
-    if (!!token) {
-      setLoggedIn(true);
-      getProfileEventsList();
-    }
-  };
-
-  const handleLogout = () => {
-    sessionStorage.removeItem("JWTtoken");
-    setLoggedIn(false);
-  };
-
   useEffect(() => {
-    checkLogin();
+    getProfileEventsList();
   }, []);
 
   if (loggedIn === false) {
     return (
       <>
-        <Header loggedIn={loggedIn} handleLogout={handleLogout} />
         <LandingPage />
       </>
     );
   }
 
+  if (userEvents === null) {
+    setTimeout(() => {
+      return (
+        <Loader />
+      );
+    }, 500)
+  }
+
   return (
     <>
-      <Header loggedIn={loggedIn} handleLogout={handleLogout} />
       <PageWrapper preHeader="July Theme:" header="Puffins" width="large">
         <div className="home__dashboard-wrapper">
           <div className="resources">
@@ -99,7 +93,7 @@ const HomePage = () => {
             </div>
           </div>
           <div className="home__event-list">
-            {userEvents && <EventList label="Your Upcoming Events" loggedIn={loggedIn} events={userEvents} />}
+            <EventList label="Your Upcoming Events" loggedIn={loggedIn} events={userEvents} />
           </div>
         </div>
       </PageWrapper>
