@@ -1,6 +1,6 @@
 # The Learning Club
 
-The Learning Club provides learning resources each month around a specific topic. It then allows users to join group and attend events to discuss what they've learned and meet new people.
+The Learning Club provides learning resources each month around a specific topic. It then allows users to join groups and attend events to discuss what they've learned and meet new people.
 
 This repo contains the client application. The server application can be accessed [here](https://github.com/mirandajoy/the-learning-club-api).
 
