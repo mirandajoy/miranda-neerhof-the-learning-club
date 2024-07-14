@@ -5,15 +5,13 @@ import CheckAnimation from "../CheckAnimation/CheckAnimation";
 import "./GroupListItem.scss";
 import { Link } from "react-router-dom";
 import ButtonLink from "../ButtonLink/ButtonLink";
+import parseDateTime from "../../utils/time-parse";
 
 const GroupListItem = ({ group, loggedIn }) => {
   const [nextEvent, setNextEvent] = useState(null);
   const [groupJoined, setGroupJoined] = useState(group.group_id);
   const [animated, setAnimated] = useState(false);
-
-  useEffect(() => {
-    getGroupEvent();
-  }, [groupJoined]);
+  const parsedDateTime = nextEvent && parseDateTime(nextEvent.time);
 
   const getGroupEvent = async () => {
     const res = await groups.getGroupEvents(group.id);
@@ -26,41 +24,27 @@ const GroupListItem = ({ group, loggedIn }) => {
     setAnimated(true);
   };
 
-  const convertedDate =
-    nextEvent &&
-    new Date(nextEvent.time).toLocaleDateString("en-us", {
-      timezone: "America/Halifax",
-      weekday: "long",
-      year: "numeric",
-      month: "short",
-      day: "numeric",
-    });
-
-  const convertedTime =
-    nextEvent &&
-    new Date(nextEvent.time).toLocaleString("en-us", {
-      hour: "2-digit",
-      minute: "2-digit",
-      timezone: "America/New_York",
-    });
+  useEffect(() => {
+    getGroupEvent();
+  }, [groupJoined]);
 
   return (
-    <Link to={`/groups/${group.id}`} className="group">
-      <div className="group__content-container">
+    <div className="group">
+      <Link to={`/groups/${group.id}`} className="group__content-container">
         <div className="group__group-details">
-          <h2 className="header header--secondary group__name">{group.city}</h2>
-          <div className="group__location-container">
-            <p className="body body--dark">
-              {group.state}, {group.country}
-            </p>
-          </div>
+          <h2 className="header header--secondary group__name">{group.name}</h2>
+          {group.remote === 0 && (
+            <div className="group__location-container">
+              <p className="body body--dark">{group.state}</p>
+            </div>
+          )}
         </div>
         {nextEvent && (
           <p className="body body--dark group__next-event">
-            Next Event: {convertedDate} at {convertedTime}
+            Next Event: {parsedDateTime.fullDate} at {parsedDateTime.fullTime}
           </p>
         )}
-      </div>
+      </Link>
       {loggedIn && (
         <div className="group__join-btn">
           {group && groupJoined ? (
@@ -77,7 +61,7 @@ const GroupListItem = ({ group, loggedIn }) => {
           <ButtonLink label="Sign Up to Join" styleType="secondary" link="/signup" />
         </div>
       )}
-    </Link>
+    </div>
   );
 };
 

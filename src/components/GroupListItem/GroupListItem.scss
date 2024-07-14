@@ -4,10 +4,13 @@
 
 .group {
   @include flex;
+  @include list-hover;
+  width: 100%;
   &__content-container {
     @include flex(baseline);
     flex-direction: column;
     gap: $space-micro;
+    text-decoration: none;
   }
   &__group-details {
     @include flex;
