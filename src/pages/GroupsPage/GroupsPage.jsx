@@ -13,7 +13,6 @@ const GroupsPage = () => {
   const getGroupsList = async () => {
     const res = await groups.getGroups();
     setGroupsList(res.data);
-    
   };
 
   useEffect(() => {

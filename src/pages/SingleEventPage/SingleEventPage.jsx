@@ -29,7 +29,7 @@ const SingleEventPage = () => {
   const getGroupDetails = async () => {
     const res = await groups.getSingleGroup(eventDetails.group_id);
     setGroupDetails(res.data);
-    setGroupJoined(res.data.group_id);
+    setGroupJoined(res.data.joined);
   };
 
   const handleRSVP = async (response) => {

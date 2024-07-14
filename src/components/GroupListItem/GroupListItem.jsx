@@ -10,7 +10,7 @@ import { useLogin } from "../LoginContextProvider/LoginContextProvider";
 
 const GroupListItem = ({ group, showNextEvent, showResponse }) => {
   const [nextEvent, setNextEvent] = useState(null);
-  const [groupJoined, setGroupJoined] = useState(group.group_id);
+  const [groupJoined, setGroupJoined] = useState(group.joined);
   const [animated, setAnimated] = useState(false);
   const parsedDateTime = nextEvent && parseDateTime(nextEvent.time);
   const loggedIn = useLogin();

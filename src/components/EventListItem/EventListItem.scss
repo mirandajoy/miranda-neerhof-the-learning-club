@@ -24,6 +24,7 @@
       align-items: flex-start;
       flex-direction: row;
       flex-grow: 1;
+      flex-wrap: nowrap;
     }
   }
   &__date-container {

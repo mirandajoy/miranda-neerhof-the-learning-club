@@ -1,17 +1,19 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import PageWrapper from "../../components/PageWrapper/PageWrapper";
-import groups from "../../utils/api-groups";
-import events from "../../utils/api-events";
-import "./SingleGroupPage.scss";
-import Header from "../../components/Header/Header";
 import { useNavigate } from "react-router-dom";
+
 import Button from "../../components/Button/Button";
 import CheckAnimation from "../../components/CheckAnimation/CheckAnimation";
-import EventListItem from "../../components/EventListItem/EventListItem";
 import EventList from "../../components/EventList/EventList";
-import { useLogin } from "../../components/LoginContextProvider/LoginContextProvider";
+import EventListItem from "../../components/EventListItem/EventListItem";
+import Header from "../../components/Header/Header";
 import Loader from "../../components/Loader/Loader";
+import { useLogin } from "../../components/LoginContextProvider/LoginContextProvider";
+import PageWrapper from "../../components/PageWrapper/PageWrapper";
+import events from "../../utils/api-events";
+import groups from "../../utils/api-groups";
+
+import "./SingleGroupPage.scss";
 
 const SingleGroupPage = () => {
   const [groupDetails, setGroupDetails] = useState(null);
@@ -24,7 +26,7 @@ const SingleGroupPage = () => {
 
   const getGroupDetails = async () => {
     const res = await groups.getSingleGroup(id);
-    setGroupJoined(res.data.group_id);
+    setGroupJoined(res.data.joined);
     setGroupDetails(res.data);
   };
 
@@ -42,7 +44,7 @@ const SingleGroupPage = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
     getGroupDetails();
-  }, []);
+  }, [groupJoined]);
 
   useEffect(() => {
     groupDetails && getGroupEvents();

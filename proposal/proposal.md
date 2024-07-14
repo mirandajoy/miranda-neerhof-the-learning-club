@@ -116,6 +116,7 @@ Response (ordered by city name asc):
 [
     {
         "id": 1,
+        "name": "Halifax Group",
         "city": "Halifax",
         "state": "Nova Scotia",
         "country": "Canada",
@@ -193,11 +194,12 @@ Response:
 [
     {
         "id": 1,
-        "eventTime": ""
+        "time": ""
         "location": "Cafe",
         "address": "123 Main St.",
-        "remoteLink": null,
-        "response": "attending"
+        "remote_link": null,
+        "status": "attending",
+        "rsvp_id": "23"
     }
     ...
 ]

@@ -19,9 +19,9 @@ const EventListItem = ({ event }) => {
   const loggedIn = useLogin();
 
   const getGroupDetails = async () => {
-    const res = await groups.getSingleGroup(event.group_id);
+    const res = await groups.getSingleGroup(event.joined);
     setGroupDetails(res.data);
-    setGroupJoined(res.data.group_id)
+    setGroupJoined(res.data.joined);
   };
 
   const handleRSVP = async (response) => {
@@ -29,13 +29,13 @@ const EventListItem = ({ event }) => {
     const res = !event.status
       ? await events.rsvpEvent(event.id, body)
       : await events.updateEvent(event.id, event.rsvp_id, body);
-    setRsvpStatus(res.data.response);
+    setRsvpStatus(res.data.status);
     setAnimated(true);
   };
 
   useEffect(() => {
     getGroupDetails();
-  }, []);
+  }, [event]);
 
   return (
     <div className="event">
