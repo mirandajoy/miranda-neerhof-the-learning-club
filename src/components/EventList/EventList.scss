@@ -12,8 +12,11 @@
   }
   &__list-items {
     @include flex(flex-start, flex-start);
-    @include responsive-gap;
-    padding-bottom: 0.75rem;
+    gap: $space-large;
+    padding-bottom: $space-med;
+    @include tablet {
+      @include responsive-gap;
+    }
   }
   &__list-container {
     padding-bottom: 1.5rem;
