@@ -39,7 +39,6 @@ const SignUpPage = () => {
   };
 
   const createNewUser = async () => {
-    console.log(formValues);
     const res = await users.createUser(formValues);
     sessionStorage.setItem("JWTtoken", res.data);
     setFormValues({ name: "", email: "", password: "" });
