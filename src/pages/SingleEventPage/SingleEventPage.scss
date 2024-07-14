@@ -2,7 +2,7 @@
 @use "../../styles/partials/mixins" as *;
 @use "../../styles/partials/global" as *;
 
-.event {
+.single-event {
   @include flex(center, center);
   gap: $space-micro;
   width: 100%;
@@ -26,6 +26,16 @@
   &__header {
     padding-top: $space-small;
     padding-bottom: 0.75rem;
+  }
+  &__link {
+    color: $color-brand-primary;
+    font-family: "Rubik", sans-serif;
+    font-weight: $weight-regular;
+    font-size: 1rem;
+    line-height: calc($font-size-body * 1.2);
+    &:hover {
+      color: $color-brand-primary-hover;
+    }
   }
   &__response-btn-container {
     @include flex(center, center);
