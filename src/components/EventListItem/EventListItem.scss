@@ -7,6 +7,12 @@
   @include list-hover;
   gap: 1rem;
   width: 100%;
+  &__content-container {
+    @include flex;
+    gap: 1rem;
+    text-decoration: none;
+    flex-grow: 1;
+  }
   &__date-container {
     border: $border-style;
     border-radius: $border-radius;
@@ -15,15 +21,6 @@
     text-align: center;
     width: 4.75rem;
   }
-  &__content-container {
-    @include flex;
-    gap: 1rem;
-    text-decoration: none;
-  }
-  &__action-container {
-    @include flex;
-    @include responsive-gap;
-  }
   &__details-container {
     @include flex(flex-start, flex-start);
     flex-direction: column;
@@ -31,6 +28,19 @@
     gap: $space-small;
     padding-right: 2rem;
     text-align: left;
+  }
+  &__event-details {
+    @include flex(center, flex-start);
+    gap: 1.5rem;
+  }
+  &__link {
+    color: $color-brand-primary;
+    font-family: "Rubik", sans-serif;
+    font-weight: $weight-regular;
+    line-height: calc($font-size-body * 1.2);
+    &:hover {
+      color: $color-brand-primary-hover;
+    }
   }
   &__action-container {
     flex-grow: 0;
