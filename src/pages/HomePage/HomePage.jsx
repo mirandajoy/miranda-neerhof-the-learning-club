@@ -1,14 +1,14 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import puffinCover from "../../assets/images/puffin-cover.jpg";
+import ButtonLink from "../../components/ButtonLink/ButtonLink";
 import EventList from "../../components/EventList/EventList";
+import GroupListItem from "../../components/GroupListItem/GroupListItem";
 import Loader from "../../components/Loader/Loader";
 import { useLogin } from "../../components/LoginContextProvider/LoginContextProvider";
 import PageWrapper from "../../components/PageWrapper/PageWrapper";
 import profiles from "../../utils/api-profile";
 import LandingPage from "../LandingPage/LandingPage";
 import "./HomePage.scss";
-import GroupListItem from "../../components/GroupListItem/GroupListItem";
-import ButtonLink from "../../components/ButtonLink/ButtonLink";
 
 const HomePage = () => {
   const [userEvents, setUserEvents] = useState(null);
@@ -27,8 +27,9 @@ const HomePage = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    getProfileEventsList();
-    getProfileGroupsList();
+    const token = sessionStorage.getItem("JWTtoken");
+    token && getProfileEventsList();
+    token && getProfileGroupsList();
   }, []);
 
   if (loggedIn === false) {
@@ -108,11 +109,7 @@ const HomePage = () => {
                 {userGroups.map((group) => {
                   return <GroupListItem key={group.id} group={group} />;
                 })}
-                <ButtonLink
-                  styleType="tertiary"
-                  label="Join A New Group"
-                  link="/groups"
-                />
+                <ButtonLink styleType="tertiary" label="Join A New Group" link="/groups" />
               </div>
             </div>
           </div>
