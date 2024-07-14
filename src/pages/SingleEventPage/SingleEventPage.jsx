@@ -18,8 +18,6 @@ const SingleEventPage = () => {
   const [animated, setAnimated] = useState(false);
   const loggedIn = useLogin();
 
-  console.log(eventDetails);
-
   const parsedDateTime = eventDetails && parseDateTime(eventDetails.time);
   const { id } = useParams();
 

@@ -17,7 +17,7 @@ class profiles {
     try {
       return await axios.get(`${this.route}`, authHeader);
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   }
 
@@ -25,7 +25,7 @@ class profiles {
     try {
       return await axios.get(`${this.route}/groups`, authHeader);
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   }
 
@@ -33,7 +33,7 @@ class profiles {
     try {
       return await axios.get(`${this.route}/events`, authHeader);
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   }
 }

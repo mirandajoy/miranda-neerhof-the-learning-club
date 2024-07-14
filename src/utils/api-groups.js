@@ -17,7 +17,7 @@ class groups {
     try {
       return !!token ? await axios.get(`${this.route}`, authHeader) : await axios.get(`${this.route}`);
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   }
 
@@ -25,7 +25,7 @@ class groups {
     try {
       return !!token ? await axios.get(`${this.route}/${groupId}`, authHeader) : await axios.get(`${this.route}/${groupId}`);
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   }
 
@@ -33,7 +33,7 @@ class groups {
     try {
       return await axios.post(`${this.route}/${groupId}/members`, null, authHeader);
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   }
 
@@ -41,7 +41,7 @@ class groups {
     try {
       return !!token ? await axios.get(`${this.route}/${groupId}/events`, authHeader) : await axios.get(`${this.route}/${groupId}/events`);
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   }
 }

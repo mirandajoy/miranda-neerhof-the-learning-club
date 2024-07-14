@@ -11,7 +11,7 @@ class users {
     try {
       return await axios.post(`${this.route}/signup`, body);
     } catch (error) {
-      console.log(error);
+      console.error(error);
       return error;
     }
   }

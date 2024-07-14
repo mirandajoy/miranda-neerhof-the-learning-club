@@ -17,7 +17,7 @@ class events {
     try {
       return !!token ? await axios.get(`${this.route}/${eventId}`, authHeader) : await axios.get(`${this.route}/${eventId}`);
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   }
 
@@ -25,7 +25,7 @@ class events {
     try {
       return await axios.post(`${this.route}/${eventId}/rsvps`, body, authHeader);
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   }
 
@@ -33,7 +33,7 @@ class events {
     try {
       return await axios.put(`${this.route}/${eventId}/rsvps/${rsvpId}`, body, authHeader);
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   }
 }
