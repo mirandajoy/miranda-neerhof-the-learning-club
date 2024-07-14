@@ -25,7 +25,7 @@
   }
   &__header {
     padding-top: $space-small;
-    padding-bottom: 0.75rem;
+    padding-bottom: $space-med;
   }
   &__response-item {
     padding-top: 3rem;
@@ -33,7 +33,7 @@
   }
   &__selected-response {
     background-color: $color-background-secondary;
-    padding: 0.75rem;
+    padding: $space-med;
     border-radius: $border-radius;
   }
   &__event-list {
