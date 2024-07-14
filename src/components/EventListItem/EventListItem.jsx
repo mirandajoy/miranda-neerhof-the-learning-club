@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+
 import events from "../../utils/api-events";
 import groups from "../../utils/api-groups";
 import parseDateTime from "../../utils/time-parse";
 import Button from "../Button/Button";
 import CheckAnimation from "../CheckAnimation/CheckAnimation";
+
 import "./EventListItem.scss";
 
 const EventListItem = ({ event, loggedIn }) => {
@@ -20,7 +22,9 @@ const EventListItem = ({ event, loggedIn }) => {
 
   const handleRSVP = async (response) => {
     const body = { response: response };
-    const res = await events.rsvpEvent(event.id, body);
+    const res = !event.status
+      ? await events.rsvpEvent(event.id, body)
+      : await events.updateEvent(event.id, event.rsvp_id, body);
     setRsvpStatus(res.data.response);
     setAnimated(true);
   };
