@@ -13,6 +13,7 @@ import "./EventListItem.scss";
 const EventListItem = ({ event }) => {
   const [rsvpStatus, setRsvpStatus] = useState(event.status);
   const [groupDetails, setGroupDetails] = useState(null);
+  const [groupJoined, setGroupJoined] = useState(null);
   const parsedDateTime = parseDateTime(event.time);
   const [animated, setAnimated] = useState(false);
   const loggedIn = useLogin();
@@ -20,6 +21,7 @@ const EventListItem = ({ event }) => {
   const getGroupDetails = async () => {
     const res = await groups.getSingleGroup(event.group_id);
     setGroupDetails(res.data);
+    setGroupJoined(res.data.group_id)
   };
 
   const handleRSVP = async (response) => {
@@ -54,7 +56,7 @@ const EventListItem = ({ event }) => {
           </div>
         </div>
       </Link>
-      {loggedIn && (
+      {groupJoined && loggedIn && (
         <div className="event__action-container">
           {rsvpStatus && rsvpStatus.toLowerCase() === "attending" ? (
             <CheckAnimation animate={animated} label="Attending!" check="true" />

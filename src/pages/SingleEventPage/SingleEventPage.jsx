@@ -13,6 +13,7 @@ import "./SingleEventPage.scss";
 const SingleEventPage = () => {
   const [eventDetails, setEventDetails] = useState(null);
   const [groupDetails, setGroupDetails] = useState(null);
+  const [groupJoined, setGroupJoined] = useState(null);
   const [rsvpStatus, setRsvpStatus] = useState(eventDetails && eventDetails.status);
   const [animated, setAnimated] = useState(false);
   const loggedIn = useLogin();
@@ -30,6 +31,7 @@ const SingleEventPage = () => {
   const getGroupDetails = async () => {
     const res = await groups.getSingleGroup(eventDetails.group_id);
     setGroupDetails(res.data);
+    setGroupJoined(res.data.group_id);
   };
 
   const handleRSVP = async (response) => {
@@ -90,7 +92,7 @@ const SingleEventPage = () => {
             )}
           </div>
         </div>
-        {loggedIn && (
+        {groupJoined && loggedIn && (
           <div className="single-event__response-btn-container">
             <div className="single-event__response-item">
               {rsvpText && rsvpText.toLowerCase() === "attending" ? (

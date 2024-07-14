@@ -20,7 +20,6 @@ const EventList = ({ label, events }) => {
           <div className="event-list__list-container">
             <EmptyList text="You don't have any upcoming events" />
           </div>
-          <ButtonLink link="/groups" styleType="secondary" label="Join a New Group" />
         </>
       ) : (
         <div className="event-list__list-container">
