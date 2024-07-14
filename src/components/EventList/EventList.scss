@@ -3,8 +3,7 @@
 @use "../../styles/partials/global" as *;
 
 .event-list {
-  max-width: 33%;
-  min-width: 480px;
+  width: 100%;
   &__loading {
     text-align: center;
     padding-block: 3rem;
@@ -17,6 +16,6 @@
     padding-bottom: 0.75rem;
   }
   &__list-container {
-    @include responsive-padding-block;
+    padding-bottom: 1.5rem;
   }
 }

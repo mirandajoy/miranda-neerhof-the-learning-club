@@ -6,20 +6,10 @@ import EventListItem from "../EventListItem/EventListItem";
 import EmptyList from "../EmptyList/EmptyList";
 import "./EventList.scss";
 
-const EventList = ({ loggedIn }) => {
-  const [userEvents, setUserEvents] = useState(null);
+const EventList = ({ loggedIn, label, events }) => {
   const [showAll, setShowAll] = useState(false);
 
-  const getProfileEventsList = async () => {
-    const res = await profiles.getProfileEvents();
-    setUserEvents(res.data);
-  };
-
-  useEffect(() => {
-    getProfileEventsList();
-  }, [loggedIn]);
-
-  if (userEvents === null) {
+  if (events === null) {
     return (
       <div className="event-list">
         <h2 className="header header--secondary event-list__header">Your Upcoming Events</h2>
@@ -28,12 +18,12 @@ const EventList = ({ loggedIn }) => {
     );
   }
 
-  const displayList = showAll ? userEvents : userEvents.slice(0, 3);
+  const displayList = showAll ? events : events.slice(0, 3);
 
   return (
     <div className="event-list">
-      <h2 className="header header--secondary event-list__header">Your Upcoming Events</h2>
-      {userEvents.length < 1 ? (
+      <h2 className="header header--secondary event-list__header">{label}</h2>
+      {events.length < 1 ? (
         <>
           <div className="event-list__list-container">
             <EmptyList text="You don't have any upcoming events" />
@@ -44,26 +34,30 @@ const EventList = ({ loggedIn }) => {
         <div className="event-list__list-container">
           <div className="event-list__list-items">
             {displayList.map((event) => {
-              return <EventListItem key={event.id} event={event} />;
+              return <EventListItem key={event.id} event={event} loggedIn={loggedIn} />;
             })}
           </div>
-          {!showAll && (
-            <Button
-              styleType="tertiary"
-              label="See All Events"
-              action={() => {
-                setShowAll(true);
-              }}
-            />
-          )}
-          {showAll && (
-            <Button
-              styleType="tertiary"
-              label="See Fewer Events"
-              action={() => {
-                setShowAll(false);
-              }}
-            />
+          {events.length > 3 && (
+            <>
+              {!showAll && (
+                <Button
+                  styleType="tertiary"
+                  label="See All Events"
+                  action={() => {
+                    setShowAll(true);
+                  }}
+                />
+              )}
+              {showAll && (
+                <Button
+                  styleType="tertiary"
+                  label="See Fewer Events"
+                  action={() => {
+                    setShowAll(false);
+                  }}
+                />
+              )}
+            </>
           )}
         </div>
       )}

@@ -1,19 +1,26 @@
 import { useEffect, useState } from "react";
 import puffinCover from "../../assets/images/puffin-cover.jpg";
-import ButtonLink from "../../components/ButtonLink/ButtonLink";
 import EventList from "../../components/EventList/EventList";
-import PageWrapper from "../../components/PageWrapper/PageWrapper";
 import Header from "../../components/Header/Header";
-import "./HomePage.scss";
+import PageWrapper from "../../components/PageWrapper/PageWrapper";
+import profiles from "../../utils/api-profile";
 import LandingPage from "../LandingPage/LandingPage";
+import "./HomePage.scss";
 
 const HomePage = () => {
   const [loggedIn, setLoggedIn] = useState(false);
+  const [userEvents, setUserEvents] = useState(null);
+
+  const getProfileEventsList = async () => {
+    const res = await profiles.getProfileEvents();
+    setUserEvents(res.data);
+  };
 
   const checkLogin = () => {
     const token = sessionStorage.getItem("JWTtoken");
     if (!!token) {
       setLoggedIn(true);
+      getProfileEventsList();
     }
   };
 
@@ -91,7 +98,9 @@ const HomePage = () => {
               </div>
             </div>
           </div>
-          {loggedIn && <EventList loggedIn={loggedIn} />}
+          <div className="home__event-list">
+            {userEvents && <EventList label="Your Upcoming Events" loggedIn={loggedIn} events={userEvents} />}
+          </div>
         </div>
       </PageWrapper>
     </>
