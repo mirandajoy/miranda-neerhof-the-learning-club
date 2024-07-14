@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import AlertBanner from "../../components/AlertBanner/AlertBanner";
 import Button from "../../components/Button/Button";
 import InputField from "../../components/InputField/InputField";
+import { useLoginUpdate } from "../../components/LoginContextProvider/LoginContextProvider";
+import PageWrapper from "../../components/PageWrapper/PageWrapper";
 import users from "../../utils/api-users";
 import { validateEmail, validatePassword, validateSignUp } from "../../utils/validation-utils";
 import "./SignUpPage.scss";
-import PageWrapper from "../../components/PageWrapper/PageWrapper";
-import { useLogin, useLoginUpdate } from "../../components/LoginContextProvider/LoginContextProvider";
 
 const SignUpPage = () => {
   const [formValues, setFormValues] = useState({
@@ -19,6 +20,7 @@ const SignUpPage = () => {
     emailError: null,
     passwordError: null,
   });
+  const [errorMessage, setErrorMessage] = useState(null);
   const navigate = useNavigate();
   const loginUpdate = useLoginUpdate();
 
@@ -42,10 +44,14 @@ const SignUpPage = () => {
 
   const createNewUser = async () => {
     const res = await users.createUser(formValues);
-    sessionStorage.setItem("JWTtoken", res.data);
-    loginUpdate(true);
-    setFormValues({ name: "", email: "", password: "" });
-    navigate("/");
+    if (res.status == "201") {
+      sessionStorage.setItem("JWTtoken", res.data);
+      loginUpdate(true);
+      setFormValues({ name: "", email: "", password: "" });
+      navigate("/");
+    } else {
+      setErrorMessage(res.response.data.message);
+    }
   };
 
   return (
@@ -94,6 +100,7 @@ const SignUpPage = () => {
             });
           }}
         />
+        {errorMessage && <AlertBanner message={errorMessage} />}
         <Button type="Submit" styleType="primary" label="Sign up" />
       </form>
     </PageWrapper>

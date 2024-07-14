@@ -1,12 +1,14 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+
 import Button from "../../components/Button/Button";
 import InputField from "../../components/InputField/InputField";
-import users from "../../utils/api-users";
-import "./SignInPage.scss";
+import { useLogin, useLoginUpdate } from "../../components/LoginContextProvider/LoginContextProvider";
 import PageWrapper from "../../components/PageWrapper/PageWrapper";
-import { useLogin, useLoginUpdate } from "../../components/LoginContextProvider/LoginContextProvider"
+import users from "../../utils/api-users";
+import AlertBanner from "../../components/AlertBanner/AlertBanner";
 
+import "./SignInPage.scss";
 
 const SignInPage = () => {
   const [formValues, setFormValues] = useState({
@@ -15,6 +17,7 @@ const SignInPage = () => {
   });
   const navigate = useNavigate();
   const loginUpdate = useLoginUpdate();
+  const [errorMessage, setErrorMessage] = useState(null);
 
   const handleOnChange = (event) => {
     const target = event.target.name;
@@ -33,10 +36,14 @@ const SignInPage = () => {
 
   const loginExistingUser = async () => {
     const res = await users.loginUser(formValues);
-    sessionStorage.setItem("JWTtoken", res.data);
-    loginUpdate(true);
-    setFormValues({ email: "", password: "" });
-    navigate("/");
+    if (res.status == "200") {
+      sessionStorage.setItem("JWTtoken", res.data);
+      loginUpdate(true);
+      setFormValues({ email: "", password: "" });
+      navigate("/");
+    } else {
+      setErrorMessage(res.response.data.message);
+    }
   };
 
   return (
@@ -58,6 +65,7 @@ const SignInPage = () => {
           value={formValues.password}
           onChange={handleOnChange}
         />
+        {errorMessage && <AlertBanner message={errorMessage} />}
         <Button type="Submit" styleType="primary" label="Sign in" />
       </form>
     </PageWrapper>
