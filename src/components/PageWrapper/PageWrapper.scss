@@ -5,11 +5,18 @@
 .page-wrapper {
   @include responsive-padding-block;
   min-height: 100vh;
+  box-sizing: border-box;
+  @include responsive-padding-left;
+  @include responsive-padding-right;
   &--full {
     width: 100%;
   }
   &--large {
     @include page-center;
+    max-width: 50rem;
+    @include desktop {
+      max-width: 1280px;
+    }
   }
   &--small {
     @include page-center($max-content-width-small);

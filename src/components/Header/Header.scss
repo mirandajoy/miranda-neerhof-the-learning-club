@@ -6,7 +6,11 @@
   @include responsive-padding;
   @include flex;
   @include responsive-gap;
+  flex-direction: column;
   background-color: $color-background-secondary;
+  @include tablet {
+    flex-direction: row;
+  }
   &__logo-container {
     @include flex;
     gap: $space-small;
@@ -21,6 +25,6 @@
     @include flex(center, flex-end);
     @include responsive-gap;
     flex-wrap: nowrap;
-    flex-basis: 20rem;
+    width: 20rem;
   }
 }
