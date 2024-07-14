@@ -1,0 +1,13 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/global" as *;
+
+.alert-banner {
+  @include flex(center, flex-start);
+  background-color: $color-background-secondary;
+  box-sizing: border-box;
+  border-radius: $border-radius;
+  padding: $space-small $space-med;
+  gap: $space-micro;
+  width: 100%;
+}
