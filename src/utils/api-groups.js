@@ -1,12 +1,6 @@
 import axios from "axios";
 
 const apiURL = import.meta.env.VITE_API_URL;
-export const token = sessionStorage.getItem("JWTtoken");
-export const authHeader = {
-  headers: {
-    authorization: `Bearer ${token}`,
-  },
-};
 
 class groups {
   constructor() {
@@ -15,6 +9,12 @@ class groups {
 
   async getGroups() {
     try {
+      const token = sessionStorage.getItem("JWTtoken");
+      const authHeader = {
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      };
       return !!token ? await axios.get(`${this.route}`, authHeader) : await axios.get(`${this.route}`);
     } catch (error) {
       console.error(error);
@@ -23,7 +23,15 @@ class groups {
 
   async getSingleGroup(groupId) {
     try {
-      return !!token ? await axios.get(`${this.route}/${groupId}`, authHeader) : await axios.get(`${this.route}/${groupId}`);
+      const token = sessionStorage.getItem("JWTtoken");
+      const authHeader = {
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      };
+      return !!token
+        ? await axios.get(`${this.route}/${groupId}`, authHeader)
+        : await axios.get(`${this.route}/${groupId}`);
     } catch (error) {
       console.error(error);
     }
@@ -31,6 +39,12 @@ class groups {
 
   async joinGroup(groupId) {
     try {
+      const token = sessionStorage.getItem("JWTtoken");
+      const authHeader = {
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      };
       return await axios.post(`${this.route}/${groupId}/members`, null, authHeader);
     } catch (error) {
       console.error(error);
@@ -39,7 +53,15 @@ class groups {
 
   async getGroupEvents(groupId) {
     try {
-      return !!token ? await axios.get(`${this.route}/${groupId}/events`, authHeader) : await axios.get(`${this.route}/${groupId}/events`);
+      const token = sessionStorage.getItem("JWTtoken");
+      const authHeader = {
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      };
+      return !!token
+        ? await axios.get(`${this.route}/${groupId}/events`, authHeader)
+        : await axios.get(`${this.route}/${groupId}/events`);
     } catch (error) {
       console.error(error);
     }
