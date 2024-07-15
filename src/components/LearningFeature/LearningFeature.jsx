@@ -35,7 +35,7 @@ const LearningFeature = () => {
           <h3 className="header header--tertiary additional-resources__header">Learn More About Puffins!</h3>
           <div className="additional-resources__x-link-container">
             <span className="material-symbols-outlined">article</span>
-            <a href="https://www.youtube.com/watch?v=EIUJfXk3_3w" target="_blank" className="link">
+            <a href="https://ocean.si.edu/ocean-life/seabirds/know-your-puffins" target="_blank" className="link">
               Know your Puffins
             </a>
           </div>
@@ -47,7 +47,7 @@ const LearningFeature = () => {
           </div>
           <div className="additional-resources__x-link-container">
             <span className="material-symbols-outlined">videocam</span>
-            <a href="https://www.youtube.com/watch?v=EIUJfXk3_3w" target="_blank" className="link">
+            <a href="https://www.youtube.com/watch?v=fxVc7rgS6Ok" target="_blank" className="link">
               How The Adorable Atlantic Puffin Came Back From Near Extinction
             </a>
           </div>
