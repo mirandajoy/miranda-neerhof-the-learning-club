@@ -3,6 +3,12 @@
 @use "../../styles/partials/global" as *;
 
 .event-list {
+  @include flex(flex-start, flex-start);
+  @include responsive-gap;
+  border-radius: $border-radius;
+  flex-direction: column;
+  text-align: right;
+  flex-shrink: 0;
   width: 100%;
   &__header {
     border-bottom: $border-style;
@@ -19,7 +25,7 @@
     }
   }
   &__list-container {
-    padding-bottom: 1.5rem;
+    padding-bottom: $space-standard;
     width: 100%;
   }
 }

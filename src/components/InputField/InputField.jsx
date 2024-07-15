@@ -3,7 +3,7 @@ import "./InputField.scss";
 const InputField = ({ name, type, label, placeholder, value, errorMessage, onBlur, onChange }) => {
   return (
     <div className="input">
-      <label className="label input__label">{label}</label>
+      <label className="label input__label" htmlFor={name}>{label}</label>
       <input
         id={name}
         name={name}
@@ -13,6 +13,7 @@ const InputField = ({ name, type, label, placeholder, value, errorMessage, onBlu
         onBlur={onBlur}
         onChange={onChange}
         className={`body body--dark input__field ${errorMessage ? "input__field--error" : ""}`}
+        autoComplete="off"
       />
       <span className="body input__error">{errorMessage}</span>
     </div>

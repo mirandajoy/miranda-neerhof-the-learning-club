@@ -13,23 +13,21 @@ import Header from "./components/Header/Header";
 
 const App = () => {
   return (
-    <>
-      <BrowserRouter>
-        <LoginContextProvider>
-          <Header />
-          <Routes>
-            <Route path="/" element={<HomePage />}></Route>
-            <Route path="/groups" element={<GroupsPage />}></Route>
-            <Route path="/groups/:id" element={<SingleGroupPage />}></Route>
-            <Route path="/events/:id" element={<SingleEventPage />}></Route>
-            <Route path="/signup" element={<SignUpPage />}></Route>
-            <Route path="/signin" element={<SignInPage />}></Route>
-            <Route path="/*" element={<NotFoundPage />}></Route>
-          </Routes>
-          <Footer />
-        </LoginContextProvider>
-      </BrowserRouter>
-    </>
+    <BrowserRouter>
+      <LoginContextProvider>
+        <Header />
+        <Routes>
+          <Route path="/" element={<HomePage />}></Route>
+          <Route path="/groups" element={<GroupsPage />}></Route>
+          <Route path="/groups/:id" element={<SingleGroupPage />}></Route>
+          <Route path="/events/:id" element={<SingleEventPage />}></Route>
+          <Route path="/signup" element={<SignUpPage />}></Route>
+          <Route path="/signin" element={<SignInPage />}></Route>
+          <Route path="/*" element={<NotFoundPage />}></Route>
+        </Routes>
+        <Footer />
+      </LoginContextProvider>
+    </BrowserRouter>
   );
 };
 

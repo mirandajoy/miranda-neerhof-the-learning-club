@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-
 import events from "../../utils/api-events";
 import groups from "../../utils/api-groups";
 import parseDateTime from "../../utils/time-parse";

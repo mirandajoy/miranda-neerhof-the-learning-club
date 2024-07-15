@@ -51,10 +51,7 @@ body {
     font-size: $font-size-body-small;
   }
   &--display {
-    font-size: 1rem;
-    @include desktop {
-      font-size: $font-size-header-tertiary;
-    }
+    font-size: $font-size-header-tertiary;
   }
 }
 

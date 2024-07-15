@@ -8,16 +8,12 @@
   gap: $space-micro;
   background-color: $color-brand-secondary;
   min-height: 8rem;
-  &__logo {
-    color: white;
-    font-size: 1rem;
-    font-family: "Unica One", sans-serif;
-  }
   &__tagline {
-    color: #F9D3D2;
-    font-family: "Unica One", sans-serif;
+    color: $color-accent-pink;
+    font-size: $font-size-header-secondary;
+    line-height: calc($font-size-header-secondary * 1.2);
   }
   &__tagline-highlight {
-    color: #8BC7AE;
+    color: $color-success;
   }
 }
