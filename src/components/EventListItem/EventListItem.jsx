@@ -45,7 +45,7 @@ const EventListItem = ({ event }) => {
         </div>
         <div className="event__details-container">
           {groupDetails && <p className="body body--dark">Hosted by: {groupDetails.name}</p>}
-          <div className={`${!loggedIn ? "event__event-details" : ""}`}>
+          <div>
             {event.location ? (
               <p className="body body--dark body--small">Meet at {event.location}</p>
             ) : (

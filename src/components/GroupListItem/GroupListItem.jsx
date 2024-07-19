@@ -1,16 +1,19 @@
 import { useEffect, useState } from "react";
-import groups from "../../utils/api-groups";
-import Button from "../Button/Button";
-import CheckAnimation from "../CheckAnimation/CheckAnimation";
-import "./GroupListItem.scss";
 import { Link } from "react-router-dom";
-import ButtonLink from "../ButtonLink/ButtonLink";
+
+import groups from "../../utils/api-groups";
 import parseDateTime from "../../utils/time-parse";
+import Button from "../Button/Button";
+import ButtonLink from "../ButtonLink/ButtonLink";
+import CheckAnimation from "../CheckAnimation/CheckAnimation";
 import { useLogin } from "../LoginContextProvider/LoginContextProvider";
+
+import "./GroupListItem.scss";
 
 const GroupListItem = ({ group, showNextEvent, showResponse }) => {
   const [nextEvent, setNextEvent] = useState(null);
   const [groupJoined, setGroupJoined] = useState(group.joined);
+  const [groupRole, setGroupRole] = useState(group.role === "owner" ? true : false);
   const [animated, setAnimated] = useState(false);
   const parsedDateTime = nextEvent && parseDateTime(nextEvent.time);
   const loggedIn = useLogin();
@@ -49,6 +52,7 @@ const GroupListItem = ({ group, showNextEvent, showResponse }) => {
       </Link>
       {showResponse && loggedIn && (
         <div className="group__join-btn">
+          {group && groupRole && (<p className="body">My Group</p>)}
           {group && groupJoined ? (
             <div className="group__response-container">
               <CheckAnimation animate={animated} check={true} label="Joined!" />

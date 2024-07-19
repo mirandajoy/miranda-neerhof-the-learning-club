@@ -37,6 +37,48 @@ class groups {
     }
   }
 
+  async createGroup(body) {
+    try {
+      const token = sessionStorage.getItem("JWTtoken");
+      const authHeader = {
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      };
+      return await axios.post(`${this.route}`, body, authHeader)
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  async editGroup(groupId, body) {
+    try {
+      const token = sessionStorage.getItem("JWTtoken");
+      const authHeader = {
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      };
+      return await axios.put(`${this.route}/${groupId}`, body, authHeader)
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  async deleteGroup(groupId) {
+    try {
+      const token = sessionStorage.getItem("JWTtoken");
+      const authHeader = {
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      };
+      return await axios.delete(`${this.route}/${groupId}`, authHeader)
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
   async joinGroup(groupId) {
     try {
       const token = sessionStorage.getItem("JWTtoken");

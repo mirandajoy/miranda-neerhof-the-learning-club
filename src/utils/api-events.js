@@ -23,6 +23,48 @@ class events {
     }
   }
 
+  async createEvent(body) {
+    try {
+      const token = sessionStorage.getItem("JWTtoken");
+      const authHeader = {
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      };
+      return await axios.post(`${this.route}`, body, authHeader)
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  async editEvent(eventId, body) {
+    try {
+      const token = sessionStorage.getItem("JWTtoken");
+      const authHeader = {
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      };
+      return await axios.put(`${this.route}/${eventId}`, body, authHeader)
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  async deleteEvent(eventId) {
+    try {
+      const token = sessionStorage.getItem("JWTtoken");
+      const authHeader = {
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      };
+      return await axios.delete(`${this.route}/${eventId}`, authHeader)
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
   async rsvpEvent(eventId, body) {
     try {
       const token = sessionStorage.getItem("JWTtoken");
