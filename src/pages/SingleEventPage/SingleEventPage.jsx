@@ -47,100 +47,98 @@ const SingleEventPage = () => {
   }, [rsvpStatus]);
 
   useEffect(() => {
-    eventDetails && getGroupDetails()
-  }, [eventDetails])
+    eventDetails && getGroupDetails();
+  }, [eventDetails]);
 
   if (eventDetails === null || groupDetails === null) {
-    return <Loader />
+    return <Loader />;
   }
 
   const rsvpText = eventDetails.status;
 
   return (
-    <>
-      <PageWrapper header={groupDetails.name} width="small" back>
-        <div className="single-event__main-details-container">
-          <div className="single-event__main-details-left">
-            <span className="material-symbols-outlined">event</span>
-            <h2 className="header header--secondary single-event__header">Meet on</h2>
-            <p className="body body--dark">{parsedDateTime.fullDate}</p>
-            <p className="body body--dark">{parsedDateTime.fullTime}</p>
-          </div>
-          <div className="single-event__main-details-right">
-            <span className="material-symbols-outlined">location_on</span>
-            {groupDetails.remote === 0 ? (
-              <>
-                <h2 className="header header--secondary single-event__header">Meet at</h2>
-                <p className="body body--dark">{eventDetails.location}</p>
-                <p className="body body--dark">{eventDetails.address}</p>
-              </>
+    <PageWrapper header={groupDetails.name} width="small" back>
+      <div className="single-event__main-details-container">
+        <div className="single-event__main-details-left">
+          <span className="material-symbols-outlined">event</span>
+          <h2 className="header header--secondary single-event__header">Meet on</h2>
+          <p className="body body--dark">{parsedDateTime.fullDate}</p>
+          <p className="body body--dark">{parsedDateTime.fullTime}</p>
+        </div>
+        <div className="single-event__main-details-right">
+          <span className="material-symbols-outlined">location_on</span>
+          {groupDetails.remote === 0 ? (
+            <>
+              <h2 className="header header--secondary single-event__header">Meet at</h2>
+              <p className="body body--dark">{eventDetails.location}</p>
+              <p className="body body--dark">{eventDetails.address}</p>
+            </>
+          ) : (
+            <>
+              <h2 className="header header--secondary single-event__header">Meet on</h2>
+              <p className="body body--dark body--small">
+                {loggedIn ? (
+                  <a href={eventDetails.remote_link} target="_blank" className="single-event__link">
+                    Zoom
+                  </a>
+                ) : (
+                  <span className="body body--dark">Zoom</span>
+                )}
+              </p>
+            </>
+          )}
+        </div>
+      </div>
+      {groupJoined && loggedIn && (
+        <div className="single-event__response-btn-container">
+          <div className="single-event__response-item">
+            {rsvpText && rsvpText.toLowerCase() === "attending" ? (
+              <div className="single-event__selected-response">
+                <CheckAnimation animate={animated} label="Attending!" check={true} />
+              </div>
             ) : (
-              <>
-                <h2 className="header header--secondary single-event__header">Meet on</h2>
-                <p className="body body--dark body--small">
-                  {loggedIn ? (
-                    <a href={eventDetails.remote_link} target="_blank" className="single-event__link">
-                      Zoom
-                    </a>
-                  ) : (
-                    <span className="body body--dark">Zoom</span>
-                  )}
-                </p>
-              </>
+              <Button
+                label="Attend"
+                styleType="secondary"
+                action={() => {
+                  handleRSVP("attending");
+                }}
+              />
+            )}
+          </div>
+          <div className="single-event__response-item">
+            {rsvpText && rsvpText.toLowerCase() === "not attending" ? (
+              <div className="single-event__selected-response">
+                <CheckAnimation animate={animated} label="Not Attending" icon="cancel" />
+              </div>
+            ) : (
+              <Button
+                label="Not This Time"
+                styleType="secondary"
+                action={() => {
+                  handleRSVP("not attending");
+                }}
+              />
+            )}
+          </div>
+          <div className="single-event__response-item">
+            {rsvpText && rsvpText.toLowerCase() === "maybe" ? (
+              <div className="single-event__selected-response">
+                <CheckAnimation animate={animated} label="Maybe" icon="help" />
+              </div>
+            ) : (
+              <Button
+                label="Maybe"
+                styleType="secondary"
+                action={() => {
+                  handleRSVP("maybe");
+                }}
+              />
             )}
           </div>
         </div>
-        {groupJoined && loggedIn && (
-          <div className="single-event__response-btn-container">
-            <div className="single-event__response-item">
-              {rsvpText && rsvpText.toLowerCase() === "attending" ? (
-                <div className="single-event__selected-response">
-                  <CheckAnimation animate={animated} label="Attending!" check={true} />
-                </div>
-              ) : (
-                <Button
-                  label="Attend"
-                  styleType="secondary"
-                  action={() => {
-                    handleRSVP("attending");
-                  }}
-                />
-              )}
-            </div>
-            <div className="single-event__response-item">
-              {rsvpText && rsvpText.toLowerCase() === "not attending" ? (
-                <div className="single-event__selected-response">
-                  <CheckAnimation animate={animated} label="Not Attending" icon="cancel" />
-                </div>
-              ) : (
-                <Button
-                  label="Not This Time"
-                  styleType="secondary"
-                  action={() => {
-                    handleRSVP("not attending");
-                  }}
-                />
-              )}
-            </div>
-            <div className="single-event__response-item">
-              {rsvpText && rsvpText.toLowerCase() === "maybe" ? (
-                <div className="single-event__selected-response">
-                  <CheckAnimation animate={animated} label="Maybe" icon="help" />
-                </div>
-              ) : (
-                <Button
-                  label="Maybe"
-                  styleType="secondary"
-                  action={() => {
-                    handleRSVP("maybe");
-                  }}
-                />
-              )}
-            </div>
-          </div>
-        )}
-      </PageWrapper>
-    </>
+      )}
+    </PageWrapper>
   );
 };
 

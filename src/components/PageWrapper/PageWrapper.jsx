@@ -1,6 +1,5 @@
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./PageWrapper.scss";
-import Button from "../Button/Button";
 
 const PageWrapper = ({ preHeader, header, width, children, back }) => {
   const navigate = useNavigate();

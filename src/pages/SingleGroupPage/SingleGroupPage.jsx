@@ -51,50 +51,48 @@ const SingleGroupPage = () => {
   }, [groupDetails]);
 
   if (groupDetails === null) {
-    return <Loader />
+    return <Loader />;
   }
 
   return (
-    <>
-      <PageWrapper header={groupDetails.name} width="small" back>
-        <div className="single-group__main-details-container">
-          <div className="single-group__main-details-left">
-            <span className="material-symbols-outlined">location_on</span>
-            <h2 className="header header--secondary single-group__header">Group Location</h2>
-            {groupDetails.city ? (
-              <>
-                <p className="body body--dark">
-                  {groupDetails.city}, {groupDetails.state},
-                </p>
-                <p className="body body--dark">{groupDetails.country}</p>
-              </>
-            ) : (
-              <p className="body body--dark">Remote on Zoom</p>
-            )}
-          </div>
+    <PageWrapper header={groupDetails.name} width="small" back>
+      <div className="single-group__main-details-container">
+        <div className="single-group__main-details-left">
+          <span className="material-symbols-outlined">location_on</span>
+          <h2 className="header header--secondary single-group__header">Group Location</h2>
+          {groupDetails.city ? (
+            <>
+              <p className="body body--dark">
+                {groupDetails.city}, {groupDetails.state},
+              </p>
+              <p className="body body--dark">{groupDetails.country}</p>
+            </>
+          ) : (
+            <p className="body body--dark">Remote on Zoom</p>
+          )}
         </div>
-        {loggedIn && (
-          <div className="single-group__response-item">
-            {groupJoined ? (
-              <div className="single-group__selected-response">
-                <CheckAnimation animate={animated} label="Joined!" check={true} />
-              </div>
-            ) : (
-              <Button
-                label="Join Group"
-                styleType="secondary"
-                action={() => {
-                  handleJoinClick();
-                }}
-              />
-            )}
-          </div>
-        )}
-        <div className="single-group__event-list">
-          {groupEvents && <EventList label="Upcoming Events" events={groupEvents} />}
+      </div>
+      {loggedIn && (
+        <div className="single-group__response-item">
+          {groupJoined ? (
+            <div className="single-group__selected-response">
+              <CheckAnimation animate={animated} label="Joined!" check={true} />
+            </div>
+          ) : (
+            <Button
+              label="Join Group"
+              styleType="secondary"
+              action={() => {
+                handleJoinClick();
+              }}
+            />
+          )}
         </div>
-      </PageWrapper>
-    </>
+      )}
+      <div className="single-group__event-list">
+        {groupEvents && <EventList label="Upcoming Events" events={groupEvents} />}
+      </div>
+    </PageWrapper>
   );
 };
 

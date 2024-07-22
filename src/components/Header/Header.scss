@@ -24,8 +24,11 @@
   &__actions-container {
     @include flex(center, flex-end);
     gap: $space-small;
-    flex-wrap: nowrap;
-    width: 20rem;
+    width: 80%;
+    @include tablet {
+      flex-basis: 20rem;
+      flex-wrap: nowrap;
+    }
   }
   &__greeting {
     flex-shrink: 0;

@@ -4,6 +4,7 @@
 
 .hero {
   @include flex;
+  @include responsive-padding-block;
   background-color: $color-background-secondary;
   justify-content: center;
   &__img {
@@ -18,17 +19,17 @@
       width: 30%;
       position: relative;
       left: 5%;
-      top: 60px;
-      height: 500px;
+      top: 3.75rem;
+      height: 30rem;
     }
     @keyframes move-up {
       0% {
-        top: 80px;
+        top: 5rem;
         display: hidden;
         opacity: 0;
       }
       100% {
-        top: 60px;
+        top: 3.75rem;
         display: block;
       }
     }
@@ -115,7 +116,7 @@
     padding-inline: 1.5rem;
     @include tablet {
       padding-block: 8rem 6rem;
-      max-width: 800px;
+      max-width: 50rem;
     }
     @include desktop {
       padding-block: 8rem 6rem;
@@ -150,22 +151,24 @@
     }
   }
   &__card-content {
-    padding: 1rem;
+    padding: $space-med;
     @include flex(center, center);
     flex-direction: column;
-    gap: 1rem;
+    gap: $space-med;
     z-index: 1;
     width: 100%;
+    text-align: center;
   }
   &__card-body {
-    padding-inline: 1rem;
+    padding-inline: $space-med;
     text-align: center;
   }
   &__number {
-    color: $color-brand-primary !important;
+    color: $color-brand-primary;
+    font-size: $font-size-header-tertiary;
   }
   &__highlight {
-    width: 6px;
+    width: 0.375rem;
     border-radius: 10px 0px 0 10px;
     &--blue {
       background-color: $color-brand-secondary;
@@ -186,6 +189,7 @@
   background-image: url("../../assets/images/waves-2.svg");
   background-position: bottom;
   background-size: cover;
+  padding-inline: $space-med;
   &__curve-divider {
     position: absolute;
     top: 0;
@@ -198,7 +202,7 @@
   &__content {
     @include flex(center, center);
     flex-direction: column;
-    gap: 1.5rem;
+    gap: $space-standard;
     padding-block: 4rem;
     margin-block: 2rem;
     border-radius: $border-radius;
@@ -223,6 +227,6 @@
     text-align: center;
   }
   &__button {
-    max-width: 200px;
+    max-width: 12rem;
   }
 }

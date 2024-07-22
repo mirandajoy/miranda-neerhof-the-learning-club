@@ -1,3 +1,16 @@
-@use '../../styles/partials/variables' as *;
-@use '../../styles/partials/mixins' as *;
-@use '../../styles/partials/global' as *;
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/global" as *;
+
+.not-found {
+  @include flex(center, center);
+  flex-direction: column;
+  gap: $space-large;
+  width: 100%;
+  padding-block: $space-large;
+  margin-inline: auto;
+  background-color: $color-background-secondary;
+  &__btn {
+    width: 15rem;
+  }
+}

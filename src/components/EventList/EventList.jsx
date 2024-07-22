@@ -1,11 +1,8 @@
-import { useEffect, useState } from "react";
-import profiles from "../../utils/api-profile";
-import ButtonLink from "../ButtonLink/ButtonLink";
+import { useState } from "react";
 import Button from "../Button/Button";
-import EventListItem from "../EventListItem/EventListItem";
 import EmptyList from "../EmptyList/EmptyList";
+import EventListItem from "../EventListItem/EventListItem";
 import "./EventList.scss";
-import { useLogin } from "../LoginContextProvider/LoginContextProvider";
 
 const EventList = ({ label, events }) => {
   const [showAll, setShowAll] = useState(false);

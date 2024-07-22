@@ -21,7 +21,7 @@ const GroupsPage = () => {
   }, []);
 
   if (groupList === null) {
-    return <Loader />
+    return <Loader />;
   }
 
   const canadaGroups = groupList.filter((group) => group.country === "Canada");
@@ -29,28 +29,26 @@ const GroupsPage = () => {
   const remoteGroups = groupList.filter((group) => group.remote === 1);
 
   return (
-    <>
-      <PageWrapper header="Groups" width="small" back>
-        <div className="group-list">
-          <h2 className="header header--secondary group-list__header">Groups in Canada</h2>
-          {canadaGroups.map((group) => {
-            return <GroupListItem key={group.id} group={group} showNextEvent showResponse />;
-          })}
-        </div>
-        <div className="group-list group-list--usa">
-          <h2 className="header header--secondary group-list__header">Groups in the USA</h2>
-          {usaGroups.map((group) => {
-            return <GroupListItem key={group.id} group={group} showNextEvent showResponse />;
-          })}
-        </div>
-        <div className="group-list group-list--usa">
-          <h2 className="header header--secondary group-list__header">Remote Groups</h2>
-          {remoteGroups.map((group) => {
-            return <GroupListItem key={group.id} group={group} showNextEvent showResponse />;
-          })}
-        </div>
-      </PageWrapper>
-    </>
+    <PageWrapper header="Groups" width="small" back>
+      <div className="group-list">
+        <h2 className="header header--secondary group-list__header">Groups in Canada</h2>
+        {canadaGroups.map((group) => {
+          return <GroupListItem key={group.id} group={group} showNextEvent showResponse />;
+        })}
+      </div>
+      <div className="group-list group-list--usa">
+        <h2 className="header header--secondary group-list__header">Groups in the USA</h2>
+        {usaGroups.map((group) => {
+          return <GroupListItem key={group.id} group={group} showNextEvent showResponse />;
+        })}
+      </div>
+      <div className="group-list group-list--usa">
+        <h2 className="header header--secondary group-list__header">Remote Groups</h2>
+        {remoteGroups.map((group) => {
+          return <GroupListItem key={group.id} group={group} showNextEvent showResponse />;
+        })}
+      </div>
+    </PageWrapper>
   );
 };
 
