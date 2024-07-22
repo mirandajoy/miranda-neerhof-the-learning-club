@@ -23,7 +23,17 @@
   align-items: $alignment;
   display: flex;
   flex-wrap: wrap;
+  flex-direction: row;
   justify-content: $justify;
+}
+
+@mixin flex-center {
+  @include flex(center, center);
+}
+
+@mixin flex-column {
+  @include flex(flex-start, flex-start);
+  flex-direction: column;
 }
 
 //Spacing
@@ -124,6 +134,12 @@
     transform: scale(0.99);
     text-decoration: underline;
   }
+}
+
+@mixin button-icon {
+  background-color: transparent;
+  border: none;
+  color: $color-primary-dark;
 }
 
 @mixin list-hover {

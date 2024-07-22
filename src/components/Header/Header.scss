@@ -4,30 +4,49 @@
 
 .nav {
   @include responsive-padding;
-  @include flex;
+  @include flex-column;
   @include responsive-gap;
-  flex-direction: column;
   background-color: $color-background-secondary;
   @include tablet {
-    flex-direction: row;
-  }
-  &__logo-container {
     @include flex;
-    gap: $space-small;
   }
   &__logo {
-    color: $color-brand-primary;
-    font-family: 'Unica One', sans-serif;
-    font-size: 2rem;
+    @include flex;
+    gap: $space-small;
     text-decoration: none;
+    width: 100%;
+    @include tablet {
+      width: auto;
+    }
+  }
+  &__logo-text {
+    color: $color-brand-primary;
+    display: none;
+    font-family: "Unica One", sans-serif;
+    font-size: 2rem;
+    @include tablet {
+      display: block;
+    }
+  }
+  &__menu-icon {
+    @include button-icon;
+    @include tablet {
+      display: none;
+    }
   }
   &__actions-container {
     @include flex(center, flex-end);
     gap: $space-small;
-    width: 80%;
+    width: 100%;
     @include tablet {
       flex-basis: 20rem;
       flex-wrap: nowrap;
+    }
+    &--hidden {
+      display: none;
+      @include tablet {
+        display: flex;
+      }
     }
   }
   &__greeting {

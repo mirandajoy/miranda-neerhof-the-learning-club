@@ -11,6 +11,7 @@ const Header = () => {
   const loggedIn = useLogin();
   const loginUpdate = useLoginUpdate();
   const [userName, setUserName] = useState();
+  const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
 
   const getProfileName = async () => {
@@ -20,6 +21,7 @@ const Header = () => {
 
   const handleClickLogout = () => {
     loginUpdate(false);
+    setMenuOpen(false);
     navigate("/");
   };
 
@@ -27,36 +29,29 @@ const Header = () => {
     loggedIn && getProfileName();
   }, [loggedIn]);
 
-  if (!loggedIn) {
-    return (
-      <nav className="nav">
-        <div className="nav__logo-container">
-          <Logo />
-          <Link to="/" className="nav__logo">
-            The Learning Club
-          </Link>
-        </div>
-        <div className="nav__actions-container">
-          <ButtonLink link="/signin" styleType="secondary" label="Sign In" />
-          <ButtonLink link="/signup" styleType="primary" label="Sign Up" />
-        </div>
-      </nav>
-    );
-  }
-
   return (
     <nav className="nav">
-      <div className="nav__logo-container">
+      <Link to="/" className="nav__logo">
         <Logo />
-        <Link to="/" className="nav__logo">
-          The Learning Club
-        </Link>
-      </div>
-      <div className="nav__actions-container">
-        {userName && <h3 className="header header-tertiary nav__greeting">Welcome, {userName}</h3>}
-        <div>
-          <Button type="button" label="Log out" styleType="tertiary" action={handleClickLogout} />
-        </div>
+        <h2 className="nav__logo-text">The Learning Club</h2>
+        <button onClick={() => setMenuOpen(!menuOpen)} className="nav__menu-icon">
+          <span className="material-symbols-outlined">{menuOpen ? "close" : "menu"}</span>
+        </button>
+      </Link>
+      <div className={`nav__actions-container ${!menuOpen && "nav__actions-container--hidden"}`}>
+        {loggedIn ? (
+          <>
+            {userName && <h3 className="header header-tertiary nav__greeting">Welcome, {userName}</h3>}
+            <div>
+              <Button type="button" label="Log out" styleType="tertiary" action={handleClickLogout} />
+            </div>
+          </>
+        ) : (
+          <>
+            <ButtonLink link="/signin" styleType="secondary" label="Sign In" />
+            <ButtonLink link="/signup" styleType="primary" label="Sign Up" />
+          </>
+        )}
       </div>
     </nav>
   );
