@@ -16,7 +16,6 @@ const GroupsPage = () => {
   const getGroupsList = async () => {
     const res = await groups.getGroups();
     setGroupsList(res.data);
-    console.log(res.data);
   };
 
   const groupDetails = {
@@ -30,7 +29,6 @@ const GroupsPage = () => {
   const createNewGroup = async () => {
     const body = groupDetails;
     const res = await groups.createGroup(body);
-    console.log(res.data);
   };
 
   useEffect(() => {

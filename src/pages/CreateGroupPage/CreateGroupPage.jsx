@@ -4,12 +4,12 @@ import { useNavigate } from "react-router-dom";
 import AlertBanner from "../../components/AlertBanner/AlertBanner";
 import Button from "../../components/Button/Button";
 import InputField from "../../components/InputField/InputField";
+import InputRadio from "../../components/InputRadio/InputRadio.jsx";
+import InputSelect from "../../components/InputSelect/InputSelect";
 import { useLogin } from "../../components/LoginContextProvider/LoginContextProvider";
 import PageWrapper from "../../components/PageWrapper/PageWrapper";
 import groups from "../../utils/api-groups";
-import InputSelect from "../../components/InputSelect/InputSelect";
-import { states, provinces } from "../../utils/location-options.js";
-import InputRadio from "../../components/InputRadio/InputRadio.jsx";
+import { provinces, states } from "../../utils/location-options.js";
 
 import "./CreateGroupPage.scss";
 
@@ -19,21 +19,19 @@ const CreateGroupPage = () => {
     city: "",
     state: "",
     country: "",
-    remote: "",
+    remote: null,
   });
   const navigate = useNavigate();
   const login = useLogin();
   const [errorMessage, setErrorMessage] = useState(null);
 
   const handleOnChange = (event) => {
-    console.log(event.target.value);
     const target = event.target.name;
     const newValues = {
       ...formValues,
       [target]: event.target.value,
     };
     setFormValues(newValues);
-    console.log(newValues);
     return newValues;
   };
 
@@ -43,16 +41,15 @@ const CreateGroupPage = () => {
   };
 
   const createNewGroup = async () => {
-    const res = await groups.createGroup({ ...formValues, remote: 1 });
-    console.log(res.data);
+    const res = await groups.createGroup({ ...formValues, remote: 0 });
     setFormValues({
       groupName: "",
       city: "",
       state: "",
       country: "",
-      remote: "",
+      remote: null,
     });
-    navigate=`/groups/${res.data.id}`
+    navigate(`/groups/${res.data.message}`);
   };
 
   const meetingType = [
@@ -98,10 +95,10 @@ const CreateGroupPage = () => {
           value={formValues.groupName}
           onChange={handleOnChange}
         />
-        <InputRadio label="How would you like to meet?" name="remote" values={meetingType} onClick={handleOnChange} />
+        <InputRadio label="How would you like to meet?" name="remote" values={meetingType} onChange={handleOnChange} checkedValue={formValues.remote}/>
         {formValues.remote === "0" && (
           <>
-            <InputRadio label="Country" name="country" values={countries} onClick={handleOnChange} />
+            <InputRadio label="Country" name="country" values={countries} onChange={handleOnChange} checkedValue={formValues.country}/>
           </>
         )}
         {formValues.country && (
@@ -113,6 +110,7 @@ const CreateGroupPage = () => {
               values={stateValues.value}
               onChange={handleOnChange}
               placeholder={stateValues.placeholder}
+              selectedValue={formValues.state}
             />
             <InputField
               name="city"

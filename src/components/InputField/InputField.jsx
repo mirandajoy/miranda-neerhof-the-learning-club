@@ -1,7 +1,6 @@
 import "./InputField.scss";
 
 const InputField = ({ name, type, label, placeholder, value, errorMessage, onBlur, onChange }) => {
-  console.log(name, value)
   return (
     <div className="input">
       <label className="label input__label" htmlFor={name}>{label}</label>

@@ -1,6 +1,6 @@
 import "./InputRadio.scss";
 
-const InputRadio = ({ label, name, values, onClick, checkedValue }) => {
+const InputRadio = ({ label, name, values, onChange, checkedValue }) => {
   return (
     <fieldset className="radio-input">
       <legend className="label radio-input__label">{label}</legend>
@@ -12,8 +12,9 @@ const InputRadio = ({ label, name, values, onClick, checkedValue }) => {
                 type="radio"
                 id={name}
                 name={name}
+                checked={checkedValue == item.value}
                 value={item.value}
-                onClick={onClick}
+                onChange={onChange}
                 className="radio-input__option-input"
               />
               <label htmlFor={name} className="body body--dark radio-input__option-label">
