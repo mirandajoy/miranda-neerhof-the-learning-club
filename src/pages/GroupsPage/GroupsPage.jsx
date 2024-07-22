@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
+
+import ButtonLink from "../../components/ButtonLink/ButtonLink";
 import GroupListItem from "../../components/GroupListItem/GroupListItem";
+import Loader from "../../components/Loader/Loader";
 import { useLogin } from "../../components/LoginContextProvider/LoginContextProvider";
 import PageWrapper from "../../components/PageWrapper/PageWrapper";
 import groups from "../../utils/api-groups";
-import Loader from "../../components/Loader/Loader";
+
 import "./GroupsPage.scss";
 
 const GroupsPage = () => {
@@ -13,6 +16,19 @@ const GroupsPage = () => {
   const getGroupsList = async () => {
     const res = await groups.getGroups();
     setGroupsList(res.data);
+  };
+
+  const groupDetails = {
+    name: "Group name",
+    city: "Group city",
+    state: "Group state",
+    country: "Group country",
+    remote: 0,
+  };
+
+  const createNewGroup = async () => {
+    const body = groupDetails;
+    const res = await groups.createGroup(body);
   };
 
   useEffect(() => {
@@ -30,6 +46,7 @@ const GroupsPage = () => {
 
   return (
     <PageWrapper header="Groups" width="small" back>
+      <ButtonLink styleType="primary" label="Create Group" link="/groups/create"/>
       <div className="group-list">
         <h2 className="header header--secondary group-list__header">Groups in Canada</h2>
         {canadaGroups.map((group) => {

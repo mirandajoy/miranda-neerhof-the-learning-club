@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+
 import profiles from "../../utils/api-profile";
 import Button from "../Button/Button";
 import ButtonLink from "../ButtonLink/ButtonLink";
 import { useLogin, useLoginUpdate } from "../LoginContextProvider/LoginContextProvider";
 import Logo from "../Logo/Logo";
+
 import "./Header.scss";
 
 const Header = () => {
