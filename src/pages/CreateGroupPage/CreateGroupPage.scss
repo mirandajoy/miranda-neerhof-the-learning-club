@@ -1,0 +1,11 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/global" as *;
+
+.create-group {
+  &__form {
+    @include flex(flex-start);
+    @include responsive-gap;
+    flex-direction: column;
+  }
+}
