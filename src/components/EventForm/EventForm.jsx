@@ -7,6 +7,8 @@ import InputSelect from "../../components/InputSelect/InputSelect";
 import events from "../../utils/api-events";
 import profiles from "../../utils/api-profile";
 import parseDateTime from "../../utils/time-parse";
+import dayjs from "dayjs";
+import utc from "dayjs/plugin/utc.js";
 
 import "./EventForm.scss";
 
@@ -24,6 +26,7 @@ const EventForm = () => {
   const [remoteGroup, setRemoteGroup] = useState(false);
   const { id } = useParams();
   const navigate = useNavigate();
+  dayjs.extend(utc)
 
   const handleOnChange = (event) => {
     const target = event.target.name;
@@ -62,9 +65,7 @@ const EventForm = () => {
 
   const getEventDetails = async () => {
     const res = await events.getSingleEvent(id);
-    console.log(res.data);
     const parsedDateTime = parseDateTime(res.data.time);
-    console.log(parsedDateTime);
     setFormValues({
       group: id,
       location: res.data.location,
@@ -82,7 +83,7 @@ const EventForm = () => {
       location: formValues.location,
       address: formValues.address,
       remote_link: formValues.remote_link,
-      time: `${formValues.date} ${formValues.time}`,
+      time: dayjs(`${formValues.date} ${formValues.time}`).utc().format('YYYY-MM-DD HH:mm'),
       user_tz: formValues.timezone,
     };
     const res = await events.createEvent(newEvent);
@@ -95,7 +96,7 @@ const EventForm = () => {
       location: formValues.location,
       address: formValues.address,
       remote_link: formValues.remote_link,
-      time: `${formValues.date} ${formValues.time}`,
+      time: dayjs(`${formValues.date} ${formValues.time}`).utc().format('YYYY-MM-DD HH:mm'),
       user_tz: formValues.timezone,
     };
     const res = await events.editEvent(id, updatedEvent);
