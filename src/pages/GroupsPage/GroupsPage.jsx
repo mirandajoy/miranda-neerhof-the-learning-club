@@ -6,6 +6,7 @@ import Loader from "../../components/Loader/Loader";
 import { useLogin } from "../../components/LoginContextProvider/LoginContextProvider";
 import PageWrapper from "../../components/PageWrapper/PageWrapper";
 import groups from "../../utils/api-groups";
+import locations from "../../utils/api-locations";
 
 import "./GroupsPage.scss";
 
@@ -31,17 +32,23 @@ const GroupsPage = () => {
     const res = await groups.createGroup(body);
   };
 
+  const getLocations = async() => {
+    const countries = await locations.getCountries();
+    const regions = await locations.getCountries();
+  }
+
   useEffect(() => {
     window.scrollTo(0, 0);
     getGroupsList();
+    getLocations();
   }, []);
 
   if (groupList === null) {
     return <Loader />;
   }
 
-  const canadaGroups = groupList.filter((group) => group.country === "Canada");
-  const usaGroups = groupList.filter((group) => group.country === "United States");
+  const canadaGroups = groupList.filter((group) => group.country_name === "Canada");
+  const usaGroups = groupList.filter((group) => group.country_name === "United States");
   const remoteGroups = groupList.filter((group) => group.remote === 1);
 
   return (

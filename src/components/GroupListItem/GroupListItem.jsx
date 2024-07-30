@@ -40,7 +40,7 @@ const GroupListItem = ({ group, showNextEvent, showResponse }) => {
           <h2 className="header header--secondary group__name">{group.name}</h2>
           {group.remote === 0 && (
             <div className="group__location-container">
-              <p className="body body--dark">{group.state}</p>
+              <p className="body body--dark">{group.region_name}</p>
             </div>
           )}
         </div>

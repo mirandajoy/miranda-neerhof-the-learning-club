@@ -63,9 +63,9 @@ const SingleGroupPage = () => {
           {groupDetails.city ? (
             <>
               <p className="body body--dark">
-                {groupDetails.city}, {groupDetails.state},
+                {groupDetails.city}, {groupDetails.region_name},
               </p>
-              <p className="body body--dark">{groupDetails.country}</p>
+              <p className="body body--dark">{groupDetails.country_name}</p>
             </>
           ) : (
             <p className="body body--dark">Remote on Zoom</p>
