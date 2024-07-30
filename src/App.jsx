@@ -13,6 +13,7 @@ import SignUpPage from "./pages/SignUpPage/SignUpPage";
 import SingleEventPage from "./pages/SingleEventPage/SingleEventPage";
 import SingleGroupPage from "./pages/SingleGroupPage/SingleGroupPage";
 import EditEventPage from "./pages/EditEventPage/EditEventPage";
+import EditGroupPage from "./pages/EditGroupPage/EditGroupPage";
 
 import "./App.scss";
 
@@ -25,6 +26,7 @@ const App = () => {
           <Route path="/" element={<HomePage />}></Route>
           <Route path="/groups" element={<GroupsPage />}></Route>
           <Route path="/groups/create" element={<CreateGroupPage />}></Route>
+          <Route path="/groups/edit/:id" element={<EditGroupPage />}></Route>
           <Route path="/groups/:id" element={<SingleGroupPage />}></Route>
           <Route path="/events/create" element={<CreateEventPage />}></Route>
           <Route path="/events/edit/:id" element={<EditEventPage />}></Route>
