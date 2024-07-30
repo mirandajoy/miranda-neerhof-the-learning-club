@@ -12,13 +12,13 @@ const InputRadio = ({ label, name, values, onChange, checkedValue }) => {
                 type="radio"
                 id={name}
                 name={name}
-                checked={checkedValue == item.value}
-                value={item.value}
+                checked={checkedValue == item.id}
+                value={item.id}
                 onChange={onChange}
                 className="radio-input__option-input"
               />
               <label htmlFor={name} className="body body--dark radio-input__option-label">
-                {item.label}
+                {item.name}
               </label>
             </div>
           );
