@@ -3,8 +3,9 @@ import Button from "../Button/Button";
 import EmptyList from "../EmptyList/EmptyList";
 import EventListItem from "../EventListItem/EventListItem";
 import "./EventList.scss";
+import ButtonLink from "../ButtonLink/ButtonLink";
 
-const EventList = ({ label, events }) => {
+const EventList = ({ label, events, owned }) => {
   const [showAll, setShowAll] = useState(false);
 
   const displayList = showAll ? events : events.slice(0, 3);
@@ -15,7 +16,7 @@ const EventList = ({ label, events }) => {
       {events.length < 1 ? (
         <>
           <div className="event-list__list-container">
-            <EmptyList text="You don't have any upcoming events" />
+            <EmptyList text="You don't have any upcoming events" owned/>
           </div>
         </>
       ) : (
@@ -47,6 +48,7 @@ const EventList = ({ label, events }) => {
               )}
             </>
           )}
+          {owned && <ButtonLink styleType="secondary" label="Create Event" link="/events/create" />}
         </div>
       )}
     </div>
