@@ -50,9 +50,9 @@ const GroupListItem = ({ group, showNextEvent, showResponse }) => {
           </p>
         )}
       </Link>
+      {group && groupRole && (<p className="body">My Group</p>)}
       {showResponse && loggedIn && (
         <div className="group__join-btn">
-          {group && groupRole && (<p className="body">My Group</p>)}
           {group && groupJoined ? (
             <div className="group__response-container">
               <CheckAnimation animate={animated} check={true} label="Joined!" />

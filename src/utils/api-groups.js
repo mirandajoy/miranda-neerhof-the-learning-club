@@ -45,7 +45,7 @@ class groups {
           authorization: `Bearer ${token}`,
         },
       };
-      return await axios.post(`${this.route}`, body, authHeader)
+      return await axios.post(`${this.route}`, body, authHeader);
     } catch (error) {
       console.error(error);
     }
@@ -59,7 +59,7 @@ class groups {
           authorization: `Bearer ${token}`,
         },
       };
-      return await axios.put(`${this.route}/${groupId}`, body, authHeader)
+      return await axios.put(`${this.route}/${groupId}`, body, authHeader);
     } catch (error) {
       console.error(error);
     }
@@ -73,7 +73,7 @@ class groups {
           authorization: `Bearer ${token}`,
         },
       };
-      return await axios.delete(`${this.route}/${groupId}`, authHeader)
+      return await axios.delete(`${this.route}/${groupId}`, authHeader);
     } catch (error) {
       console.error(error);
     }

@@ -52,7 +52,7 @@ const EventForm = () => {
     ownedGroupsFormatted.length === 1 &&
       setFormValues({
         ...formValues,
-        group: ownedGroupsFormatted[0],
+        group: ownedGroupsFormatted[0].id,
       });
     setRemoteGroup(ownedGroupsFormatted[0].remote ? true : false);
     setOwnedGroups(ownedGroupsFormatted);

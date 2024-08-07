@@ -66,31 +66,26 @@ const GroupForm = () => {
       country_id: res.data.country_id,
       remote: res.data.remote,
     });
-    console.log(res.data);
   }
 
   const createNewGroup = async () => {
     const res = await groups.createGroup({ ...formValues });
     setFormValues({
       groupName: "",
-      city: null,
-      region_id: null,
-      country_id: null,
+      city: "",
+      region_id: "",
+      country_id: "",
       remote: null,
     });
     navigate(`/groups/${res.data.message}`);
   };
 
   const editExistingGroup = async () => {
-    console.log("edit");
     const res = await groups.editGroup(id, { ...formValues });
-    console.log(res.data);
   }
 
   const deleteExistingGroup = async () => {
-    console.log("delete");
     const res = await groups.deleteGroup(id);
-    console.log(res.data);
   }
 
   const meetingType = [
@@ -105,7 +100,7 @@ const GroupForm = () => {
   ];
 
   useEffect(() => {
-    getGroupDetails();
+    id && getGroupDetails();
   }, [])
 
   const regionValues = {
@@ -144,7 +139,7 @@ const GroupForm = () => {
           />
         </>
       )}
-      {regionValues && selectedRegion && formValues.country_id && formValues.remote == "0" && (
+      {regionValues && formValues.country_id && formValues.remote == "0" && (
         <>
           <InputSelect
             name="region_id"
@@ -153,7 +148,7 @@ const GroupForm = () => {
             values={regionValues.value}
             onChange={handleOnChange}
             placeholder={regionValues.placeholder}
-            selectedValue={selectedRegion.name}
+            selectedValue={selectedRegion && selectedRegion.name}
           />
           <InputField
             name="city"
