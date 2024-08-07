@@ -4,56 +4,29 @@
 
 .radio-input {
   border: none;
-  //width: 100%;
+  width: 100%;
   &__label {
     padding-bottom: $space-small;
   }
   &__options-container {
     @include flex;
-    gap: $space-large;
-    //flex-wrap: nowrap;
+    gap: $space-small;
   }
   &__option-container {
-    // @include flex;
-    // gap: $space-micro;
+    height: 1.25rem;
     position: relative;
     width: 100%;
   }
   &__option-input {
     color: $color-brand-primary;
     accent-color: $color-brand-primary;
-    //padding-left: 120px;
     position: absolute;
-    //width: 100%;
-    top: 0;
     left: 0;
   }
   &__option-label {
     color: $color-brand-primary;
     position: absolute;
-    left: 24px;
+    left: 1.25rem;
     top: 0;
   }
 }
-
-// label span {
-//   position: relative;
-//   line-height: 22px;
-//   font-size: 22px;
-
-// }
-
-// input[type='radio'] {
-// height: 20px;
-// width: 20px;
-// position: relative;
-// }
-
-// input[type='radio'] ::after{
-// content:"";
-// width: 16px;
-//   height: 8px;
-//   position: absolute;
-//   top: 2px;
-//   left: 4px;
-// }

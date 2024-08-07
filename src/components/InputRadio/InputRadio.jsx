@@ -10,14 +10,14 @@ const InputRadio = ({ label, name, values, onChange, checkedValue }) => {
             <div key={index} className="radio-input__option-container">
               <input
                 type="radio"
-                id={name}
+                id={item.id}
                 name={name}
                 checked={checkedValue == item.id}
                 value={item.id}
                 onChange={onChange}
                 className="radio-input__option-input"
               />
-              <label htmlFor={name} className="body body--dark radio-input__option-label">
+              <label htmlFor={item.id} className="body body--dark radio-input__option-label">
                 {item.name}
               </label>
             </div>
