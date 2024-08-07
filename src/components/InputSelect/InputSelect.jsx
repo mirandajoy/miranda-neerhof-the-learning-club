@@ -15,7 +15,7 @@ const InputSelect = ({ name, label, values, errorMessage, onChange, placeholder,
           className="body body--dark input-select__field"
         >
           <option value="">{!selectedValue ? placeholder : selectedValue}</option>
-          {values.map((item) => {
+          {values && values.map((item) => {
             return (
               <option key={item.id} value={item.id} className="body body--dark input-select__option">
                 {item.name}
