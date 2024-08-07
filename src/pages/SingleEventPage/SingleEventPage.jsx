@@ -8,6 +8,7 @@ import events from "../../utils/api-events";
 import groups from "../../utils/api-groups";
 import parseDateTime from "../../utils/time-parse";
 import Loader from "../../components/Loader/Loader";
+import ButtonLink from "../../components/ButtonLink/ButtonLink";
 import "./SingleEventPage.scss";
 
 const SingleEventPage = () => {
@@ -29,6 +30,7 @@ const SingleEventPage = () => {
   const getGroupDetails = async () => {
     const res = await groups.getSingleGroup(eventDetails.group_id);
     setGroupDetails(res.data);
+    console.log(res.data);
     setGroupJoined(res.data.joined);
   };
 
@@ -58,6 +60,20 @@ const SingleEventPage = () => {
 
   return (
     <PageWrapper header={groupDetails.name} width="small" back>
+      {groupDetails.role === "owner" && (
+        <div className="single-group__edit-container">
+          <div className="single-group__your-group-container">
+            <span className="single-group__star-icon material-symbols-outlined">star</span>
+            <h3 className="header header--tertiary">Your Event</h3>
+          </div>
+          <div>
+            <span className="single-group__edit-icon material-symbols-outlined">edit</span>
+            <div>
+              <ButtonLink styleType="tertiary" label="Edit Event" link={`/groups/edit/${id}`} />
+            </div>
+          </div>
+        </div>
+      )}
       <div className="single-event__main-details-container">
         <div className="single-event__main-details-left">
           <span className="material-symbols-outlined">event</span>
