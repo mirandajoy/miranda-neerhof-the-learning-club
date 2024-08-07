@@ -12,6 +12,7 @@ import { useLogin } from "../../components/LoginContextProvider/LoginContextProv
 import PageWrapper from "../../components/PageWrapper/PageWrapper";
 import events from "../../utils/api-events";
 import groups from "../../utils/api-groups";
+import ButtonLink from "../../components/ButtonLink/ButtonLink";
 
 import "./SingleGroupPage.scss";
 
@@ -28,6 +29,7 @@ const SingleGroupPage = () => {
     const res = await groups.getSingleGroup(id);
     setGroupJoined(res.data.joined);
     setGroupDetails(res.data);
+    console.log(res.data);
   };
 
   const handleJoinClick = async () => {
@@ -54,6 +56,48 @@ const SingleGroupPage = () => {
     return <Loader />;
   }
 
+  let groupStatus;
+  switch (groupDetails.role) {
+    case "owner":
+      groupStatus = (
+        <div className="single-group__edit-container">
+          <div className="single-group__your-group-container">
+            <span className="single-group__star-icon material-symbols-outlined">star</span>
+            <h3 className="header header--tertiary">Group Admin</h3>
+          </div>
+          <div>
+            <span className="single-group__edit-icon material-symbols-outlined">edit</span>
+            <div>
+              <ButtonLink styleType="tertiary" label="Edit Group" link={`/groups/edit/${id}`} />
+            </div>
+          </div>
+        </div>
+      );
+      break;
+    case "member":
+      groupStatus = (
+        <div className="single-group__response-item">
+          <div className="single-group__selected-response">
+            <CheckAnimation animate={animated} label="Joined!" check={true} />
+          </div>
+        </div>
+      );
+      break;
+    default:
+      groupStatus = (
+        <div className="single-group__response-item">
+          <Button
+            label="Join Group"
+            styleType="secondary"
+            action={() => {
+              handleJoinClick();
+            }}
+          />
+        </div>
+      );
+      break;
+  }
+
   return (
     <PageWrapper header={groupDetails.name} width="small" back>
       <div className="single-group__main-details-container">
@@ -63,34 +107,20 @@ const SingleGroupPage = () => {
           {groupDetails.city ? (
             <>
               <p className="body body--dark">
-                {groupDetails.city}, {groupDetails.state},
+                {groupDetails.city}, {groupDetails.region_name},
               </p>
-              <p className="body body--dark">{groupDetails.country}</p>
+              <p className="body body--dark">{groupDetails.country_name}</p>
             </>
           ) : (
             <p className="body body--dark">Remote on Zoom</p>
           )}
         </div>
       </div>
-      {loggedIn && (
-        <div className="single-group__response-item">
-          {groupJoined ? (
-            <div className="single-group__selected-response">
-              <CheckAnimation animate={animated} label="Joined!" check={true} />
-            </div>
-          ) : (
-            <Button
-              label="Join Group"
-              styleType="secondary"
-              action={() => {
-                handleJoinClick();
-              }}
-            />
-          )}
-        </div>
-      )}
+      {loggedIn && <>{ groupStatus }</>}
       <div className="single-group__event-list">
-        {groupEvents && <EventList label="Upcoming Events" events={groupEvents} />}
+        {groupEvents && (
+          <EventList label="Upcoming Events" events={groupEvents} owned={groupDetails.role === "owner"} />
+        )}
       </div>
     </PageWrapper>
   );

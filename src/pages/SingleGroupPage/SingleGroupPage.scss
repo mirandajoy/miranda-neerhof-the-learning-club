@@ -6,6 +6,24 @@
   @include flex(center, center);
   gap: $space-micro;
   width: 100%;
+  &__edit-container {
+    @include flex;
+    background-color: $color-background-secondary;
+    border-radius: $border-radius;
+    padding: $space-small $space-med;
+    margin-bottom: $space-large;
+  }
+  &__star-icon {
+    color: $color-accent-yellow;
+  }
+  &__your-group-container {
+    @include flex(center, flex-start);
+    gap: $space-small;
+  }
+  &__edit-icon {
+    color: $color-brand-primary;
+    display: none;
+  }
   &__main-details-container {
     @include flex(flex-start);
     @include responsive-gap;

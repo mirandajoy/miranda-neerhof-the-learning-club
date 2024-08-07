@@ -1,0 +1,32 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/global" as *;
+
+.radio-input {
+  border: none;
+  width: 100%;
+  &__label {
+    padding-bottom: $space-small;
+  }
+  &__options-container {
+    @include flex;
+    gap: $space-small;
+  }
+  &__option-container {
+    height: 1.25rem;
+    position: relative;
+    width: 100%;
+  }
+  &__option-input {
+    color: $color-brand-primary;
+    accent-color: $color-brand-primary;
+    position: absolute;
+    left: 0;
+  }
+  &__option-label {
+    color: $color-brand-primary;
+    position: absolute;
+    left: 1.25rem;
+    top: 0;
+  }
+}

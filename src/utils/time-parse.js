@@ -6,6 +6,7 @@ const parseDateTime = (timestamp) => {
     day: "numeric",
   });
 
+  const calendarDate = new Date(timestamp).toISOString().slice(0, 10);
 
   const day = new Date(timestamp).toLocaleDateString("en-us", {
     day: "numeric",
@@ -20,11 +21,15 @@ const parseDateTime = (timestamp) => {
     minute: "2-digit",
   });
 
+  const time24Hour = new Date(timestamp).toTimeString().slice(0, 5);
+
   const convertedDateTime = {
     fullDate,
+    calendarDate,
     day,
     month,
     fullTime,
+    time24Hour,
   };
 
   return convertedDateTime;
