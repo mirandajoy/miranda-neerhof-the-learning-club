@@ -4,7 +4,7 @@ import "./EditEventPage.scss";
 
 const EditEventPage = () => {
   return (
-    <PageWrapper header="Edit Event" width="small">
+    <PageWrapper header="Edit Event" width="small" back>
       <EventForm />
     </PageWrapper>
   );
