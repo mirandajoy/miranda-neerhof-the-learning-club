@@ -9,7 +9,7 @@ class locations {
 
   async getCountries() {
     try {
-      return await axios.get("http://localhost:8080/locations/countries");
+      return await axios.get(`${this.route}/countries`);
     } catch (error) {
       console.error(error);
     }
