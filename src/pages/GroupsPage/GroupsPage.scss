@@ -17,3 +17,14 @@
     padding-bottom: 3rem;
   }
 }
+
+.launch-prompt {
+  background-color: $color-background-secondary;
+  &__inner-container {
+    @include flex-column(center);
+    @include responsive-gap;
+    margin-inline: auto;
+    max-width: $max-content-width-small;
+    padding-block: 4rem;
+  }
+}

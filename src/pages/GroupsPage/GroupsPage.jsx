@@ -32,10 +32,10 @@ const GroupsPage = () => {
     const res = await groups.createGroup(body);
   };
 
-  const getLocations = async() => {
+  const getLocations = async () => {
     const countries = await locations.getCountries();
     const regions = await locations.getCountries();
-  }
+  };
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -52,27 +52,34 @@ const GroupsPage = () => {
   const remoteGroups = groupList.filter((group) => group.remote === 1);
 
   return (
-    <PageWrapper header="Groups" width="small" back>
-      <ButtonLink styleType="primary" label="Create Group" link="/groups/create"/>
-      <div className="group-list">
-        <h2 className="header header--secondary group-list__header">Groups in Canada</h2>
-        {canadaGroups.map((group) => {
-          return <GroupListItem key={group.id} group={group} showNextEvent showResponse />;
-        })}
-      </div>
-      <div className="group-list group-list--usa">
-        <h2 className="header header--secondary group-list__header">Groups in the USA</h2>
-        {usaGroups.map((group) => {
-          return <GroupListItem key={group.id} group={group} showNextEvent showResponse />;
-        })}
-      </div>
-      <div className="group-list group-list--usa">
-        <h2 className="header header--secondary group-list__header">Remote Groups</h2>
-        {remoteGroups.map((group) => {
-          return <GroupListItem key={group.id} group={group} showNextEvent showResponse />;
-        })}
-      </div>
-    </PageWrapper>
+    <>
+      <PageWrapper header="Groups" width="small" back>
+        <div className="group-list">
+          <h2 className="header header--secondary group-list__header">Groups in Canada</h2>
+          {canadaGroups.map((group) => {
+            return <GroupListItem key={group.id} group={group} showNextEvent showResponse />;
+          })}
+        </div>
+        <div className="group-list group-list--usa">
+          <h2 className="header header--secondary group-list__header">Groups in the USA</h2>
+          {usaGroups.map((group) => {
+            return <GroupListItem key={group.id} group={group} showNextEvent showResponse />;
+          })}
+        </div>
+        <div className="group-list group-list--usa">
+          <h2 className="header header--secondary group-list__header">Remote Groups</h2>
+          {remoteGroups.map((group) => {
+            return <GroupListItem key={group.id} group={group} showNextEvent showResponse />;
+          })}
+        </div>
+      </PageWrapper>
+      <section className="launch-prompt">
+        <div className="launch-prompt__inner-container">
+          <h2 className="header header--secondary">Don't see a group in your area? Launch your own!</h2>
+          <ButtonLink styleType="secondary" label="Launch a Group" link="/groups/create" />
+        </div>
+      </section>
+    </>
   );
 };
 
