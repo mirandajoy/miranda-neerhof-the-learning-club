@@ -17,7 +17,7 @@ body {
 }
 
 .header {
-  font-family: "Unica One", sans-serif;
+  font-family: $font-family-header;
   font-weight: $weight-bold;
   &--primary {
     color: $color-brand-secondary;
@@ -37,7 +37,7 @@ body {
 }
 
 .body {
-  font-family: "Rubik", sans-serif;
+  font-family: $font-family-body;
   font-size: $font-size-body;
   font-weight: $weight-regular;
   line-height: calc($font-size-body * 1.2);
@@ -56,15 +56,14 @@ body {
 }
 
 .label {
-  font-family: "Rubik", sans-serif;/*  */
+  font-family: $font-family-header;
   font-size: $font-size-label;
-  font-weight: $weight-bold;
   line-height: calc($font-size-label * 1.2);
 }
 
 .link {
   color: $color-brand-primary;
-  font-family: "Rubik", sans-serif;
+  font-family: $font-family-body;
   font-size: $font-size-body;
   font-weight: $weight-regular;
   line-height: calc($font-size-body * 1.2);
