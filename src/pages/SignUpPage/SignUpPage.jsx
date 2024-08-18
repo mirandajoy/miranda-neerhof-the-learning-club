@@ -5,6 +5,7 @@ import Button from "../../components/Button/Button";
 import InputField from "../../components/InputField/InputField";
 import { useLoginUpdate } from "../../components/LoginContextProvider/LoginContextProvider";
 import PageWrapper from "../../components/PageWrapper/PageWrapper";
+import FormWrapper from "../../components/FormWrapper/FormWrapper";
 import users from "../../utils/api-users";
 import { validateEmail, validatePassword, validateSignUp } from "../../utils/validation-utils";
 import "./SignUpPage.scss";
@@ -55,54 +56,55 @@ const SignUpPage = () => {
   };
 
   return (
-    <PageWrapper header="Sign Up" width="small">
-      <form id="signUpForm" onSubmit={handleOnSubmit} className="sign-up__form">
-        <InputField
-          name="name"
-          type="text"
-          label="Name"
-          placeholder="Name"
-          value={formValues.name}
-          errorMessage={formErrors.nameError}
-          onChange={handleOnChange}
-        />
-        <InputField
-          name="email"
-          type="text"
-          label="Email"
-          placeholder="Email"
-          value={formValues.email}
-          errorMessage={formErrors.emailError}
-          onChange={handleOnChange}
-          onBlur={(event) => {
-            const recentUpdate = handleOnChange(event);
-            const res = validateEmail(recentUpdate.email);
-            setFormErrors({
-              ...formErrors,
-              emailError: res,
-            });
-          }}
-        />
-        <InputField
-          name="password"
-          type="password"
-          label="Password"
-          placeholder="Password"
-          value={formValues.password}
-          errorMessage={formErrors.passwordError}
-          onChange={handleOnChange}
-          onBlur={(event) => {
-            const recentUpdate = handleOnChange(event);
-            const res = validatePassword(recentUpdate.password);
-            setFormErrors({
-              ...formErrors,
-              passwordError: res,
-            });
-          }}
-        />
-        {errorMessage && <AlertBanner message={errorMessage} />}
-        <Button type="Submit" styleType="primary" label="Sign up" />
-      </form>
+    <PageWrapper width="small">
+      <FormWrapper header="Sign Up" id="signUpForm" onSubmit={handleOnSubmit} submitLabel="Sign Up">
+        <div className="sign-up__field-container">
+          <InputField
+            name="name"
+            type="text"
+            label="Name"
+            placeholder="Name"
+            value={formValues.name}
+            errorMessage={formErrors.nameError}
+            onChange={handleOnChange}
+          />
+          <InputField
+            name="email"
+            type="text"
+            label="Email"
+            placeholder="Email"
+            value={formValues.email}
+            errorMessage={formErrors.emailError}
+            onChange={handleOnChange}
+            onBlur={(event) => {
+              const recentUpdate = handleOnChange(event);
+              const res = validateEmail(recentUpdate.email);
+              setFormErrors({
+                ...formErrors,
+                emailError: res,
+              });
+            }}
+          />
+          <InputField
+            name="password"
+            type="password"
+            label="Password"
+            placeholder="Password"
+            value={formValues.password}
+            errorMessage={formErrors.passwordError}
+            onChange={handleOnChange}
+            onBlur={(event) => {
+              const recentUpdate = handleOnChange(event);
+              const res = validatePassword(recentUpdate.password);
+              setFormErrors({
+                ...formErrors,
+                passwordError: res,
+              });
+            }}
+          />
+          {errorMessage && <AlertBanner message={errorMessage} />}
+        </div>
+      </FormWrapper>
     </PageWrapper>
   );
 };

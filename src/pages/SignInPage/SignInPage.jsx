@@ -5,6 +5,7 @@ import Button from "../../components/Button/Button";
 import InputField from "../../components/InputField/InputField";
 import { useLogin, useLoginUpdate } from "../../components/LoginContextProvider/LoginContextProvider";
 import PageWrapper from "../../components/PageWrapper/PageWrapper";
+import FormWrapper  from "../../components/FormWrapper/FormWrapper";
 import users from "../../utils/api-users";
 import AlertBanner from "../../components/AlertBanner/AlertBanner";
 
@@ -47,8 +48,8 @@ const SignInPage = () => {
   };
 
   return (
-    <PageWrapper header="Sign In" width="small">
-      <form id="signInForm" onSubmit={handleOnSubmit} className="sign-in__form">
+    <PageWrapper width="small">
+      <FormWrapper header="Sign In" id="signInForm" onSubmit={handleOnSubmit} submitLabel="Sign in">
         <InputField
           name="email"
           type="text"
@@ -66,8 +67,7 @@ const SignInPage = () => {
           onChange={handleOnChange}
         />
         {errorMessage && <AlertBanner message={errorMessage} />}
-        <Button type="Submit" styleType="primary" label="Sign in" size="default" />
-      </form>
+      </FormWrapper>
     </PageWrapper>
   );
 };

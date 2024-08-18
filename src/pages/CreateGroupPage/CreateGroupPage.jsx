@@ -4,7 +4,7 @@ import "./CreateGroupPage.scss";
 
 const CreateGroupPage = () => {
   return (
-    <PageWrapper header="Create Group" width="small">
+    <PageWrapper width="small">
       <GroupForm />
     </PageWrapper>
   );
