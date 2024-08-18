@@ -6,27 +6,30 @@
   border: none;
   width: 100%;
   &__label {
-    padding-bottom: $space-small;
+    padding-bottom: 0.125rem;
   }
   &__options-container {
-    @include flex;
-    gap: $space-small;
+    @include flex(center, flex-start);
+    gap: $space-micro;
   }
   &__option-container {
-    height: 1.25rem;
-    position: relative;
-    width: 100%;
+    flex-grow: 1;
   }
   &__option-input {
-    color: $color-brand-primary;
-    accent-color: $color-brand-primary;
-    position: absolute;
-    left: 0;
+    display: none;
+    &:checked + .radio-input__option-label {
+      background-color: rgba($color-brand-secondary, 0.2);
+      border: 1px solid $color-brand-secondary;
+      color: $color-brand-secondary;
+    }
   }
   &__option-label {
+    border: 1px solid black;
+    border-radius: 4px;
     color: $color-brand-primary;
-    position: absolute;
-    left: 1.25rem;
-    top: 0;
+    cursor: pointer;
+    display: block;
+    padding: $space-small $space-standard;
+    text-align: center;
   }
 }
