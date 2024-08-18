@@ -99,7 +99,7 @@ const SingleGroupPage = () => {
   }
 
   return (
-    <PageWrapper header={groupDetails.name} width="small" back>
+    <PageWrapper header={groupDetails.name} width="medium" back>
       <div className="single-group__main-details-container">
         <div className="single-group__main-details-left">
           <span className="material-symbols-outlined">location_on</span>

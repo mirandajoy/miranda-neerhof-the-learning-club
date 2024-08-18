@@ -59,7 +59,7 @@ const SingleEventPage = () => {
   const rsvpText = eventDetails.status;
 
   return (
-    <PageWrapper header={groupDetails.name} width="small" back>
+    <PageWrapper header={groupDetails.name} width="medium" back>
       {groupDetails.role === "owner" && (
         <div className="single-group__edit-container">
           <div className="single-group__your-group-container">

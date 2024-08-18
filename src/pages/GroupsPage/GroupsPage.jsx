@@ -53,7 +53,7 @@ const GroupsPage = () => {
 
   return (
     <>
-      <PageWrapper header="Groups" width="small" back>
+      <PageWrapper header="Groups" width="medium" back>
         <div className="group-list">
           <h2 className="header header--secondary group-list__header">Groups in Canada</h2>
           {canadaGroups.map((group) => {

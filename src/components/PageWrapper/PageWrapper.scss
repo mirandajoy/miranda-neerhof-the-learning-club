@@ -18,6 +18,9 @@
       max-width: 1280px;
     }
   }
+  &--medium {
+    @include page-center($max-content-width-medium);
+  }
   &--small {
     @include page-center($max-content-width-small);
   }
