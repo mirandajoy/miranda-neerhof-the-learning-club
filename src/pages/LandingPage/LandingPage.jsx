@@ -13,7 +13,7 @@ const LandingPage = () => {
             <h1 className="hero__header">The Learning Club</h1>
             <h2 className="hero__subheader">Connecting curious people together</h2>
             <div className="hero__cta-container">
-              <ButtonLink link="/#details" label="Discover More" styleType="secondary" anchor />
+              <ButtonLink link="/#details" label="Discover More" styleType="secondary" anchor size="default" />
             </div>
           </div>
         </div>
@@ -21,12 +21,12 @@ const LandingPage = () => {
 
       <section id="details" className="details">
         <div className="details__inner-container">
-          <h2 className="header header--primary details__header">How it works</h2>
+          <h2 className="header header--1 details__header">How it works</h2>
           <div className="details__card-container">
             <div className="details__card">
               <div className="details__highlight details__highlight--green"></div>
               <div className="details__card-content">
-                <h2 className="header header--secondary">
+                <h2 className="header header--3">
                   <span className="body details__number">1.</span> Find a group
                 </h2>
                 <p className="body body-dark">Choose from groups that are local or remote.</p>
@@ -35,7 +35,7 @@ const LandingPage = () => {
             <div className="details__card">
               <div className="details__highlight details__highlight--pink"></div>
               <div className="details__card-content">
-                <h2 className="header header--secondary">
+                <h2 className="header header--3">
                   <span className="body details__number">2.</span> Learn a Topic
                 </h2>
                 <p className="body body-dark">There's a new topic every month.</p>
@@ -44,7 +44,7 @@ const LandingPage = () => {
             <div className="details__card">
               <div className="details__highlight details__highlight--blue"></div>
               <div className="details__card-content">
-                <h2 className="header header--secondary">
+                <h2 className="header header--3">
                   <span className="body details__number">3.</span> Meet up
                 </h2>
                 <p className="body body-dark">Hang out and chat about what you learned!</p>
@@ -72,7 +72,7 @@ const LandingPage = () => {
         <div className="groups-section__content">
           <h2 className="header groups-section__header">Find a Group to Join</h2>
           <div className="groups-section__button">
-            <ButtonLink link="/groups" label="Browse Groups" styleType="secondary" />
+            <ButtonLink link="/groups" label="Browse Groups" styleType="secondary" size="default" />
           </div>
         </div>
       </section>

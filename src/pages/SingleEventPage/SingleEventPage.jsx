@@ -64,12 +64,12 @@ const SingleEventPage = () => {
         <div className="single-group__edit-container">
           <div className="single-group__your-group-container">
             <span className="single-group__star-icon material-symbols-outlined">star</span>
-            <h3 className="header header--tertiary">Your Event</h3>
+            <h3 className="header header--4">Your Event</h3>
           </div>
           <div>
             <span className="single-group__edit-icon material-symbols-outlined">edit</span>
             <div>
-              <ButtonLink styleType="tertiary" label="Edit Event" link={`/groups/edit/${id}`} />
+              <ButtonLink styleType="tertiary" label="Edit Event" link={`/groups/edit/${id}`} size="default" />
             </div>
           </div>
         </div>
@@ -77,7 +77,7 @@ const SingleEventPage = () => {
       <div className="single-event__main-details-container">
         <div className="single-event__main-details-left">
           <span className="material-symbols-outlined">event</span>
-          <h2 className="header header--secondary single-event__header">Meet on</h2>
+          <h2 className="header header--3 single-event__header">Meet on</h2>
           <p className="body body--dark">{parsedDateTime.fullDate}</p>
           <p className="body body--dark">{parsedDateTime.fullTime}</p>
         </div>
@@ -85,13 +85,13 @@ const SingleEventPage = () => {
           <span className="material-symbols-outlined">location_on</span>
           {groupDetails.remote === 0 ? (
             <>
-              <h2 className="header header--secondary single-event__header">Meet at</h2>
+              <h2 className="header header--3 single-event__header">Meet at</h2>
               <p className="body body--dark">{eventDetails.location}</p>
               <p className="body body--dark">{eventDetails.address}</p>
             </>
           ) : (
             <>
-              <h2 className="header header--secondary single-event__header">Meet on</h2>
+              <h2 className="header header--3 single-event__header">Meet on</h2>
               <p className="body body--dark body--small">
                 {loggedIn ? (
                   <a href={eventDetails.remote_link} target="_blank" className="single-event__link">
@@ -119,6 +119,7 @@ const SingleEventPage = () => {
                 action={() => {
                   handleRSVP("attending");
                 }}
+                size="default"
               />
             )}
           </div>
@@ -134,6 +135,7 @@ const SingleEventPage = () => {
                 action={() => {
                   handleRSVP("not attending");
                 }}
+                size="default"
               />
             )}
           </div>
@@ -149,6 +151,7 @@ const SingleEventPage = () => {
                 action={() => {
                   handleRSVP("maybe");
                 }}
+                size="default"
               />
             )}
           </div>

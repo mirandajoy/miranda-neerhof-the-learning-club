@@ -57,11 +57,11 @@ const HomePage = () => {
           </div>
           <div className="home__event-list">
             <div className="group-list">
-              <h2 className="header header--secondary group-list__header">Your Groups</h2>
+              <h2 className="header header--3 group-list__header">Your Groups</h2>
               {userGroups.map((group) => {
                 return <GroupListItem key={group.id} group={group} />;
               })}
-              <ButtonLink styleType="tertiary" label="Join A New Group" link="/groups" />
+              <ButtonLink styleType="tertiary" label="Join A New Group" link="/groups" size="default" />
             </div>
           </div>
         </div>

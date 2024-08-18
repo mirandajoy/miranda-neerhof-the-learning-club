@@ -12,7 +12,7 @@ const EventList = ({ label, events, owned }) => {
 
   return (
     <div className="event-list">
-      <h2 className="header header--secondary event-list__header">{label}</h2>
+      <h2 className="header header--3 event-list__header">{label}</h2>
       {events.length < 1 ? (
         <>
           <div className="event-list__list-container">
@@ -35,6 +35,7 @@ const EventList = ({ label, events, owned }) => {
                   action={() => {
                     setShowAll(true);
                   }}
+                  size="default"
                 />
               )}
               {showAll && (
@@ -44,11 +45,12 @@ const EventList = ({ label, events, owned }) => {
                   action={() => {
                     setShowAll(false);
                   }}
+                  size="default"
                 />
               )}
             </>
           )}
-          {owned && <ButtonLink styleType="secondary" label="Create Event" link="/events/create" />}
+          {owned && <ButtonLink styleType="secondary" label="Create Event" link="/events/create" size="default" />}
         </div>
       )}
     </div>

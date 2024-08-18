@@ -10,8 +10,8 @@
   min-height: 8rem;
   &__tagline {
     color: $color-accent-pink;
-    font-size: $font-size-header-secondary;
-    line-height: calc($font-size-header-secondary * 1.2);
+    font-size: $font-size-h3;
+    line-height: calc($font-size-h3 * 1.2);
   }
   &__tagline-highlight {
     color: $color-success;
