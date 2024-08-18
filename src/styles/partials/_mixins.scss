@@ -72,7 +72,7 @@
 
 //Other Styles
 
-@mixin button($width: fit-content, $min-width: 15rem) {
+@mixin button($width: fit-content, $min-width: 0) {
   border-radius: $border-radius-round;
   box-sizing: border-box;
   box-shadow: 1px 2px 5px #b4b4b47e;
@@ -143,7 +143,7 @@
   padding: $space-standard-mobile;
   &:focus,
   &:focus-visible {
-    outline: 1px solid $color-brand-primary;
+    outline: 1px solid $color-brand-secondary;
   }
 }
 

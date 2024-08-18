@@ -116,81 +116,76 @@ const EventForm = () => {
   const selectedGroup = !id && formValues.group && ownedGroups.find((group) => group.id == formValues.group);
 
   return (
-    <FormWrapper id="createEventForm" onSubmit={handleOnSubmit} header={id ? "Edit Event" : "Create Event"} submitLabel={id ? "Update Event" : "Create Event"}>
-        {!id && ownedGroups && ownedGroups.length > 1 && (
-          <InputSelect
-            name="group"
-            type="text"
-            label="Which group is this event for?"
-            values={ownedGroups}
-            onChange={handleOnChange}
-            selectedValue={selectedGroup.name}
-          />
-        )}
-        {formValues.group && (
-          <div className="create-event__event-inputs">
-            {!remoteGroup && (
-              <>
-                <InputField
-                  name="location"
-                  type="text"
-                  label="Location Name"
-                  value={formValues.location}
-                  onChange={handleOnChange}
-                />
-                <InputField
-                  name="address"
-                  type="text"
-                  label="Location Address"
-                  value={formValues.address}
-                  onChange={handleOnChange}
-                />
-              </>
-            )}
-            {remoteGroup && (
+    <FormWrapper
+      id="createEventForm"
+      onSubmit={handleOnSubmit}
+      header={id ? "Edit Event" : "Create Event"}
+      submitLabel={id ? "Update Event" : "Create Event"}
+    >
+      {!id && ownedGroups && ownedGroups.length > 1 && (
+        <InputSelect
+          name="group"
+          type="text"
+          label="Which group is this event for?"
+          values={ownedGroups}
+          onChange={handleOnChange}
+          selectedValue={selectedGroup.name}
+        />
+      )}
+      {formValues.group && (
+        <>
+          {!remoteGroup && (
+            <>
               <InputField
-                name="remote_link"
+                name="location"
                 type="text"
-                label="Event Link"
-                value={formValues.remote_link}
+                label="Location Name"
+                value={formValues.location}
                 onChange={handleOnChange}
               />
-            )}
-            <div className="create-event__datetime-container">
-              <div className="create-event__date-input">
-                <InputField
-                  name="date"
-                  type="date"
-                  label="Event Date"
-                  placeholder="Location of event"
-                  value={formValues.date}
-                  onChange={handleOnChange}
-                />
-              </div>
-              <div className="create-event__time-input">
-                <InputField
-                  name="time"
-                  type="time"
-                  label="Event Time"
-                  placeholder="Location of event"
-                  value={formValues.time}
-                  onChange={handleOnChange}
-                />
-                <p className="create-event__timezone-label">Timezone: {formValues.timezone}</p>
-              </div>
-            </div>
-            {/* <Button type="Submit" styleType="primary" label={id ? "Update Event" : "Create Event"} size="default" />
-            {id && (
-              <Button
-                type="Button"
-                styleType="tertiary"
-                label="Delete Event"
-                action={deleteExistingEvent}
-                size="default"
+              <InputField
+                name="address"
+                type="text"
+                label="Location Address"
+                value={formValues.address}
+                onChange={handleOnChange}
               />
-            )} */}
+            </>
+          )}
+          {remoteGroup && (
+            <InputField
+              name="remote_link"
+              type="text"
+              label="Event Link"
+              value={formValues.remote_link}
+              onChange={handleOnChange}
+            />
+          )}
+          <div className="create-event__datetime-container">
+            <div className="create-event__date-input">
+              <InputField
+                name="date"
+                type="date"
+                label="Event Date"
+                placeholder="Location of event"
+                value={formValues.date}
+                onChange={handleOnChange}
+              />
+            </div>
+            <div className="create-event__time-input">
+              <InputField
+                name="time"
+                type="time"
+                label="Event Time"
+                placeholder="Location of event"
+                value={formValues.time}
+                onChange={handleOnChange}
+              />
+              <p className="create-event__timezone-label">{formValues.timezone}</p>
+            </div>
           </div>
-        )}
+        </>
+      )}
     </FormWrapper>
   );
 };

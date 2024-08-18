@@ -58,52 +58,50 @@ const SignUpPage = () => {
   return (
     <PageWrapper width="small">
       <FormWrapper header="Sign Up" id="signUpForm" onSubmit={handleOnSubmit} submitLabel="Sign Up">
-        <div className="sign-up__field-container">
-          <InputField
-            name="name"
-            type="text"
-            label="Name"
-            placeholder="Name"
-            value={formValues.name}
-            errorMessage={formErrors.nameError}
-            onChange={handleOnChange}
-          />
-          <InputField
-            name="email"
-            type="text"
-            label="Email"
-            placeholder="Email"
-            value={formValues.email}
-            errorMessage={formErrors.emailError}
-            onChange={handleOnChange}
-            onBlur={(event) => {
-              const recentUpdate = handleOnChange(event);
-              const res = validateEmail(recentUpdate.email);
-              setFormErrors({
-                ...formErrors,
-                emailError: res,
-              });
-            }}
-          />
-          <InputField
-            name="password"
-            type="password"
-            label="Password"
-            placeholder="Password"
-            value={formValues.password}
-            errorMessage={formErrors.passwordError}
-            onChange={handleOnChange}
-            onBlur={(event) => {
-              const recentUpdate = handleOnChange(event);
-              const res = validatePassword(recentUpdate.password);
-              setFormErrors({
-                ...formErrors,
-                passwordError: res,
-              });
-            }}
-          />
-          {errorMessage && <AlertBanner message={errorMessage} />}
-        </div>
+        <InputField
+          name="name"
+          type="text"
+          label="Name"
+          placeholder="Name"
+          value={formValues.name}
+          errorMessage={formErrors.nameError}
+          onChange={handleOnChange}
+        />
+        <InputField
+          name="email"
+          type="text"
+          label="Email"
+          placeholder="Email"
+          value={formValues.email}
+          errorMessage={formErrors.emailError}
+          onChange={handleOnChange}
+          onBlur={(event) => {
+            const recentUpdate = handleOnChange(event);
+            const res = validateEmail(recentUpdate.email);
+            setFormErrors({
+              ...formErrors,
+              emailError: res,
+            });
+          }}
+        />
+        <InputField
+          name="password"
+          type="password"
+          label="Password"
+          placeholder="Password"
+          value={formValues.password}
+          errorMessage={formErrors.passwordError}
+          onChange={handleOnChange}
+          onBlur={(event) => {
+            const recentUpdate = handleOnChange(event);
+            const res = validatePassword(recentUpdate.password);
+            setFormErrors({
+              ...formErrors,
+              passwordError: res,
+            });
+          }}
+        />
+        {errorMessage && <AlertBanner message={errorMessage} />}
       </FormWrapper>
     </PageWrapper>
   );
