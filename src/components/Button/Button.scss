@@ -6,6 +6,9 @@
   &--default {
     @include button;
   }
+  &--min-width {
+    @include button(100%, $min-width: 15rem);
+  }
   &--full-width {
     @include button(100%);
   }
