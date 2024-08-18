@@ -39,8 +39,8 @@ const Header = () => {
           </Link>
         </div>
         <div className="nav__actions-container">
-          <ButtonLink link="/signin" styleType="secondary" label="Sign In" />
-          <ButtonLink link="/signup" styleType="primary" label="Sign Up" />
+          <ButtonLink link="/signin" styleType="secondary" label="Sign In" size="default" />
+          <ButtonLink link="/signup" styleType="primary" label="Sign Up" size="default" />
         </div>
       </nav>
     );
@@ -57,7 +57,7 @@ const Header = () => {
       <div className="nav__actions-container">
         {userName && <h3 className="header header-tertiary nav__greeting">Welcome, {userName}</h3>}
         <div>
-          <Button type="button" label="Log out" styleType="tertiary" action={handleClickLogout} />
+          <Button type="button" label="Log out" styleType="tertiary" action={handleClickLogout} size="default" />
         </div>
       </div>
     </nav>

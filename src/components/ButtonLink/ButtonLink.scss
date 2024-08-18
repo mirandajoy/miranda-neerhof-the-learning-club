@@ -3,9 +3,14 @@
 @use "../../styles/partials/global" as *;
 
 .btn-link {
-  @include button;
   display: block;
   text-decoration: none;
+  &--default {
+    @include button;
+  }
+  &--full-width {
+    @include button(100%);
+  }
   &--primary {
     @include button-primary;
   }

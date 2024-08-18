@@ -178,8 +178,8 @@ const EventForm = () => {
               <p className="create-event__timezone-label">Timezone: {formValues.timezone}</p>
             </div>
           </div>
-          <Button type="Submit" styleType="primary" label={id ? "Update Event" : "Create Event"} />
-          {id && <Button type="Button" styleType="tertiary" label="Delete Event" action={deleteExistingEvent} />}
+          <Button type="Submit" styleType="primary" label={id ? "Update Event" : "Create Event"} size="default"/>
+          {id && <Button type="Button" styleType="tertiary" label="Delete Event" action={deleteExistingEvent} size="default" />}
         </div>
       )}
     </form>

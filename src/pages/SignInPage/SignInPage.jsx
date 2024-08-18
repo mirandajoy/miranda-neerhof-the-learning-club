@@ -66,7 +66,7 @@ const SignInPage = () => {
           onChange={handleOnChange}
         />
         {errorMessage && <AlertBanner message={errorMessage} />}
-        <Button type="Submit" styleType="primary" label="Sign in" />
+        <Button type="Submit" styleType="primary" label="Sign in" size="default" />
       </form>
     </PageWrapper>
   );

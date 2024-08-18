@@ -60,7 +60,7 @@ const EventListItem = ({ event }) => {
           {rsvpStatus && rsvpStatus.toLowerCase() === "attending" ? (
             <CheckAnimation animate={animated} label="Attending!" check="true" />
           ) : (
-            <Button label="Attend" styleType="secondary" action={() => handleRSVP("Attending")} />
+            <Button label="Attend" styleType="secondary" action={() => handleRSVP("Attending")} size="default" />
           )}
         </div>
       )}
