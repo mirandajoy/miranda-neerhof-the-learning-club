@@ -39,8 +39,8 @@ const Header = () => {
           </Link>
         </div>
         <div className="nav__actions-container">
-          <ButtonLink link="/signin" styleType="secondary" label="Sign In" size="default" />
-          <ButtonLink link="/signup" styleType="primary" label="Sign Up" size="default" />
+          <ButtonLink link="/signin" styleType="secondary" label="Sign In" size="min-width-m" />
+          <ButtonLink link="/signup" styleType="primary" label="Sign Up" size="min-width-m" />
         </div>
       </nav>
     );

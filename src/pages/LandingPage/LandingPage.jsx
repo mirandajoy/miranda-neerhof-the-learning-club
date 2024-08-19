@@ -13,7 +13,7 @@ const LandingPage = () => {
             <h1 className="hero__header">The Learning Club</h1>
             <h2 className="hero__subheader">Connecting curious people together</h2>
             <div className="hero__cta-container">
-              <ButtonLink link="/#details" label="Discover More" styleType="secondary" anchor size="default" />
+              <ButtonLink link="/#details" label="Discover More" styleType="secondary" anchor size="min-width-lg" />
             </div>
           </div>
         </div>
@@ -72,7 +72,7 @@ const LandingPage = () => {
         <div className="groups-section__content">
           <h2 className="header groups-section__header">Find a Group to Join</h2>
           <div className="groups-section__button">
-            <ButtonLink link="/groups" label="Browse Groups" styleType="secondary" size="default" />
+            <ButtonLink link="/groups" label="Browse Groups" styleType="secondary" size="min-width-lg" />
           </div>
         </div>
       </section>

@@ -8,7 +8,7 @@ const FormWrapper = ({ header, children, id, onSubmit, submitLabel }) => {
       <form id={id} onSubmit={onSubmit} className="form__container">
         {children}
         <div className="form__submit-button">
-          <Button type="Submit" styleType="primary" label={submitLabel} size="min-width" />
+          <Button type="Submit" styleType="primary" label={submitLabel} size="min-width-lg" />
         </div>
       </form>
     </div>
