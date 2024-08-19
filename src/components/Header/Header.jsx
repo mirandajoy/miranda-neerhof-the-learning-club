@@ -3,9 +3,8 @@ import { Link, useNavigate } from "react-router-dom";
 
 import profiles from "../../utils/api-profile";
 import Button from "../Button/Button";
-import ButtonLink from "../ButtonLink/ButtonLink";
 import { useLogin, useLoginUpdate } from "../LoginContextProvider/LoginContextProvider";
-import Logo from "../Logo/Logo";
+import logo from "../../assets/images/logo.svg";
 
 import "./Header.scss";
 
@@ -13,6 +12,7 @@ const Header = () => {
   const loggedIn = useLogin();
   const loginUpdate = useLoginUpdate();
   const [userName, setUserName] = useState();
+  const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
 
   const getProfileName = async () => {
@@ -20,8 +20,19 @@ const Header = () => {
     setUserName(res.data.name);
   };
 
+  const handleClickSignup = () => {
+    setMenuOpen(false);
+    navigate("/signup");
+  };
+
+  const handleClickSignin = () => {
+    setMenuOpen(false);
+    navigate("/signin");
+  };
+
   const handleClickLogout = () => {
     loginUpdate(false);
+    setMenuOpen(false);
     navigate("/");
   };
 
@@ -29,36 +40,39 @@ const Header = () => {
     loggedIn && getProfileName();
   }, [loggedIn]);
 
-  if (!loggedIn) {
-    return (
-      <nav className="nav">
+  return (
+    <nav className="nav">
+      <div className="nav__top-container">
         <div className="nav__logo-container">
-          <Logo />
-          <Link to="/" className="nav__logo">
+          <img src={logo} className="nav__logo" />
+          <Link to="/" className="nav__logo-text">
             The Learning Club
           </Link>
         </div>
-        <div className="nav__actions-container">
-          <ButtonLink link="/signin" styleType="secondary" label="Sign In" size="min-width-m" />
-          <ButtonLink link="/signup" styleType="primary" label="Sign Up" size="min-width-m" />
-        </div>
-      </nav>
-    );
-  }
-
-  return (
-    <nav className="nav">
-      <div className="nav__logo-container">
-        <Logo />
-        <Link to="/" className="nav__logo">
-          The Learning Club
-        </Link>
+        {menuOpen ? (
+          <span onClick={() => setMenuOpen(false)} className="nav__icon material-symbols-outlined">close</span>
+        ) : (
+          <span onClick={() => setMenuOpen(true)} className="nav__icon material-symbols-outlined">menu</span>
+        )}
       </div>
-      <div className="nav__actions-container">
-        {userName && <h3 className="header header-tertiary nav__greeting">Welcome, {userName}</h3>}
-        <div>
-          <Button type="button" label="Log out" styleType="tertiary" action={handleClickLogout} size="default" />
-        </div>
+      <div className={`nav__actions-container ${menuOpen ? "nav__actions-container--open" : ""}`}>
+        {loggedIn ? (
+          <>
+            {userName && <h3 className="header header-tertiary nav__greeting">Welcome, {userName}</h3>}
+            <div>
+              <Button type="button" label="Sign out" styleType="tertiary" action={handleClickLogout} size="default" />
+            </div>
+          </>
+        ) : (
+          <>
+            <span className="nav__auth-button">
+              <Button action={handleClickSignin} styleType="secondary" label="Sign In" size="min-width-m" />
+            </span>
+            <span className="nav__auth-button">
+              <Button action={handleClickSignup} styleType="primary" label="Sign Up" size="min-width-m" />
+            </span>
+          </>
+        )}
       </div>
     </nav>
   );

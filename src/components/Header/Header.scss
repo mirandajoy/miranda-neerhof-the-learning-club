@@ -3,34 +3,72 @@
 @use "../../styles/partials/global" as *;
 
 .nav {
-  @include responsive-padding;
-  @include flex;
-  @include responsive-gap;
+  @include flex-column(stretch);
   flex-direction: column;
   background-color: $color-background-secondary;
+  box-shadow: 1px 1px 2px 8px rgb(214, 214, 214);
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   @include tablet {
     flex-direction: row;
+    justify-content: space-between;
+    padding: 1.25rem;
+  }
+  &__top-container {
+    @include flex;
+    flex-wrap: nowrap;
+    padding: 1.25rem 0.5rem;
+    @include tablet {
+      padding: 0;
+    }
   }
   &__logo-container {
-    @include flex;
+    @include flex(center, flex-start);
     gap: $space-small;
   }
   &__logo {
-    color: $color-brand-primary;
-    font-family: 'Unica One', sans-serif;
-    font-size: 2rem;
-    text-decoration: none;
+    width: 1.75rem;
   }
-  &__actions-container {
-    @include flex(center, flex-end);
-    gap: $space-small;
-    width: 80%;
+  &__logo-text {
+    color: $color-brand-secondary;
+    font-family: 'Unica One', sans-serif;
+    font-size: 1.5rem;
+    text-decoration: none;
     @include tablet {
-      flex-basis: 20rem;
-      flex-wrap: nowrap;
+      font-size: 2rem;
     }
   }
+  &__icon {
+    cursor: pointer;
+    @include tablet {
+      display: none
+    }
+  }
+  &__actions-container {
+    @include flex(center, center);
+    background-color: $color-background-primary;
+    display: none;
+    gap: $space-small;
+    padding: $space-small;
+    @include tablet {
+      display: flex;
+      background-color: $color-background-secondary;
+      flex-wrap: nowrap;
+      padding: 0;
+    }
+    &--open {
+      display: flex;
+    }
+  }
+  &__auth-button {
+    flex-grow: 1;
+  }
   &__greeting {
-    flex-shrink: 0;
+    flex-basis: 100%;
+    text-align: center;
+    padding-top: .75rem;
+    @include tablet {
+      flex-basis: unset;
+      padding: 0;
+    }
   }
 }
