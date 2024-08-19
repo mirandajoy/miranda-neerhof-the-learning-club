@@ -36,37 +36,35 @@ const GroupListItem = ({ group, showNextEvent, showResponse }) => {
   return (
     <div className="group">
       <Link to={`/groups/${group.id}`} className="group__content-container">
-        <div className="group__group-details">
-          <h2 className="header header--3 group__name">{group.name}</h2>
-          {group.remote === 0 && (
-            <div className="group__location-container">
-              <p className="body body--dark">{group.region_name}</p>
-            </div>
-          )}
-        </div>
+        <h2 className="header header--3 group__name">{group.name}</h2>
+        {group.remote === 0 && <p className="body body--dark">{group.city}</p>}
         {showNextEvent && nextEvent && (
-          <p className="body body--dark group__next-event">
+          <p className="body body--dark">
             Next Event: {parsedDateTime.fullDate} at {parsedDateTime.fullTime}
           </p>
         )}
       </Link>
-      {group && groupRole && (<p className="body">My Group</p>)}
-      {showResponse && loggedIn && (
-        <div className="group__join-btn">
-          {group && groupJoined ? (
-            <div className="group__response-container">
-              <CheckAnimation animate={animated} check={true} label="Joined!" />
-            </div>
-          ) : (
-            <Button label="Join" styleType="secondary" action={handleJoinClick} size="default" />
-          )}
-        </div>
-      )}
-      {!loggedIn && (
-        <div className="group__sign-up-btn">
-          <ButtonLink label="Sign Up to Join" styleType="secondary" link="/signup" size="default" />
-        </div>
-      )}
+      <div className="group__response-container">
+        {loggedIn && (
+          <>
+            {groupRole ? (
+              <>
+                <span className="group__star-icon material-symbols-outlined">star</span>
+                <h3 className="header header--4">Your Group</h3>
+              </>
+            ) : (
+              <>
+                {groupJoined ? (
+                  <CheckAnimation animate={animated} check={true} label="Joined!" />
+                ) : (
+                  <Button label="Join" styleType="secondary" action={handleJoinClick} size="default" />
+                )}
+              </>
+            )}
+          </>
+        )}
+        {!loggedIn && <ButtonLink label="Sign Up to Join" styleType="secondary" link="/signup" size="default" />}
+      </div>
     </div>
   );
 };
