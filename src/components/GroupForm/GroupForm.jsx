@@ -54,7 +54,6 @@ const GroupForm = () => {
   };
 
   const handleOnSubmit = (event) => {
-    console.log("Test")
     event.preventDefault();
     id ? editExistingGroup() : createNewGroup();
   };
@@ -83,8 +82,6 @@ const GroupForm = () => {
   };
 
   const editExistingGroup = async () => {
-    console.log("Test Edit")
-    console.log({...formValues})
     const res = await groups.editGroup(id, { ...formValues });
     navigate(`/groups/${id}`);
   };

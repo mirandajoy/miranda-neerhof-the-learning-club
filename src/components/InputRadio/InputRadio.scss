@@ -18,7 +18,7 @@
   &__option-input {
     display: none;
     &:checked + .radio-input__option-label {
-      background-color: rgba($color-brand-secondary, 0.2);
+      background-color: $color-brand-secondary-20;
       border: 1px solid $color-brand-secondary;
       color: $color-brand-secondary;
     }

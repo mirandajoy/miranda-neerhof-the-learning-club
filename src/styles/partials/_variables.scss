@@ -8,6 +8,8 @@ $color-background-secondary: #f0f0f0;
 $color-brand-primary: #df6142;
 $color-brand-primary-hover: #5a2d20;
 $color-brand-secondary: #3f4eb5;
+$color-brand-secondary-20: rgba($color-brand-secondary, 0.2);
+$color-brand-secondary-15: rgba($color-brand-secondary, 0.15);
 
 $color-highlight: #fff4ab;
 $color-highlight: #5e5e5e;
@@ -50,6 +52,7 @@ $space-large: 2.25rem;
 
 //Other Styles
 $border-radius: 4px;
+$border-radius-lg: 20px;
 $border-radius-round: 50px;
 $border-style: 1px solid $color-highlight;
 

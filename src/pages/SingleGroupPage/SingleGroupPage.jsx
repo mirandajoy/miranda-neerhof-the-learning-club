@@ -29,7 +29,6 @@ const SingleGroupPage = () => {
     const res = await groups.getSingleGroup(id);
     setGroupJoined(res.data.joined);
     setGroupDetails(res.data);
-    console.log(res.data);
   };
 
   const handleJoinClick = async () => {

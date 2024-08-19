@@ -30,7 +30,6 @@ const SingleEventPage = () => {
   const getGroupDetails = async () => {
     const res = await groups.getSingleGroup(eventDetails.group_id);
     setGroupDetails(res.data);
-    console.log(res.data);
     setGroupJoined(res.data.joined);
   };
 

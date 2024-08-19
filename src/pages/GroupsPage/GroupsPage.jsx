@@ -8,10 +8,15 @@ import PageWrapper from "../../components/PageWrapper/PageWrapper";
 import groups from "../../utils/api-groups";
 import locations from "../../utils/api-locations";
 
+import InputRadio from "../../components/InputRadio/InputRadio";
+import InputSelect from "../../components/InputSelect/InputSelect";
 import "./GroupsPage.scss";
 
 const GroupsPage = () => {
   const [groupList, setGroupsList] = useState(null);
+  const [selectedLocation, setSelectedLocation] = useState(1);
+  const [selectedRegion, setSelectedRegion] = useState(null);
+  const [regions, setRegions] = useState("");
   const loggedIn = useLogin();
 
   const getGroupsList = async () => {
@@ -19,22 +24,13 @@ const GroupsPage = () => {
     setGroupsList(res.data);
   };
 
-  const groupDetails = {
-    name: "Group name",
-    city: "Group city",
-    state: "Group state",
-    country: "Group country",
-    remote: 0,
-  };
-
-  const createNewGroup = async () => {
-    const body = groupDetails;
-    const res = await groups.createGroup(body);
-  };
-
   const getLocations = async () => {
-    const countries = await locations.getCountries();
-    const regions = await locations.getCountries();
+    const regions = await locations.getRegions();
+    const modifiedRegions = regions.data.map(({ region_name, ...rest }) => ({
+      name: region_name,
+      ...rest,
+    }));
+    setRegions(modifiedRegions);
   };
 
   useEffect(() => {
@@ -47,38 +43,102 @@ const GroupsPage = () => {
     return <Loader />;
   }
 
-  const canadaGroups = groupList.filter((group) => group.country_name === "Canada");
-  const usaGroups = groupList.filter((group) => group.country_name === "United States");
-  const remoteGroups = groupList.filter((group) => group.remote === 1);
+  const handleLocationSelect = (e) => {
+    setSelectedRegion(null);
+    setSelectedLocation(e.target.value);
+  };
+
+  const filteredGroups =
+    selectedLocation &&
+    selectedRegion &&
+    groupList.filter((group) => group.country_id == selectedLocation && group.region_id == selectedRegion);
+
+  const remoteGroups = groupList && groupList.filter((group) => group.remote === 1);
+
+  const locationOptions = [
+    {
+      id: 1,
+      name: "Canada",
+    },
+    {
+      id: 2,
+      name: "USA",
+    },
+    {
+      id: 3,
+      name: "Remote",
+    },
+  ];
+
+  const regionValues = {
+    value: regions && selectedLocation && regions.filter((region) => region.country_id == selectedLocation),
+    placeholder: selectedLocation == 2 ? "Choose a state" : "Choose a province",
+  };
+
+  let listRendered;
+  if (!!selectedLocation && !!selectedRegion) {
+    listRendered = true;
+  } else if (!!selectedLocation && selectedLocation == 3) {
+    listRendered = true;
+  } else {
+    listRendered = false;
+  }
 
   return (
     <>
       <PageWrapper header="Groups" width="medium" back>
-        <div className="group-list">
-          <h2 className="header header--3 group-list__header">Groups in Canada</h2>
-          {canadaGroups.map((group) => {
-            return <GroupListItem key={group.id} group={group} showNextEvent showResponse />;
-          })}
+        <div className="group-page__filters">
+          <div className="group-page__location-select">
+            <InputRadio
+              name="location"
+              values={locationOptions}
+              onChange={handleLocationSelect}
+              checkedValue={selectedLocation}
+            />
+          </div>
+          {regionValues && selectedLocation && selectedLocation != 3 && (
+            <div className="group-page__region-select">
+              <InputSelect
+                name="region"
+                values={regionValues.value}
+                onChange={(e) => setSelectedRegion(e.target.value)}
+                placeholder={regionValues.placeholder}
+                selectedValue={selectedRegion ? selectedRegion.name : ""}
+              />
+            </div>
+          )}
         </div>
-        <div className="group-list group-list--usa">
-          <h2 className="header header--3 group-list__header">Groups in the USA</h2>
-          {usaGroups.map((group) => {
-            return <GroupListItem key={group.id} group={group} showNextEvent showResponse />;
-          })}
-        </div>
-        <div className="group-list group-list--usa">
-          <h2 className="header header--3 group-list__header">Remote Groups</h2>
-          {remoteGroups.map((group) => {
-            return <GroupListItem key={group.id} group={group} showNextEvent showResponse />;
-          })}
-        </div>
+        {listRendered && (
+          <div className="group-page__list">
+            {selectedRegion &&
+              filteredGroups &&
+              filteredGroups.map((group) => {
+                return <GroupListItem key={group.id} group={group} showNextEvent showResponse />;
+              })}
+            {selectedLocation == 3 &&
+              remoteGroups.map((group) => {
+                return <GroupListItem key={group.id} group={group} showNextEvent showResponse />;
+              })}
+          </div>
+        )}
+        <section className="group-page__prompt">
+          {listRendered ? (
+            <>
+              <h3 className="header header--3">Don’t see what you're looking for?</h3>
+              {loggedIn ? (
+                <ButtonLink styleType="primary" label="Launch a Group" link="/groups/create" size="default" />
+              ) : (
+                <ButtonLink styleType="primary" label="Sign Up & Launch a Group" link="/signup" size="default" />
+              )}
+            </>
+          ) : (
+            <>
+              <h3 className="header header--3">Select a location</h3>
+              <p className="body">Select a location to see local groups or remote to see online groups.</p>
+            </>
+          )}
+        </section>
       </PageWrapper>
-      <section className="launch-prompt">
-        <div className="launch-prompt__inner-container">
-          <h2 className="header header--3">Don't see a group in your area? Launch your own!</h2>
-          <ButtonLink styleType="secondary" label="Launch a Group" link="/groups/create" size="default" />
-        </div>
-      </section>
     </>
   );
 };
