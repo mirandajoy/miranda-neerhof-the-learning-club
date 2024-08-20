@@ -3,17 +3,18 @@
 @use "../../styles/partials/global" as *;
 
 .footer {
-  @include flex(center, center);
-  flex-direction: column;
-  gap: $space-micro;
+  @include flex;
   background-color: $color-brand-secondary;
-  min-height: 8rem;
-  &__tagline {
-    color: $color-accent-pink;
-    font-size: $font-size-h3;
-    line-height: calc($font-size-h3 * 1.2);
+  gap: $space-standard;
+  padding: 2.25rem 1.5rem 2rem;
+  @include tablet {
+    padding: 2.25rem 3rem;
   }
-  &__tagline-highlight {
-    color: $color-success;
+  &__brand-name {
+    @include header($font-size-h3, $color-primary-light);
+  }
+  &__tagline {
+    @include header($font-size-h4, $color-primary-light);
+    padding-top: 0.5rem;
   }
 }

@@ -70,6 +70,16 @@
   }
 }
 
+//Fonts
+
+@mixin header($size: $font-size-h3, $color: $color-primary-dark, $weight: $weight-bold) {
+  color: $color;
+  font-family: $font-family-header;
+  font-size: $size;
+  font-weight: $weight;
+  line-height: calc($size * 1.2);
+}
+
 //Other Styles
 
 @mixin button($width: fit-content, $min-width: 0) {
@@ -82,7 +92,7 @@
   padding: $space-med $space-standard;
   text-align: center;
   width: $width;
-  min-width: $min-width; 
+  min-width: $min-width;
 }
 
 @mixin button-primary {
