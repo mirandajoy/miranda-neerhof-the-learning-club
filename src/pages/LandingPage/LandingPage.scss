@@ -3,38 +3,46 @@
 @use "../../styles/partials/global" as *;
 
 .hero {
-  @include flex;
-  @include responsive-padding-block;
+  @include flex(center, center);
   background-color: $color-background-secondary;
-  justify-content: center;
+  &__wrapper {
+    width: 100%;
+    @include tablet {
+      @include flex(center, center);
+      padding-block: 7.5rem;
+      padding-inline: 0.5rem;
+      width: unset;
+    }
+  }
   &__img {
     @include background-img("../../assets/images/puffin-hero.jpg", center);
-    @include image-overlay($color-background-secondary, 0.2);
     @include flex(center, center);
-    border-radius: 10px;
-    animation: move-up 0.5s ease-in;
-    height: 15rem;
-    width: 90%;
+    @include image-overlay($color-background-secondary, 0.2);
+    aspect-ratio: 3 / 1;
+    width: 100%;
     @include tablet {
-      width: 30%;
-      position: relative;
-      left: 5%;
-      top: 3.75rem;
-      height: 30rem;
+      animation: move-up 0.75s ease-in;
+      aspect-ratio: 7 / 10;
+      border-radius: 10px;
+      height: 25rem;
+      width: unset;
     }
     @keyframes move-up {
       0% {
-        top: 5rem;
         display: hidden;
         opacity: 0;
+        top: 5rem;
       }
       100% {
-        top: 3.75rem;
         display: block;
+        top: 0rem;
       }
     }
   }
   &__img-overlay {
+    @include flex(flex-end);
+    aspect-ratio: 3 / 1;
+    width: 100%;
     background: linear-gradient(
       0deg,
       rgba($color-primary-dark, 0.5) 0%,
@@ -43,190 +51,165 @@
       rgba($color-primary-dark, 0) 70%,
       rgba($color-primary-dark, 0) 100%
     );
-    width: 100%;
-    border-radius: 10px;
+    @include tablet {
+      aspect-ratio: 7 / 10;
+      border-radius: 10px;
+      height: 25rem;
+    }
+  }
+  &__img-tagline {
+    @include header($font-size-h4, $color-primary-light);
+    padding: 0.5rem 1rem;
+    &--divider {
+      color: $color-accent-yellow;
+    }
   }
   &__outer-content-container {
     @include flex(center, center);
-    box-sizing: border-box;
-    background-color: white;
-    padding: 5rem 1rem;
-    width: 90%;
-    border-radius: 4px;
-    box-shadow: 0px 1px 2px #b4b4b4ef;
     background-color: $color-background-primary;
-    animation: move-left 0.5s ease-in;
-    margin-top: -1.5rem;
+    box-sizing: border-box;
+    padding: 2.25rem 2rem 3.75rem;
+    position: relative;
     z-index: 1;
     @include tablet {
-      position: relative;
-      top: 3.5rem;
-      width: 55%;
-      right: 1%;
+      animation: move-left 0.75s ease-in;
+      border-radius: $border-radius-m;
+      box-shadow: 0px 1px 2px #b4b4b4ef;
+      margin-left: -5rem;
+      padding: 4.25rem 5rem 3.75rem;
     }
     @include desktop {
-      width: 45%;
-      right: 5%;
+      margin-left: -1.5rem;
     }
+
     @keyframes move-left {
       0% {
-        right: 10%;
+        display: hidden;
         opacity: 0;
+        right: -10rem;
       }
       100% {
-        right: 12%;
         display: block;
+        right: 0;
       }
     }
   }
   &__content-container {
-    @include flex(center, center);
-    flex-direction: column;
+    @include flex-column(center);
     gap: 0.5rem;
     text-align: center;
+    @include tablet {
+      align-items: flex-start;
+      text-align: left;
+    }
   }
-
   &__header {
-    font-family: "Unica One", sans-serif;
-    font-weight: $weight-bold;
-    color: $color-primary-light;
-    font-size: 4rem;
-    color: $color-brand-secondary;
+    @include header($font-size-h2, $color-primary-dark, $weight-regular);
+    @include tablet {
+      font-size: $font-size-h1;
+    }
   }
   &__subheader {
-    color: $color-primary-light;
-    font-family: "Rubik", sans-serif;
-    font-weight: $weight-regular;
-    font-size: 1.25rem;
-    color: $color-primary-dark;
+    @include header($font-size-h4, $color-primary-dark, $weight-regular);
+    @include tablet {
+      font-size: $font-size-h3;
+    }
   }
   &__cta-container {
-    max-width: 12.5rem;
-    padding-top: 1.5rem;
+    @include flex;
+    gap: 0.5rem;
+    padding-top: 2.25rem;
+    max-width: 15rem;
+    width: 100%;
+    @include tablet {
+      flex-wrap: nowrap;
+      max-width: unset;
+    }
+  }
+  &__divider-curve {
+    width: 100%;
+    display: none;
+    @include tablet {
+      display: block;
+    }
   }
 }
 
 .details {
-  background-color: $color-background-secondary;
-  @include responsive-padding-block;
-  &__inner-container {
-    max-width: 25rem;
-    margin-inline: auto;
-    padding-block: 2rem 2rem;
-    padding-inline: 1.5rem;
+  background-color: $color-background-primary;
+  @include flex(center, center);
+  margin-top: -0.25rem;
+  &__wrapper {
+    @include flex(stretch, center);
+    gap: 2.25rem;
+    max-width: 50rem;
+    flex-direction: nowrap;
+  }
+  &__card {
+    @include flex-column(center);
+    box-sizing: border-box;
+    padding: 1.5rem;
+    text-align: center;
     @include tablet {
-      padding-block: 8rem 6rem;
-      max-width: 50rem;
-    }
-    @include desktop {
-      padding-block: 8rem 6rem;
+      align-items: flex-start;
+      flex-grow: 1;
+      max-width: 360px;
+      text-align: left;
     }
   }
   &__header {
-    padding-bottom: 2rem;
-  }
-  &__card-container {
-    @include flex(stretch);
-    flex-direction: column;
-    gap: 1.5rem;
+    @include header($font-size-h2, $color-brand-secondary, $weight-regular);
     @include tablet {
-      flex-direction: row;
+      font-size: $font-size-h1;
     }
+    padding-block: 0.75rem 1rem;
   }
-  &__card {
-    box-sizing: border-box;
-    background-color: rgba($color-background-primary, 0.7);
-    box-shadow: 1px 2px 10px #b4b4b47e;
-    width: 100%;
-    @include flex(stretch, flex-start);
-    border-radius: 3.75px;
-    transition: 0.5s ease-in-out;
-    position: relative;
-    flex-wrap: nowrap;
-    @include tablet {
-      width: 31%;
-    }
-    &:hover {
-      transform: scale(1.1);
-    }
-  }
-  &__card-content {
-    padding: $space-med;
-    @include flex(center, center);
-    flex-direction: column;
-    gap: $space-med;
-    z-index: 1;
-    width: 100%;
-    text-align: center;
-  }
-  &__card-body {
-    padding-inline: $space-med;
-    text-align: center;
-  }
-  &__number {
-    color: $color-brand-primary;
-    font-size: $font-size-h4;
-  }
-  &__highlight {
-    width: 0.375rem;
-    border-radius: 10px 0px 0 10px;
-    &--blue {
-      background-color: $color-brand-secondary;
-    }
-    &--pink {
-      background-color: $color-accent-pink;
-    }
-    &--green {
-      background-color: $color-success;
-    }
+  &__body {
+    @include body;
+    margin-block: 0.5rem;
   }
 }
 
 .groups-section {
   @include flex(center, center);
-  position: relative;
-  padding-top: 6rem;
-  background-image: url("../../assets/images/waves-2.svg");
-  background-position: bottom;
-  background-size: cover;
-  padding-inline: $space-med;
-  &__curve-divider {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    overflow: hidden;
-    line-height: 0;
-    transform: rotate(180deg);
+  padding-top: 3.5rem;
+  @include tablet {
+    padding-top: 6rem;
+  }
+  &__divider {
+    max-width: 100%;
   }
   &__content {
     @include flex(center, center);
+    border-radius: $border-radius;
     flex-direction: column;
     gap: $space-standard;
-    padding-block: 4rem;
     margin-block: 2rem;
-    border-radius: $border-radius;
-    width: 100%;
     max-width: $max-content-width;
-    padding-bottom: 20rem;
-  }
-  &__curve-shape {
-    position: relative;
-    display: block;
-    width: calc(100% + 1.3px);
-    height: 79px;
-    transform: rotateY(180deg);
-  }
-  &__curve-fill {
-    fill: #ffffff;
-    fill: $color-background-secondary;
+    padding-block: 3.5rem 2.5rem;
+    padding-inline: 2rem;
+    width: 100%;
+    @include tablet {
+      padding-block: 7.5rem 4.5rem;
+    }
   }
   &__header {
-    color: $color-brand-primary;
-    font-size: 3.5rem;
+    @include header($font-size-h2);
+    @include tablet {
+      font-size: $font-size-h1;
+    }
     text-align: center;
   }
-  &__button {
-    max-width: 12rem;
+  &__buttons {
+    @include flex;
+    gap: 0.5rem;
+    max-width: 15rem;
+    @include tablet {
+      flex-wrap: nowrap;
+      max-width: unset;
+    }
+  }
+  &__decorative-curves {
+    max-width: 100%;
   }
 }

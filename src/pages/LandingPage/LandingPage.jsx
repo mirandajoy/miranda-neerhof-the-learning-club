@@ -1,80 +1,71 @@
 import "./LandingPage.scss";
 import ButtonLink from "../../components/ButtonLink/ButtonLink";
+import curveBgLight from "../../assets/images/curve-bg-light.svg";
+import learnIcon from "../../assets/images/learn.svg";
+import connectIcon from "../../assets/images/connect.svg";
+import curveLine from "../../assets/images/curve-line.svg";
+import curvesLayered from "../../assets/images/curves-layered.svg";
 
 const LandingPage = () => {
   return (
     <main>
       <section className="hero">
-        <div className="hero__img">
-          <div className="hero__img-overlay"></div>
-        </div>
-        <div className="hero__outer-content-container">
-          <div className="hero__content-container">
-            <h1 className="hero__header">The Learning Club</h1>
-            <h2 className="hero__subheader">Connecting curious people together</h2>
-            <div className="hero__cta-container">
-              <ButtonLink link="/#details" label="Discover More" styleType="secondary" anchor size="min-width-lg" />
+        <div className="hero__wrapper">
+          <div className="hero__img">
+            <div className="hero__img-overlay">
+              <h4 className="hero__img-tagline">
+                August Theme<span className="hero__img-tagline--divider"> | </span>Puffins
+              </h4>
+            </div>
+          </div>
+          <div className="hero__outer-content-container">
+            <div className="hero__content-container">
+              <h1 className="hero__header">The Learning Club</h1>
+              <h2 className="hero__subheader">Connecting curious people together</h2>
+              <div className="hero__cta-container">
+                <ButtonLink link="/signup" label="Join Now" styleType="primary" anchor size="full-width" />
+                <ButtonLink link="/#details" label="Discover More" styleType="secondary" anchor size="full-width" />
+              </div>
             </div>
           </div>
         </div>
+        <img src={curveBgLight} className="hero__divider-curve" alt=""/>
       </section>
 
       <section id="details" className="details">
-        <div className="details__inner-container">
-          <h2 className="header header--1 details__header">How it works</h2>
-          <div className="details__card-container">
-            <div className="details__card">
-              <div className="details__highlight details__highlight--green"></div>
-              <div className="details__card-content">
-                <h2 className="header header--3">
-                  <span className="body details__number">1.</span> Find a group
-                </h2>
-                <p className="body body-dark">Choose from groups that are local or remote.</p>
-              </div>
-            </div>
-            <div className="details__card">
-              <div className="details__highlight details__highlight--pink"></div>
-              <div className="details__card-content">
-                <h2 className="header header--3">
-                  <span className="body details__number">2.</span> Learn a Topic
-                </h2>
-                <p className="body body-dark">There's a new topic every month.</p>
-              </div>
-            </div>
-            <div className="details__card">
-              <div className="details__highlight details__highlight--blue"></div>
-              <div className="details__card-content">
-                <h2 className="header header--3">
-                  <span className="body details__number">3.</span> Meet up
-                </h2>
-                <p className="body body-dark">Hang out and chat about what you learned!</p>
-              </div>
-            </div>
+        <div className="details__wrapper">
+          <div className="details__card">
+            <img src={learnIcon} className="details__icon" alt=""/>
+            <h3 className="details__header">Learn</h3>
+            <p className="details__body">From Puffins to black holes, the club will provide a new topic each month.</p>
+            <p className="details__body">
+              Therer will be a featured podcast or video for everyone to learn from and discuss.
+            </p>
+            <p className="details__body">Additional resources will be provided for your learning enjoyment!</p>
+          </div>
+          <div className="details__card">
+            <img src={connectIcon} className="details__icon" alt=""/>
+            <h3 className="details__header">Meet</h3>
+            <p className="details__body">Choose a local group or meet online.</p>
+            <p className="details__body">If there are no groups available you can start your own. </p>
+            <p className="details__body">
+              Then meet up with your group, discuss the new things you’ve learned, and, most importantly, make new
+              friends.
+            </p>
           </div>
         </div>
       </section>
 
       <section className="groups-section">
-        <div className="groups-section__curve-divider">
-          <svg
-            className="groups-section__curve-shape"
-            data-name="Layer 1"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 1200 120"
-            preserveAspectRatio="none"
-          >
-            <path
-              d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z"
-              className="groups-section__curve-fill"
-            ></path>
-          </svg>
-        </div>
+        <img src={curveLine} className="groups-section__divider" alt="" />
         <div className="groups-section__content">
-          <h2 className="header groups-section__header">Find a Group to Join</h2>
-          <div className="groups-section__button">
+          <h2 className="groups-section__header">Join the Club and Start Learning!</h2>
+          <div className="groups-section__buttons">
+            <ButtonLink link="/signup" label="Sign Up" styleType="primary" size="min-width-lg" />
             <ButtonLink link="/groups" label="Browse Groups" styleType="secondary" size="min-width-lg" />
           </div>
         </div>
+        <img src={curvesLayered} className="groups-section__decorative-curves" alt="" />
       </section>
     </main>
   );

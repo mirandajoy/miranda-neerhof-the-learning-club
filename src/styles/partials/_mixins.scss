@@ -72,9 +72,17 @@
 
 //Fonts
 
-@mixin header($size: $font-size-h3, $color: $color-primary-dark, $weight: $weight-bold) {
+@mixin header($size: $font-size-h3, $color: $color-primary-dark, $weight: $weight-regular) {
   color: $color;
   font-family: $font-family-header;
+  font-size: $size;
+  font-weight: $weight;
+  line-height: calc($size * 1.2);
+}
+
+@mixin body($size: $font-size-body, $color: $color-primary-dark, $weight: $weight-regular) {
+  color: $color;
+  font-family: $font-family-body;
   font-size: $size;
   font-weight: $weight;
   line-height: calc($size * 1.2);
