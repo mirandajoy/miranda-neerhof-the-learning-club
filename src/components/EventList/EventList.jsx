@@ -16,7 +16,7 @@ const EventList = ({ label, events, owned }) => {
       {events.length < 1 ? (
         <>
           <div className="event-list__list-container">
-            <EmptyList text="You don't have any upcoming events" owned/>
+            <EmptyList text="You don't have any upcoming events" owned />
           </div>
         </>
       ) : (
@@ -26,31 +26,33 @@ const EventList = ({ label, events, owned }) => {
               return <EventListItem key={event.id} event={event} />;
             })}
           </div>
-          {events.length > 3 && (
-            <>
-              {!showAll && (
-                <Button
-                  styleType="tertiary"
-                  label="See All Events"
-                  action={() => {
-                    setShowAll(true);
-                  }}
-                  size="default"
-                />
-              )}
-              {showAll && (
-                <Button
-                  styleType="tertiary"
-                  label="See Fewer Events"
-                  action={() => {
-                    setShowAll(false);
-                  }}
-                  size="default"
-                />
-              )}
-            </>
-          )}
-          {owned && <ButtonLink styleType="secondary" label="Create Event" link="/events/create" size="default" />}
+          <div className="event-list__btn-container">
+            {events.length > 3 && (
+              <>
+                {!showAll && (
+                  <Button
+                    styleType="tertiary"
+                    label="See All Events"
+                    action={() => {
+                      setShowAll(true);
+                    }}
+                    size="default"
+                  />
+                )}
+                {showAll && (
+                  <Button
+                    styleType="tertiary"
+                    label="See Fewer Events"
+                    action={() => {
+                      setShowAll(false);
+                    }}
+                    size="default"
+                  />
+                )}
+              </>
+            )}
+            {owned && <ButtonLink styleType="secondary" label="Create Event" link="/events/create" size="default" />}
+          </div>
         </div>
       )}
     </div>

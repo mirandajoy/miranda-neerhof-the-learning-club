@@ -28,4 +28,7 @@
     padding-bottom: $space-standard;
     width: 100%;
   }
+  &__btn-container {
+    @include flex(center, center);
+  }
 }

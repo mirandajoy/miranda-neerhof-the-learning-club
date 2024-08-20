@@ -21,7 +21,7 @@
     flex-basis: 100%;
     width: 100%;
     @include tablet {
-      align-items: flex-start;
+      align-items: center;
       flex-direction: row;
       flex-grow: 1;
       flex-wrap: nowrap;
@@ -29,9 +29,7 @@
     }
   }
   &__date-container {
-    @include flex(flex-start, center);
-    flex-direction: column;
-    gap: $space-micro;
+    @include flex-column;
     border-radius: $border-radius;
     box-sizing: border-box;
     flex-grow: 0;
@@ -45,31 +43,32 @@
       flex-shrink: 0;
     }
   }
+  &__day {
+    @include header($font-size-h3, $color-primary-dark, $weight-bold);
+  }
   &__details-container {
     @include flex(flex-start, flex-start);
     flex-direction: column;
     flex-grow: 1;
     gap: $space-small;
-    padding-right: 2rem;
     text-align: left;
+    @include tablet {
+      padding-right: 2rem;
+    }
+  }
+  &__header {
+    @include header($font-size-h4, $color-primary-dark, $weight-bold);
   }
   &__event-details {
-    @include flex(center, flex-start);
-    gap: 1.5rem;
-  }
-  &__link {
-    color: $color-brand-primary;
-    font-family: "Rubik", sans-serif;
-    font-weight: $weight-regular;
-    line-height: calc($font-size-body * 1.2);
-    &:hover {
-      color: $color-brand-primary-hover;
-    }
+    @include body;
   }
   &__action-container {
     flex-grow: 0;
     flex-shrink: 0;
-    text-align: center;
+    text-align: left;
     width: 7rem;
+    @include tablet {
+      text-align: center;
+    }
   }
 }
