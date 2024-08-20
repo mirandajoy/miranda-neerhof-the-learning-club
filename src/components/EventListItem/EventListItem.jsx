@@ -45,7 +45,7 @@ const EventListItem = ({ event }) => {
         </div>
         <div className="event__details-container">
           {groupDetails && <h4 className="event__header">{groupDetails.name}</h4>}
-          <p className={`${!loggedIn ? "event__event-details" : ""}`}>
+          <p className="event__event-details">
             <span>{parsedDateTime.fullTime}</span>
             {event.location ? (
               <span> at {event.location}</span>
