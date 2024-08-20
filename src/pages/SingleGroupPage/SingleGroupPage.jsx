@@ -112,7 +112,7 @@ const SingleGroupPage = () => {
               <p className="body body--dark">{groupDetails.country_name}</p>
             </>
           ) : (
-            <p className="body body--dark">Remote on Zoom</p>
+            <p className="body body--dark">Remote</p>
           )}
         </div>
       </div>

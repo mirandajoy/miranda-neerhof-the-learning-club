@@ -59,20 +59,6 @@ const SingleEventPage = () => {
 
   return (
     <PageWrapper header={groupDetails.name} width="medium" back>
-      {groupDetails.role === "owner" && (
-        <div className="single-group__edit-container">
-          <div className="single-group__your-group-container">
-            <span className="single-group__star-icon material-symbols-outlined">star</span>
-            <h3 className="header header--4">Your Event</h3>
-          </div>
-          <div>
-            <span className="single-group__edit-icon material-symbols-outlined">edit</span>
-            <div>
-              <ButtonLink styleType="tertiary" label="Edit Event" link={`/groups/edit/${id}`} size="default" />
-            </div>
-          </div>
-        </div>
-      )}
       <div className="single-event__main-details-container">
         <div className="single-event__main-details-left">
           <span className="material-symbols-outlined">event</span>
@@ -90,21 +76,21 @@ const SingleEventPage = () => {
             </>
           ) : (
             <>
-              <h2 className="header header--3 single-event__header">Meet on</h2>
+              <h2 className="header header--3 single-event__header">Meet On</h2>
               <p className="body body--dark body--small">
                 {loggedIn ? (
                   <a href={eventDetails.remote_link} target="_blank" className="single-event__link">
-                    Zoom
+                    Video call
                   </a>
                 ) : (
-                  <span className="body body--dark">Zoom</span>
+                  <span className="body body--dark">Video call</span>
                 )}
               </p>
             </>
           )}
         </div>
       </div>
-      {groupJoined && loggedIn && (
+      {groupDetails.role !== "owner" && groupJoined && loggedIn && (
         <div className="single-event__response-btn-container">
           <div className="single-event__response-item">
             {rsvpText && rsvpText.toLowerCase() === "attending" ? (
@@ -118,7 +104,7 @@ const SingleEventPage = () => {
                 action={() => {
                   handleRSVP("attending");
                 }}
-                size="default"
+                size="full-width"
               />
             )}
           </div>
@@ -134,7 +120,7 @@ const SingleEventPage = () => {
                 action={() => {
                   handleRSVP("not attending");
                 }}
-                size="default"
+                size="full-width"
               />
             )}
           </div>
@@ -150,9 +136,23 @@ const SingleEventPage = () => {
                 action={() => {
                   handleRSVP("maybe");
                 }}
-                size="default"
+                size="full-width"
               />
             )}
+          </div>
+        </div>
+      )}
+      {groupDetails.role === "owner" && (
+        <div className="single-group__edit-container">
+          <div className="single-group__your-group-container">
+            <span className="single-group__star-icon material-symbols-outlined">star</span>
+            <h3 className="header header--4">Your Event</h3>
+          </div>
+          <div>
+            <span className="single-group__edit-icon material-symbols-outlined">edit</span>
+            <div>
+              <ButtonLink styleType="tertiary" label="Edit Event" link={`/groups/edit/${id}`} size="default" />
+            </div>
           </div>
         </div>
       )}

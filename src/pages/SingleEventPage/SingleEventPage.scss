@@ -37,11 +37,7 @@
     padding-bottom: $space-med;
   }
   &__link {
-    color: $color-brand-primary;
-    font-family: "Rubik", sans-serif;
-    font-weight: $weight-regular;
-    font-size: 1rem;
-    line-height: calc($font-size-body * 1.2);
+    @include body($font-size-body, $color-brand-primary);
     &:hover {
       color: $color-brand-primary-hover;
     }
