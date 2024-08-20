@@ -20,7 +20,7 @@ const PageWrapper = ({ preHeader, header, width, children, back }) => {
         {header && (
           <div className="page-wrapper__header-container">
             {preHeader && <h3 className="header header--4">{preHeader}</h3>}
-            <h1 className="header header--1 page-wrapper__header">{header}</h1>
+            <h1 className="page-wrapper__header">{header}</h1>
           </div>
         )}
         {children}

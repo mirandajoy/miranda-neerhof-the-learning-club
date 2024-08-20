@@ -54,4 +54,7 @@
   &__header-container {
     @include responsive-padding-block;
   }
+  &__header {
+    @include header($font-size-h1);
+  }
 }
