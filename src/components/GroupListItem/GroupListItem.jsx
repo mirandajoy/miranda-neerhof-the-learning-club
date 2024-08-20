@@ -10,7 +10,7 @@ import { useLogin } from "../LoginContextProvider/LoginContextProvider";
 
 import "./GroupListItem.scss";
 
-const GroupListItem = ({ group, showNextEvent, showResponse }) => {
+const GroupListItem = ({ group, showNextEvent, simple }) => {
   const [nextEvent, setNextEvent] = useState(null);
   const [groupJoined, setGroupJoined] = useState(group.joined);
   const [groupRole, setGroupRole] = useState(group.role === "owner" ? true : false);
@@ -37,7 +37,7 @@ const GroupListItem = ({ group, showNextEvent, showResponse }) => {
     <div className="group">
       <Link to={`/groups/${group.id}`} className="group__content-container">
         <h2 className="header header--3 group__name">{group.name}</h2>
-        {group.remote === 0 && <p className="body body--dark">{group.city}</p>}
+        {!simple && group.remote === 0 && <p className="body body--dark">{group.city}</p>}
         {showNextEvent && nextEvent && (
           <p className="body body--dark">
             Next Event: {parsedDateTime.fullDate} at {parsedDateTime.fullTime}
@@ -45,7 +45,7 @@ const GroupListItem = ({ group, showNextEvent, showResponse }) => {
         )}
       </Link>
       <div className="group__response-container">
-        {loggedIn && (
+        {!simple && loggedIn && (
           <>
             {groupRole ? (
               <>
