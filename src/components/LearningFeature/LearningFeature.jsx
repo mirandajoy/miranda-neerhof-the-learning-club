@@ -7,11 +7,11 @@ const LearningFeature = () => {
       <img src={puffinCover} className="resources__cover-img" alt="image of a puffin perched in grass" />
       <div className="resources__content-container">
         <div>
-          <h2 className="header header--secondary resources__feature">Feature Podcast: Puffinology</h2>
+          <h2 className="header header--3 resources__feature">Feature Podcast: Puffinology</h2>
           <p className="body body--dark resources__author">Sourced from: Ologies</p>
         </div>
         <div>
-          <h3 className="header header--tertiary resources__listen-header">Listen On</h3>
+          <h3 className="header header--4 resources__listen-header">Listen On</h3>
           <div className="resources__links-container">
             <a
               href="https://podcasts.apple.com/us/podcast/puffinology-puffins-with-jill-taylor/id1278815517?i=1000660402277"
@@ -32,7 +32,7 @@ const LearningFeature = () => {
           </div>
         </div>
         <div className="additional-resources">
-          <h3 className="header header--tertiary additional-resources__header">Learn More About Puffins!</h3>
+          <h3 className="header header--4 additional-resources__header">Learn More About Puffins!</h3>
           <div className="additional-resources__x-link-container">
             <span className="material-symbols-outlined">article</span>
             <a href="https://ocean.si.edu/ocean-life/seabirds/know-your-puffins" target="_blank" className="link">

@@ -4,7 +4,7 @@ import "./EditGroupPage.scss";
 
 const EditGroupPage = () => {
   return (
-    <PageWrapper header="Edit Group" width="small" back>
+    <PageWrapper width="small">
       <GroupForm />
     </PageWrapper>
   );

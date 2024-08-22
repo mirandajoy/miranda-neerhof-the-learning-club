@@ -5,6 +5,7 @@ import Button from "../../components/Button/Button";
 import InputField from "../../components/InputField/InputField";
 import InputRadio from "../../components/InputRadio/InputRadio.jsx";
 import InputSelect from "../../components/InputSelect/InputSelect";
+import FormWrapper from "../FormWrapper/FormWrapper.jsx";
 import groups from "../../utils/api-groups";
 import locations from "../../utils/api-locations";
 
@@ -66,7 +67,7 @@ const GroupForm = () => {
       country_id: res.data.country_id,
       remote: res.data.remote,
     });
-  }
+  };
 
   const createNewGroup = async () => {
     const res = await groups.createGroup({ ...formValues });
@@ -82,11 +83,12 @@ const GroupForm = () => {
 
   const editExistingGroup = async () => {
     const res = await groups.editGroup(id, { ...formValues });
-  }
+    navigate(`/groups/${id}`);
+  };
 
   const deleteExistingGroup = async () => {
     const res = await groups.deleteGroup(id);
-  }
+  };
 
   const meetingType = [
     {
@@ -101,7 +103,7 @@ const GroupForm = () => {
 
   useEffect(() => {
     id && getGroupDetails();
-  }, [])
+  }, []);
 
   const regionValues = {
     value: regions && formValues.country_id && regions.filter((region) => region.country_id == formValues.country_id),
@@ -112,7 +114,7 @@ const GroupForm = () => {
   const selectedRegion = regions && formValues.region_id && regions.find((region) => region.id == formValues.region_id);
 
   return (
-    <form id="createGroupForm" onSubmit={handleOnSubmit} className="create-group__form">
+    <FormWrapper id="createGroupForm" onSubmit={handleOnSubmit} header={id ? "Edit Group" : "Create Group"} submitLabel={id ? "Update Group" : "Create Group"}>
       <InputField
         name="groupName"
         type="text"
@@ -160,9 +162,7 @@ const GroupForm = () => {
           />
         </>
       )}
-      <Button type="Submit" styleType="primary" label={id ? "Update Group" : "Create Group"} />
-      {id && <Button type="Button" styleType="tertiary" label="Delete Event" action={deleteExistingGroup} />}
-    </form>
+    </FormWrapper>
   );
 };
 

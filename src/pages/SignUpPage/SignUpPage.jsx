@@ -5,6 +5,7 @@ import Button from "../../components/Button/Button";
 import InputField from "../../components/InputField/InputField";
 import { useLoginUpdate } from "../../components/LoginContextProvider/LoginContextProvider";
 import PageWrapper from "../../components/PageWrapper/PageWrapper";
+import FormWrapper from "../../components/FormWrapper/FormWrapper";
 import users from "../../utils/api-users";
 import { validateEmail, validatePassword, validateSignUp } from "../../utils/validation-utils";
 import "./SignUpPage.scss";
@@ -55,8 +56,8 @@ const SignUpPage = () => {
   };
 
   return (
-    <PageWrapper header="Sign Up" width="small">
-      <form id="signUpForm" onSubmit={handleOnSubmit} className="sign-up__form">
+    <PageWrapper width="small">
+      <FormWrapper header="Sign Up" id="signUpForm" onSubmit={handleOnSubmit} submitLabel="Sign Up">
         <InputField
           name="name"
           type="text"
@@ -101,8 +102,7 @@ const SignUpPage = () => {
           }}
         />
         {errorMessage && <AlertBanner message={errorMessage} />}
-        <Button type="Submit" styleType="primary" label="Sign up" />
-      </form>
+      </FormWrapper>
     </PageWrapper>
   );
 };

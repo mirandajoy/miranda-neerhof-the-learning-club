@@ -56,12 +56,16 @@ const HomePage = () => {
             <EventList label="Your Upcoming Events" events={userEvents} />
           </div>
           <div className="home__event-list">
-            <div className="group-list">
-              <h2 className="header header--secondary group-list__header">Your Groups</h2>
-              {userGroups.map((group) => {
-                return <GroupListItem key={group.id} group={group} />;
-              })}
-              <ButtonLink styleType="tertiary" label="Join A New Group" link="/groups" />
+            <div>
+              <h2 className="home__group-header">Your Groups</h2>
+              <div className="home__group-list">
+                {userGroups.map((group) => {
+                  return <GroupListItem key={group.id} group={group} simple />;
+                })}
+              </div>
+              <div className="home__group-btn">
+                <ButtonLink styleType="tertiary" label="Join A New Group" link="/groups" size="default" />
+              </div>
             </div>
           </div>
         </div>

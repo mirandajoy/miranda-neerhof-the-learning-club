@@ -14,7 +14,7 @@ import EventForm from "../../components/EventForm/EventForm";
 const CreateEventPage = () => {
 
   return (
-    <PageWrapper header="Create Event" width="small">
+    <PageWrapper width="small">
       <EventForm />
     </PageWrapper>
   );

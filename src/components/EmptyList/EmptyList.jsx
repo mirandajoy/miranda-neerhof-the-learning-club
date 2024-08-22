@@ -8,7 +8,7 @@ const EmptyList = ({ text, owned }) => {
       <p className="body body--dark">{text}</p>
       {owned && (
         <div className="empty-list__btn-container">
-          <ButtonLink styleType="secondary" label="Create Event" link="/events/create" />
+          <ButtonLink styleType="secondary" label="Create Event" link="/events/create" size="min-width-m" />
         </div>
       )}
     </div>

@@ -3,7 +3,21 @@
 @use "../../styles/partials/global" as *;
 
 .button {
-  @include button;
+  &--default {
+    @include button;
+  }
+  &--min-width-s {
+    @include button(100%, $min-width: 5rem);
+  }
+  &--min-width-m {
+    @include button(100%, $min-width: 10rem);
+  }
+  &--min-width-lg {
+    @include button(100%, $min-width: 15rem);
+  }
+  &--full-width {
+    @include button(100%);
+  }
   &--primary {
     @include button-primary;
   }

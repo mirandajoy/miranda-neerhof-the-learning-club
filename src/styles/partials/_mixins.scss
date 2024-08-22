@@ -70,18 +70,37 @@
   }
 }
 
+//Fonts
+
+@mixin header($size: $font-size-h3, $color: $color-primary-dark, $weight: $weight-regular) {
+  color: $color;
+  font-family: $font-family-header;
+  font-size: $size;
+  font-weight: $weight;
+  line-height: calc($size * 1.2);
+}
+
+@mixin body($size: $font-size-body, $color: $color-primary-dark, $weight: $weight-regular) {
+  color: $color;
+  font-family: $font-family-body;
+  font-size: $size;
+  font-weight: $weight;
+  line-height: calc($size * 1.2);
+}
+
 //Other Styles
 
-@mixin button {
-  border-radius: $border-radius;
+@mixin button($width: fit-content, $min-width: 0) {
+  border-radius: $border-radius-round;
   box-sizing: border-box;
   box-shadow: 1px 2px 5px #b4b4b47e;
-  font-family: "Rubik", sans-serif;
+  font-family: $font-family-body;
   font-size: $font-size-body;
   font-weight: $weight-bold;
   padding: $space-med $space-standard;
   text-align: center;
-  width: 100%;
+  width: $width;
+  min-width: $min-width;
 }
 
 @mixin button-primary {
@@ -103,7 +122,7 @@
   transition: 0.2s ease-in;
   &:hover {
     background-color: $color-primary-light;
-    border: 2px solid  $color-primary-light;
+    border: 2px solid $color-primary-light;
     color: $color-brand-secondary;
     transform: scale(0.99);
   }
@@ -131,6 +150,18 @@
     background-color: $color-background-secondary;
     transform: scale(0.99);
     text-decoration: underline;
+  }
+}
+
+@mixin input {
+  background-color: $color-background-secondary;
+  border: none;
+  border-radius: $border-radius;
+  box-sizing: border-box;
+  padding: $space-standard-mobile;
+  &:focus,
+  &:focus-visible {
+    outline: 1px solid $color-brand-secondary;
   }
 }
 

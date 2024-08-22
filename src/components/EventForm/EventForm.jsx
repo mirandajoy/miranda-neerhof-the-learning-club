@@ -4,6 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import Button from "../../components/Button/Button";
 import InputField from "../../components/InputField/InputField";
 import InputSelect from "../../components/InputSelect/InputSelect";
+import FormWrapper from "../../components/FormWrapper/FormWrapper";
 import events from "../../utils/api-events";
 import profiles from "../../utils/api-profile";
 import parseDateTime from "../../utils/time-parse";
@@ -26,7 +27,7 @@ const EventForm = () => {
   const [remoteGroup, setRemoteGroup] = useState(false);
   const { id } = useParams();
   const navigate = useNavigate();
-  dayjs.extend(utc)
+  dayjs.extend(utc);
 
   const handleOnChange = (event) => {
     const target = event.target.name;
@@ -83,7 +84,7 @@ const EventForm = () => {
       location: formValues.location,
       address: formValues.address,
       remote_link: formValues.remote_link,
-      time: dayjs(`${formValues.date} ${formValues.time}`).utc().format('YYYY-MM-DD HH:mm'),
+      time: dayjs(`${formValues.date} ${formValues.time}`).utc().format("YYYY-MM-DD HH:mm"),
       user_tz: formValues.timezone,
     };
     const res = await events.createEvent(newEvent);
@@ -96,7 +97,7 @@ const EventForm = () => {
       location: formValues.location,
       address: formValues.address,
       remote_link: formValues.remote_link,
-      time: dayjs(`${formValues.date} ${formValues.time}`).utc().format('YYYY-MM-DD HH:mm'),
+      time: dayjs(`${formValues.date} ${formValues.time}`).utc().format("YYYY-MM-DD HH:mm"),
       user_tz: formValues.timezone,
     };
     const res = await events.editEvent(id, updatedEvent);
@@ -115,7 +116,12 @@ const EventForm = () => {
   const selectedGroup = !id && formValues.group && ownedGroups.find((group) => group.id == formValues.group);
 
   return (
-    <form id="createEventForm" onSubmit={handleOnSubmit} className="create-event__form">
+    <FormWrapper
+      id="createEventForm"
+      onSubmit={handleOnSubmit}
+      header={id ? "Edit Event" : "Create Event"}
+      submitLabel={id ? "Update Event" : "Create Event"}
+    >
       {!id && ownedGroups && ownedGroups.length > 1 && (
         <InputSelect
           name="group"
@@ -127,7 +133,7 @@ const EventForm = () => {
         />
       )}
       {formValues.group && (
-        <div className="create-event__event-inputs">
+        <>
           {!remoteGroup && (
             <>
               <InputField
@@ -175,14 +181,12 @@ const EventForm = () => {
                 value={formValues.time}
                 onChange={handleOnChange}
               />
-              <p className="create-event__timezone-label">Timezone: {formValues.timezone}</p>
+              <p className="create-event__timezone-label">{formValues.timezone}</p>
             </div>
           </div>
-          <Button type="Submit" styleType="primary" label={id ? "Update Event" : "Create Event"} />
-          {id && <Button type="Button" styleType="tertiary" label="Delete Event" action={deleteExistingEvent} />}
-        </div>
+        </>
       )}
-    </form>
+    </FormWrapper>
   );
 };
 

@@ -3,13 +3,12 @@
 @use "../../styles/partials/global" as *;
 
 .empty-list {
+  @include flex-column(center, center);
+  gap: $space-standard;
   background-color: $color-background-secondary;
   border-radius: $border-radius;
   padding-block: 3rem;
-  text-align: center;
-  width: 100%;
   &__btn-container {
-    margin: 1.5rem auto 0 auto;
-    max-width: 20rem;
+    margin: 0;
   }
 }

@@ -18,6 +18,9 @@
       max-width: 1280px;
     }
   }
+  &--medium {
+    @include page-center($max-content-width-medium);
+  }
   &--small {
     @include page-center($max-content-width-small);
   }
@@ -45,9 +48,13 @@
     color: $color-brand-primary;
     font-weight: $weight-bold;
     font-family: "Rubik", sans-serif;
+    font-family: "Sarabun", sans-serif;
     font-size: $font-size-body;
   }
   &__header-container {
     @include responsive-padding-block;
+  }
+  &__header {
+    @include header($font-size-h1);
   }
 }

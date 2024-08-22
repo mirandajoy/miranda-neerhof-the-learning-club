@@ -1,13 +1,14 @@
 import "./Footer.scss";
+import logo from "../../assets/images/logo-deconstructed.svg"
 
 const Footer = () => {
   return (
     <footer className="footer">
-      <p className="body body--light footer__logo">The Learning Club</p>
-      <h2 className="header footer__tagline">
-        <span className="footer__tagline-highlight">~ </span>Stay Curious
-        <span className="footer__tagline-highlight"> ~</span>
-      </h2>
+      <div>
+        <h3 className="footer__brand-name">The Learning Club</h3>
+        <h4 className="footer__tagline">Stay Curious</h4>
+      </div>
+      <img src={logo} />
     </footer>
   );
 };

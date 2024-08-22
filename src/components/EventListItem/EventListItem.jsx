@@ -41,18 +41,18 @@ const EventListItem = ({ event }) => {
       <Link to={`/events/${event.id}`} className="event__content-container">
         <div className="event__date-container">
           <p className="body body--dark body--small event__month">{parsedDateTime.month}</p>
-          <p className="body body--dark body--display event__day">{parsedDateTime.day}</p>
+          <h3 className="event__day">{parsedDateTime.day}</h3>
         </div>
         <div className="event__details-container">
-          {groupDetails && <p className="body body--dark">Hosted by: {groupDetails.name}</p>}
-          <div className={`${!loggedIn ? "event__event-details" : ""}`}>
+          {groupDetails && <h4 className="event__header">{groupDetails.name}</h4>}
+          <p className="event__event-details">
+            <span>{parsedDateTime.fullTime}</span>
             {event.location ? (
-              <p className="body body--dark body--small">Meet at {event.location}</p>
+              <span> at {event.location}</span>
             ) : (
-              <p className="body body--dark body--small">Meet on Zoom</p>
+              <span> Remote</span>
             )}
-            <p className="body body--dark body--small">{parsedDateTime.fullTime}</p>
-          </div>
+          </p>
         </div>
       </Link>
       {groupJoined && loggedIn && (
@@ -60,7 +60,7 @@ const EventListItem = ({ event }) => {
           {rsvpStatus && rsvpStatus.toLowerCase() === "attending" ? (
             <CheckAnimation animate={animated} label="Attending!" check="true" />
           ) : (
-            <Button label="Attend" styleType="secondary" action={() => handleRSVP("Attending")} />
+            <Button label="Attend" styleType="secondary" action={() => handleRSVP("Attending")} size="default" />
           )}
         </div>
       )}

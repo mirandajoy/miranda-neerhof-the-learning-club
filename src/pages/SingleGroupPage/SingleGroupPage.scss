@@ -11,7 +11,7 @@
     background-color: $color-background-secondary;
     border-radius: $border-radius;
     padding: $space-small $space-med;
-    margin-bottom: $space-large;
+    margin-block: $space-standard $space-large;
   }
   &__star-icon {
     color: $color-accent-yellow;

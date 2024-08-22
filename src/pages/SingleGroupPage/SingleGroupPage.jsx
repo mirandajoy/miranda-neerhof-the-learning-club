@@ -29,7 +29,6 @@ const SingleGroupPage = () => {
     const res = await groups.getSingleGroup(id);
     setGroupJoined(res.data.joined);
     setGroupDetails(res.data);
-    console.log(res.data);
   };
 
   const handleJoinClick = async () => {
@@ -63,12 +62,12 @@ const SingleGroupPage = () => {
         <div className="single-group__edit-container">
           <div className="single-group__your-group-container">
             <span className="single-group__star-icon material-symbols-outlined">star</span>
-            <h3 className="header header--tertiary">Group Admin</h3>
+            <h3 className="header header--4">Group Admin</h3>
           </div>
           <div>
             <span className="single-group__edit-icon material-symbols-outlined">edit</span>
             <div>
-              <ButtonLink styleType="tertiary" label="Edit Group" link={`/groups/edit/${id}`} />
+              <ButtonLink styleType="tertiary" label="Edit Group" link={`/groups/edit/${id}`} size="default" />
             </div>
           </div>
         </div>
@@ -92,6 +91,7 @@ const SingleGroupPage = () => {
             action={() => {
               handleJoinClick();
             }}
+            size="default"
           />
         </div>
       );
@@ -99,11 +99,11 @@ const SingleGroupPage = () => {
   }
 
   return (
-    <PageWrapper header={groupDetails.name} width="small" back>
+    <PageWrapper header={groupDetails.name} width="medium" back>
       <div className="single-group__main-details-container">
         <div className="single-group__main-details-left">
           <span className="material-symbols-outlined">location_on</span>
-          <h2 className="header header--secondary single-group__header">Group Location</h2>
+          <h2 className="header header--3 single-group__header">Group Location</h2>
           {groupDetails.city ? (
             <>
               <p className="body body--dark">
@@ -112,7 +112,7 @@ const SingleGroupPage = () => {
               <p className="body body--dark">{groupDetails.country_name}</p>
             </>
           ) : (
-            <p className="body body--dark">Remote on Zoom</p>
+            <p className="body body--dark">Remote</p>
           )}
         </div>
       </div>
